@@ -1,0 +1,11 @@
+alias d='ls'
+alias s='cd ..'
+alias p='cd -'
+
+alias avadakedavra='kill -9 '
+alias obliviate='rm -rf '
+alias alohomora='chmod -Rf ug+w '
+alias accio='search -red -n -nnice '
+
+alias tmpfile='vi ~/tmp.txt'
+
