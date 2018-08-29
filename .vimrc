@@ -1,83 +1,80 @@
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+" My ~/.vimrc.
+"
+" All plugins are now managed using Vundle.
+" Plugin management is at the top of the file, configuration is at the bottom.
+"
+"
+" Get the defaults that most users want.
 
-runtime ~/.vim
-call pathogen#infect()
-colorscheme lou
-syntax enable
+set nocompatible	" Use Vim defaults (much better!)
+filetype off
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" Plugin settings
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" jedi-vim  nerdtree  supertab  syntastic  vim-colorschemes  vim-fugitive  vim-plugin-minibufexpl  Vundle.vim  youcompleteme
 
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-set foldclose=all
-set foldmethod=manual
-set t_Co=256
+Plugin 'VundleVim/Vundle.vim'
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+Plugin 'flazz/vim-colorschemes'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'ervandew/supertab'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'weynhamz/vim-plugin-minibufexpl'
+Plugin 'jpflouret/vimp4python'
+Plugin 'luochen1990/rainbow'
+Plugin 'tmhedberg/matchit'
+Plugin 'gnattishness/cscope_maps'
+
+
+" Plugin 'rip-rip/clang_complete'
+" Plugin 'powerline/powerline'
+" Plugin 'valloric/youcompleteme'
+
+
+" add new plugins above this line.
+call vundle#end()
+
+filetype plugin indent on
+
+source $VIMRUNTIME/defaults.vim
+
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
+set bs=indent,eol,start		" allow backspacing over everything in insert mode
+"set ai			" always set autoindenting on
+"set backup		" keep a backup file
+"if has('persistent_undo')
+"  set undofile	" keep an undo file (undo changes after closing)
+"endif
+set viminfo='20,\"50	" read/write a .viminfo file, don't store more
+			" than 50 lines of registers
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=80
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  augroup END
-
-else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-
-
+" Other stuff I like
+set scrolloff=0
+set foldclose=all
+set foldmethod=manual
 set expandtab
 set nosmarttab
-set ts=8
+set ts=2
 set nomodeline
-set tags=tags,./tags,./../tags,./../../tags,./../../../tags
+set tags=tags;~/dev
 set undolevels=100
-set incsearch
-set hlsearch
 set noignorecase
 set hls ic
-set cindent
 set shiftwidth=2
 set lpl
+" set splitright
 
-" default cinoptions:
-" set cinoptions=>s,e0,n0,f0,{0,}0,^0,:s,=s,l0,gs,hs,ps,ts,+s,c3,C0,(2s,us,U0,w0,m0,j0,)20,*30
-set cinoptions=>4,e2,n-2,f0,{2,}0,^-2,:s,=s,l1,b0,gs,hs,ps,ts,is,+4,c3,C0,/0,(2s,us,U1,w1,W0,m0,j0,)20,*30
-
-" Make it easier rotating through screens when split
-" map v w
+" Window Navigation with Ctrl-[hjkl]
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -89,13 +86,72 @@ imap  
 lmap  
 cmap  
 
+" Set the color range and colorscheme
+set t_Co=256
+colorscheme lou
+set background=dark
+" Switch syntax highlighting on
+syntax on
+" Also switch on highlighting the last used search pattern.
+set hlsearch
+
+" Only do this part when compiled with support for autocommands
+if has("autocmd")
+
+  autocmd BufEnter * :syntax on
+
+  augroup fedora
+  autocmd!
+
+  " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+  autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+  " start with spec file template
+  autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
+  augroup END
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  "autocmd FileType text setlocal textwidth=80
+
+  augroup END
+endif
+
+"if has("cscope") && filereadable("/usr/bin/cscope")
+"   set csprg=/bin/cscope
+"   set csto=0
+"   set cst
+"   set nocsverb
+   " add any database in current directory
+  " if filereadable("cscope.out")
+  "    cs add $PWD/cscope.out
+  " " else add database pointed to by environment
+  " elseif $CSCOPE_DB != ""
+  "    cs add $CSCOPE_DB
+  " endif
+"   set csverb
+"endif
+
+" filetype plugin on
+
+" Don't wake up system with blinking cursor:
+" http://www.linuxpowertop.org/known.php
+let &guicursor = &guicursor . ",a:blinkon0"
+
+" Add optional packages.
+"
+" ===================================
+" Plugin configs below this point.
+
 " NERDTree - awesome filesystem interface
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
 
 " Settings for taglist.vim
 nnoremap <silent> <F8> :TlistToggle<CR>
 " let Tlist_Use_Right_Window=1
-let Tlist_Auto_Open=1
+" let Tlist_Auto_Open=1
 let Tlist_Enable_Fold_Column=0
 let Tlist_Compact_Format=0
 let Tlist_WinWidth=28
@@ -103,39 +159,58 @@ let Tlist_Exit_OnlyWindow=1
 let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Process_File_Always = 1
 
-" Turned these off for now - Syntastic is a bit over-zealous
-" Don't let Syntastic harp on style
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_aggregate_errors = 1
-" let g:syntastic_enable_balloons = 1
-" let g:syntastic_auto_jump = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_quiet_messages = { "type": "style" }
+" ===================================
+" Plugin config: CVS???
+" nmap L :VCSLog<CR>
+" nmap A :VCSAnnotate<CR>
+" nmap S :VCSStatus<CR>
+" nmap U :VCSUpdate<CR>
+" nmap V :VCSVimDiff<CR>
+" nmap D :VCSDiff<CR>
 
-" Window Navigation with Ctrl-[hjkl]
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
-
+" ===================================
+" Plugin config: MiniBufExplorer
 " Prevent the buffer explorer window from
 " opening until we open at least 4 buffers.
 " Default is 2.
-" let g:miniBufExplorerMoreThanOne=4
-
-" Allow <C-TAB>/<C-S-TAB> and <F2>/<F3>
-" scrolling through the open buffers.
-let g:miniBufExplMapCTabSwitchBufs=1
-
+let g:miniBufExplBuffersNeeded = 4
 " <F6> Opens or closes the buffer explorer window.
-map <unique> <F6> <Plug>TMiniBufExplorer
+noremap <silent> <F6> :MBEToggle<CR>
+" Available commands: MBEToggle  MBEToggleAll  MBEToggleMRU  MBEToggleMRUAll
 
-" nnoremap <silent> <F9> :RainbowParenthesesToggleAll<CR>
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" scrolling through the open buffers.
+nnoremap <silent> <F2> :MBEbp<CR>
+nnoremap <silent> <F3> :MBEbn<CR>
+hi MBEChanged guibg=darkblue ctermbg=darkblue
+
+
+" ===================================
+" Plugin config: Rainbow Parens
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+  let g:rainbow_conf = {
+  \ 'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+  \ 'ctermfgs': ['blue', 'yellow', 'magenta', 'cyan', 'green'],
+  \ 'operators': '_,_',
+  \ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+  \ 'separately': {
+  \   '*': {},
+  \   'tex': {
+  \     'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+  \   },
+  \   'lisp': {
+  \     'guifgs': ['navyblue', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+  \   },
+  \   'vim': {
+  \     'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+  \   },
+  \   'html': {
+  \     'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+  \   },
+  \   'css': 0,
+  \ }
+  \}
+nnoremap <silent> <F9> :RainbowToggle<CR>
+
 
 
 " Abbreviations

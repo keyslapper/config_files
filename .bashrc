@@ -5,7 +5,8 @@ if [ -z "$PS1" ]; then
   return
 fi
 
-export PATH=~/bin:.:/bin:/usr/bin:/usr/local/bin:/emc/symsw/bin
+export IDEA_HOME=~/bin/idea-IU-181.5281.24
+export PATH=~/bin:.:$IDEA_HOME/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/bin:/emc/symsw/bin
 
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc   # --> Read /etc/bashrc, if present.
@@ -18,19 +19,39 @@ set -o ignoreeof
 set -o notify
 
 export HISTCONTROL=ignorespace:erasedups
-export HISTIGNORE=exit:ls:cd:vi
+export HISTIGNORE=exit:ls:cd:vi:
 export HISTSIZE=400
 export HISTAPPEND=TRUE
 # export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 export PROMPT_COMMAND="history -n; history -w;"
 
 stty erase 
-export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-# export PS1='\h:\w\$ '
-# export PS1="<\u>:\w/$ "
+# export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+if [[ "$TERM" =~ 256color ]]; then
+  if [ $(id -u) -eq 0 ]
+  then
+    PS1='\[\e[38;5;214m\][\[\e[1;31m\]\u@\h\[\e[38;5;214m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
+  else
+    if [ -n "$SSH_CLIENT" ];
+    then
+      PS1='\[\e[38;5;214m\][\[\e[1;32m\]\u@\[\e[1;31m\]\h\[\e[38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
+    else
+      PS1='\[\e[38;5;214m\][\[\e[1;32m\]\u@\h\[\e[38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
+    fi
+  fi
+else
+  export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi
+
 export OS=`/bin/uname`
 # export OSNAME=`/bin/uname -s`
 export PROC=`/bin/uname -m`
+
+# export JBOSS_HOME=/usr/share/wildfly
+# export JAVA_HOME=/usr/java/jdk1.8.0_162
+export JAVA_HOME=/usr/local/jdk1.8.0_171
+# export PATH=$JAVA_HOME/bin:$JBOSS_HOME/bin:$PATH
+export PATH=$JAVA_HOME/bin:$PATH
 
 host=`hostname`
 
@@ -40,10 +61,12 @@ if [ -f  ~/.alias ]; then
 fi
 
 if [ -f /usr/bin/vim ]; then
+  export P4EDITOR=vim
   export CVSEDITOR=vim
   export EDITOR=vim
   alias vi='vim'
 else
+  export P4EDITOR=vi
   export CVSEDITOR=vi
   export EDITOR=vi
 fi
@@ -51,10 +74,14 @@ fi
 export DB_FLAG=-ggdb
 export DBG_CMP_FLAG=-g3
 
-export PAGER=less
+if [ -f  /bin/less ]; then
+  export PAGER=less
+fi
+
+source ~/.todo/todo_completion
 
 unset MAILCHECK        # Don't want my shell to warn me of incoming mail.
-umask 022
+# umask 022
 
 # configs specific to the work environment that I neither need nor want elsewhere.
 if [ -f ~/.workrc ]; then
