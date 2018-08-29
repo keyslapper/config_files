@@ -1,7 +1,3 @@
-# _____________ Add Project Specific Configuration Details Here ____________
-
-# I need to find out how to check for a file and include it here if it exists.
-
 # ______________ General GDB configuration bits _____________
 # set pagination off
 set print pretty on
@@ -16,6 +12,15 @@ set breakpoint pending on
 #set logging overwrite on
 #set logging redirect on
 # set logging file ~/gdb_run.txt
+
+# _____________ Add Project Specific Configuration Details Here ____________
+break pdsBreakHere
+break MG_Abort
+
+set debug-file-directory = $APIOSPATH
+# Supposedly, the set debug-file-directory entry above renders the following lines unnecessary.
+# path $APIOSPATH/obj/api:$APIOSPATH/obj/cli:$APIOSPATH/obj/hba:$APIOSPATH/obj/pds:$APIOSPATH/obj/sil/nc
+# directory $SE_BASE_DIR/src:$SE_BASE_DIR/include:$SE_BASE_DIR/pds/src:$SE_BASE_DIR/pds/include:$SE_BASE_DIR/sil/src:$SE_BASE_DIR/sil/include:$SE_BASE_DIR/cli/src:$SE_BASE_DIR/cli/include
 
 # ______________breakpoint aliases_____________
 define bpl
@@ -96,14 +101,14 @@ document stack
 Print call stack
 end
 
-define frame
- info frame
- info args
- info locals
-end
-document frame
-Print stack frame
-end
+# define frame
+# info frame
+# info args
+# info locals
+# end
+# document frame
+# Print stack frame
+# end
 
 define func
  info functions
@@ -126,12 +131,12 @@ document lib
 Print shared libraries linked to target
 end
 
-define thread
- info threads
-end
-document thread
-Print threads in target
-end
+# define thread
+# info threads
+# end
+# document thread
+# Print threads in target
+# end
 
 # ________________hex/ascii dump an address______________
 define ascii_char

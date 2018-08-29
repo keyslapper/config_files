@@ -36,7 +36,9 @@ if [[ "$TERM" =~ 256color ]]; then
     then
       PS1='\[\e[38;5;214m\][\[\e[1;32m\]\u@\[\e[1;31m\]\h\[\e[38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
     else
-      PS1='\[\e[38;5;214m\][\[\e[1;32m\]\u@\h\[\e[38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
+      source ~/.git-prompt.sh
+      PS1='\[\e[38;5;214m\][\[\e[1;32m\]\u@\h\[\e[38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$ '
+      # PS1='\[\e[38;5;214m\][\[\e[1;32m\]\u@\h\[\e[38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
     fi
   fi
 else
@@ -48,10 +50,9 @@ export OS=`/bin/uname`
 export PROC=`/bin/uname -m`
 
 # export JBOSS_HOME=/usr/share/wildfly
-# export JAVA_HOME=/usr/java/jdk1.8.0_162
-export JAVA_HOME=/usr/local/jdk1.8.0_171
-# export PATH=$JAVA_HOME/bin:$JBOSS_HOME/bin:$PATH
+export JAVA_HOME=/usr/java/latest
 export PATH=$JAVA_HOME/bin:$PATH
+export ANT_HOME=/usr/share/ant
 
 host=`hostname`
 
@@ -78,7 +79,7 @@ if [ -f  /bin/less ]; then
   export PAGER=less
 fi
 
-source ~/.todo/todo_completion
+# source ~/.todo/todo_completion
 
 unset MAILCHECK        # Don't want my shell to warn me of incoming mail.
 # umask 022
