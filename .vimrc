@@ -1,16 +1,19 @@
 " My ~/.vimrc.
 "
 " All plugins are now managed using Vundle.
-" Plugin management is at the top of the file, configuration is at the bottom.
-"
-"
-" Get the defaults that most users want.
+" Plugin management are near the top of the file, configuration near the bottom.
 
+" This must be first, because it changes other options as a side effect.
 set nocompatible	" Use Vim defaults (much better!)
 filetype off
 
 " Plugin settings
 set rtp+=~/.vim/bundle/Vundle.vim
+" ======================================================
+" Set up Vundle management with the following commands:
+" cd ~/.vim/bundle
+" git clone https://github.com/VundleVim/Vundle.vim
+" ======================================================
 call vundle#begin()
 " jedi-vim  nerdtree  supertab  syntastic  vim-colorschemes  vim-fugitive  vim-plugin-minibufexpl  Vundle.vim  youcompleteme
 
@@ -45,22 +48,22 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=ucs-bom,utf-8,latin1
 endif
 
-set bs=indent,eol,start		" allow backspacing over everything in insert mode
-"set ai			" always set autoindenting on
-"set backup		" keep a backup file
-"if has('persistent_undo')
-"  set undofile	" keep an undo file (undo changes after closing)
-"endif
+set backspace=indent,eol,start  " allow backspacing over everything in insert mode
+
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more
 			" than 50 lines of registers
 
 " Other stuff I like
 set scrolloff=0
+set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set incsearch		" do incremental searching
 set foldclose=all
 set foldmethod=manual
 set expandtab
 set nosmarttab
-set ts=2
+set ts=8
 set nomodeline
 set tags=tags;~/dev
 set undolevels=100
@@ -68,7 +71,10 @@ set noignorecase
 set hls ic
 set shiftwidth=2
 set lpl
+set cindent
 " set splitright
+
+set cinoptions=>4,e2,n-2,f0,{2,}0,^-2,:s,=s,l1,b0,gs,hs,ps,ts,is,+4,c3,C0,/0,(2s,us,U1,w1,W0,m0,j0,)20,*30
 
 " Window Navigation with Ctrl-[hjkl]
 noremap <C-J> <C-W>j
@@ -100,6 +106,12 @@ if has("autocmd")
 
   autocmd BufEnter * :syntax on
 
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
   augroup fedora
   autocmd!
 
@@ -114,7 +126,15 @@ if has("autocmd")
   au!
 
   " For all text files set 'textwidth' to 78 characters.
-  "autocmd FileType text setlocal textwidth=80
+  autocmd FileType text setlocal textwidth=80
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
 
   augroup END
 endif
@@ -177,7 +197,6 @@ let g:miniBufExplBuffersNeeded = 4
 " <F6> Opens or closes the buffer explorer window.
 noremap <silent> <F6> :MBEToggle<CR>
 " Available commands: MBEToggle  MBEToggleAll  MBEToggleMRU  MBEToggleMRUAll
-
 " scrolling through the open buffers.
 nnoremap <silent> <F2> :MBEbp<CR>
 nnoremap <silent> <F3> :MBEbn<CR>
