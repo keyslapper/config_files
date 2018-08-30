@@ -65,18 +65,11 @@ if [ -f  ~/.alias ]; then
 fi
 
 if [ -f /usr/bin/vim ]; then
-  export P4EDITOR=vim
-  export CVSEDITOR=vim
   export EDITOR=vim
   alias vi='vim'
 else
-  export P4EDITOR=vi
-  export CVSEDITOR=vi
   export EDITOR=vi
 fi
-
-export DB_FLAG=-ggdb
-export DBG_CMP_FLAG=-g3
 
 if [ -f  /bin/less ]; then
   export PAGER=less
