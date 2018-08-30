@@ -25,6 +25,9 @@ export HISTAPPEND=TRUE
 # export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 export PROMPT_COMMAND="history -n; history -w;"
 
+# add support for ctrl+o to open selected file in VS Code
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+
 stty erase 
 # export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 if [[ "$TERM" =~ 256color ]]; then

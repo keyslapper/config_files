@@ -9,3 +9,12 @@ alias accio='search -red -n -nnice '
 
 alias tmpfile='vi ~/tmp.txt'
 
+# Terminal alternatives
+alias ping='prettyping --nolegend'
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+# Uncomment this when I figure out how to install bat ...
+# alias cat='bat'
+alias top='htop'
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+alias help='tldr'
+
