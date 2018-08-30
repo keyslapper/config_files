@@ -1,23 +1,23 @@
- *.a
- *.COM
- *.elc
- *.EXE
- *.o
- *.pbm
- *.xbm
- *.dvi
- cscope.*
- tags
- *.log
- *.nfs*
- .#*
- *.tar.z
- *.tarz
- *.zip
- *.lzh
- *.jpg
- *.jpeg
- *.gif
- bin
- third_party
- build*
+*.a
+*.COM
+*.elc
+*.EXE
+*.o
+*.pbm
+*.xbm
+*.dvi
+cscope.*
+tags
+*.log
+*.nfs*
+.#*
+*.tar.z
+*.tarz
+*.zip
+*.lzh
+*.jpg
+*.jpeg
+*.gif
+bin
+third_party
+build*

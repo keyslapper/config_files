@@ -3,5 +3,15 @@
 # option: -skip '.a .COM .elc .EXE .o .pbm .xbm .dvi cscope.* tags .log .nfs* .#*'
 # option: -iskip '.tar.z .tarz .zip .lzh .jpg .jpeg .gif .uu'
 # option: -dskip 'bin third_party build*'
- --ignore-file '.a .COM .elc .EXE .o .pbm .xbm .dvi cscope.* tags .log .nfs* .#* .tar.z .tarz .zip .lzh .jpg .jpeg .gif'
- --ignore-dir 'bin third_party build*'
+#--ignore-file='.a .COM .elc .EXE .o .pbm .xbm .dvi cscope. tags .log .nfs* .#* .tar .z .tarz .tgz .zip .lzh .jpg .jpeg .gif'
+ --type-set=cscope:match:cscope.*
+ --type-set=ctags:is:tags
+ --type-set=nfs:match:.nfs*
+ --type-set=libs:ext:a,o,so
+ --noctags
+ --nocscope
+ --nonfs
+ --nolibs
+ --ignore-dir=bin
+ --ignore-dir=third_party
+ --ignore-dir=build*
