@@ -79,7 +79,7 @@ if [ -f  /bin/less ]; then
   export PAGER=less
 fi
 
-# source ~/.todo/todo_completion
+source ~/.todo/todo_completion
 
 unset MAILCHECK        # Don't want my shell to warn me of incoming mail.
 # umask 022
