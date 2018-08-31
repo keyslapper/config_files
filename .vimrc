@@ -18,22 +18,36 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+" https://github.com/flazz/vim-colorschemes
 Plugin 'flazz/vim-colorschemes'
+" https://github.com/davidhalter/jedi-vim
 Plugin 'davidhalter/jedi-vim'
+" https://github.com/vim-syntastic/syntastic
 Plugin 'vim-syntastic/syntastic'
+" https://github.com/ervandew/supertab
 Plugin 'ervandew/supertab'
+" https://github.com/scrooloose/nerdtree
 Plugin 'scrooloose/nerdtree'
+" https://github.com/tpope/vim-fugitive
 Plugin 'tpope/vim-fugitive'
+" https://github.com/weynhamz/vim-plugin-minibufexpl
 Plugin 'weynhamz/vim-plugin-minibufexpl'
+" https://github.com/jpflouret/vimp4python
 Plugin 'jpflouret/vimp4python'
+" https://github.com/luochen1990/rainbow
 Plugin 'luochen1990/rainbow'
+" https://github.com/tmhedberg/matchit
 Plugin 'tmhedberg/matchit'
+" https://github.com/gnattishness/cscope_maps
 Plugin 'gnattishness/cscope_maps'
+" https://github.com/valloric/youcompleteme
+Plugin 'valloric/youcompleteme'
 
-
+" https://github.com/rip-rip/clang_complete
 " Plugin 'rip-rip/clang_complete'
+
+" https://github.com/powerline/powerline
 " Plugin 'powerline/powerline'
-" Plugin 'valloric/youcompleteme'
 
 
 " add new plugins above this line.
