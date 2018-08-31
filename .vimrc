@@ -243,6 +243,7 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
   \}
 nnoremap <silent> <F9> :RainbowToggle<CR>
 
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 
 " Abbreviations
