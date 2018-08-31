@@ -8,8 +8,10 @@ fi
 export IDEA_HOME=~/bin/idea-IU-181.5281.24
 export PATH=~/bin:.:$IDEA_HOME/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/bin:~/.cargo/bin
 
+export BAT_CONFIG_DIR="$(bat cache --config-dir)"
+
 if [ -f /etc/bashrc ]; then
-    . /etc/bashrc   # --> Read /etc/bashrc, if present.
+    source /etc/bashrc   # --> Read /etc/bashrc, if present.
 fi
 
 export USER=${USER:-$LOGNAME}
@@ -83,5 +85,9 @@ unset MAILCHECK        # Don't want my shell to warn me of incoming mail.
 # configs specific to the work environment that I neither need nor want elsewhere.
 if [ -f ~/.workrc ]; then
     . ~/.workrc   # --> Read /etc/bashrc, if present.
+fi
+
+if [ -f /usr/share/fzf/shell/key-bindings.bash ]; then
+  source /usr/share/fzf/shell/key-bindings.bash
 fi
 
