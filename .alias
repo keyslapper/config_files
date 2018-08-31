@@ -11,10 +11,12 @@ alias tmpfile='vi ~/tmp.txt'
 
 # Terminal alternatives
 alias ping='prettyping --nolegend'
-alias preview="fzf --preview 'bat --color \"always\" {}'"
-# Uncomment this when I figure out how to install bat ...
-# alias cat='bat'
 alias top='htop'
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 alias help='tldr'
+
+# Be sure to install bat ...
+# alias preview="fzf --preview 'bat --color \"always\" {}'"
+alias preview="fzf --height 40% --preview 'if file -i {}|grep -q binary; then file -b {}; else bat --color \"always\" --line-range :40 {}; fi'"
+alias cat='bat'
 

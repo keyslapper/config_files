@@ -6,7 +6,7 @@ if [ -z "$PS1" ]; then
 fi
 
 export IDEA_HOME=~/bin/idea-IU-181.5281.24
-export PATH=~/bin:.:$IDEA_HOME/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/bin:/emc/symsw/bin
+export PATH=~/bin:.:$IDEA_HOME/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/bin:~/.cargo/bin
 
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc   # --> Read /etc/bashrc, if present.
