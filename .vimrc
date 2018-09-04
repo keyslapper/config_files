@@ -42,13 +42,13 @@ Plugin 'tmhedberg/matchit'
 Plugin 'gnattishness/cscope_maps'
 " https://github.com/valloric/youcompleteme
 Plugin 'valloric/youcompleteme'
+" https://github.com/mileszs/ack.vim
+Plugin 'mileszs/ack.vim'
+" https://github.com/junegunn/fzf
+Plugin 'junegunn/fzf'
 
 " https://github.com/rip-rip/clang_complete
 " Plugin 'rip-rip/clang_complete'
-
-" https://github.com/powerline/powerline
-" Plugin 'powerline/powerline'
-
 
 " add new plugins above this line.
 call vundle#end()
@@ -112,7 +112,8 @@ set background=dark
 " Switch syntax highlighting on
 syntax on
 " Also switch on highlighting the last used search pattern.
-set hlsearch
+" set hlsearch
+" nnoremap <silent> <esc> :noh<cr><esc>
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -244,7 +245,6 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 nnoremap <silent> <F9> :RainbowToggle<CR>
 
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-
 
 " Abbreviations
 iab _DATE <C-R>=strftime("Date: %A %B, %e %Y\nTime: %I:%M:%S %p %Z")<CR>
