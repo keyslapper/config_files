@@ -16,6 +16,8 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 alias help='tldr'
 
 # Be sure to install bat ...
-alias preview="fzf --preview 'bat --color \"always\" {}'"
-alias cat='bat'
+if [ -f ~/.cargo/bin/bat ]; then
+  alias preview="fzf --preview 'bat --color \"always\" {}'"
+  alias cat='bat'
+fi
 
