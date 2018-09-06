@@ -20,13 +20,6 @@ set -o vi
 set -o ignoreeof
 set -o notify
 
-export HISTCONTROL=ignorespace:erasedups
-export HISTIGNORE=exit:ls:cd:vi:
-export HISTSIZE=400
-export HISTAPPEND=TRUE
-# export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
-export PROMPT_COMMAND="history -n; history -w;"
-
 # add support for ctrl+o to open selected file in VS Code
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
@@ -90,4 +83,14 @@ fi
 if [ -f /usr/share/fzf/shell/key-bindings.bash ]; then
   source /usr/share/fzf/shell/key-bindings.bash
 fi
+
+
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE=exit:ls*:cd:vi:
+export HISTSIZE=500
+export HISTFILESIZE=500
+export HISTAPPEND=TRUE
+shopt -s histappend
+shopt -s cmdhist
+export PROMPT_COMMAND="$PROMPT_COMMAND; history -a; history -n;"
 
