@@ -24,3 +24,18 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[alias]
+	finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%10s\\033[1;37m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
+	type = cat-file -t
+	dump = cat-file -p
+	r = remote -v
+	unstage = reset HEAD
+	uncommit = reset --soft HEAD^
+	last = log -1 HEAD
+	filelog = log -u
+	l = log --graph --date=short
+	changes = log --oneline --reverse
+	files = log --pretty=format:'%h %cr %cn %Cgreen%s%Creset' --name-status
+	h = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	short = log --pretty=format:'%h %cr %cn %Cgreen%s%Creset'
+	bullets = log --pretty=format:'* %s'
