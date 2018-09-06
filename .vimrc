@@ -245,6 +245,7 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 nnoremap <silent> <F9> :RainbowToggle<CR>
 
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_disable_for_files_larger_than_kb = 10000
 
 " Abbreviations
 iab _DATE <C-R>=strftime("Date: %A %B, %e %Y\nTime: %I:%M:%S %p %Z")<CR>
