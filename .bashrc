@@ -96,7 +96,7 @@ export HISTIGNORE=exit:ls*:cd:vi:
 export HISTSIZE=500
 export HISTFILESIZE=500
 export HISTAPPEND=TRUE
-export PROMPT_COMMAND="$PROMPT_COMMAND; history -a; history -n;"
+export PROMPT_COMMAND="history -a; history -n;"
 # export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 # tac $HISTFILE | awk '!x[$0]++' | tac > ~/tmpfile ; ~/tmpfile > $HISTFILE
 # rm ~/tmpfile
