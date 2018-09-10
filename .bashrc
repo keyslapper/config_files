@@ -6,7 +6,7 @@ if [ -z "$PS1" ]; then
 fi
 
 export IDEA_HOME=~/bin/idea-IU-181.5281.24
-export PATH=~/bin:.:$IDEA_HOME/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/bin:~/.cargo/bin
+export PATH=$PATH:~/bin:.:$IDEA_HOME/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/bin:~/.cargo/bin
 
 if [ -f ~/.cargo/bin/bat ]; then
   export BAT_CONFIG_DIR="$(bat cache --config-dir)"
