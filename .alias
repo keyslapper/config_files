@@ -9,15 +9,28 @@ alias accio='search -red -n -nnice '
 
 alias tmpfile='vi ~/tmp.txt'
 
-# Terminal alternatives
-alias ping='prettyping --nolegend'
-alias top='htop'
-alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
-alias help='tldr'
+# Conditional aliases
+if [ -f /etc/fedora-release ]; then
+  if [ -f ~/.cargo/bin/bat ]; then
+    export BAT_CONFIG_DIR="$(bat cache --config-dir)"
+    alias cat='bat'
+    if [ -f /usr/bin/fzf ]; then
+      export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+      alias preview="fzf --preview 'bat --color \"always\" {}'"
+    fi
+  fi
+fi
 
-# Be sure to install bat ...
-if [ -f ~/.cargo/bin/bat ]; then
-  alias preview="fzf --preview 'bat --color \"always\" {}'"
-  alias cat='bat'
+if [ -f /usr/bin/prettyping ]; then
+  alias ping='prettyping --nolegend'
+fi
+if [ -f /usr/bin/htop ]; then
+  alias top='htop'
+fi
+if [ -f /usr/bin/ncdu ]; then
+  alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+fi
+if [ -f /usr/bin/tldr ]; then
+  alias help='tldr'
 fi
 

@@ -8,10 +8,6 @@ fi
 export IDEA_HOME=~/bin/idea-IU-181.5281.24
 export PATH=$PATH:~/bin:.:$IDEA_HOME/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/bin:~/.cargo/bin
 
-if [ -f ~/.cargo/bin/bat ]; then
-  export BAT_CONFIG_DIR="$(bat cache --config-dir)"
-fi
-
 if [ -f /etc/bashrc ]; then
     source /etc/bashrc   # --> Read /etc/bashrc, if present.
 fi
@@ -23,7 +19,6 @@ set -o ignoreeof
 set -o notify
 
 # add support for ctrl+o to open selected file in VS Code
-export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 stty erase 
 # export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
