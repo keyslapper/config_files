@@ -18,8 +18,6 @@ set -o vi
 set -o ignoreeof
 set -o notify
 
-# add support for ctrl+o to open selected file in VS Code
-
 stty erase 
 # export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 if [[ "$TERM" =~ 256color ]]; then
