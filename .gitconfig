@@ -2,10 +2,13 @@
 	email = lleblanc@brandeis.edu
 	name = Louis LeBlanc
 [credential "https://github.com/LouLeBlanc/SieveOfEratosthenes"]
+	email = lleblanc@brandeis.edu
 	username = LouLeBlanc
 [credential "https://github.com/LouLeBlanc/myrand"]
+	email = lleblanc@brandeis.edu
 	username = LouLeBlanc
 [credential "https://github.com/keyslapper/config_files"]
+	email = leblanc@keyslapper.net
 	username = keyslapper
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
