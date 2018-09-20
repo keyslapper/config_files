@@ -6,7 +6,7 @@ if [ -z "$PS1" ]; then
 fi
 
 export IDEA_HOME=~/bin/idea-IU-181.5281.24
-export PATH=$PATH:~/bin:.:$IDEA_HOME/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/bin:~/.cargo/bin
+export PATH=$PATH:/bin:~/bin:.:$IDEA_HOME/bin:~/.cargo/bin
 
 if [ -f /etc/bashrc ]; then
     source /etc/bashrc   # --> Read /etc/bashrc, if present.
@@ -86,14 +86,26 @@ fi
 
 shopt -s histappend
 shopt -s cmdhist
-export HISTCONTROL=ignoreboth:erasedups
+export HISTCONTROL=erasedups:ignorespace
 export HISTIGNORE=exit:ls*:cd:vi:
 export HISTSIZE=500
 export HISTFILESIZE=500
 export HISTAPPEND=TRUE
-export PROMPT_COMMAND="history -a; history -n;"
+export PROMPT_COMMAND="history -a; history -n; history -w;"
 # export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 # tac $HISTFILE | awk '!x[$0]++' | tac > ~/tmpfile ; ~/tmpfile > $HISTFILE
 # rm ~/tmpfile
 
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\e[5~": history-search-backward'
+bind '"\e[6~": history-search-forward'
+bind '"\ek": history-search-backward'
+bind '"\ej": history-search-forward'
+
+set editing-mode vi
+set keymap vi
+
+set blink-matching-paren on
+set completion-ignore-case on
 

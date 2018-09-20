@@ -1,27 +1,25 @@
-$include /etc/inputrc
+# $include /etc/inputrc
 
-"\e[5~": history-search-backward
-"\e[6~": history-search-forward
-
-set editing-mode vi
-set keymap vi
+# "\e[5~": history-search-backward
+# "\e[6~": history-search-forward
 
 # match search with arrow up
-# "\e[A": history-search-backward
+# "\e[A":history-search-backward
 # match search with arrow down
-# "\e[B": history-search-forward
+# "\e[B":history-search-forward
 
-# ALT-z -> execute 'cd -' -- Doesn't work.
-# "\ez": `cd -\015`
+# "\e[1;5C":forward-word
+# "\e[1;5D":backward-word
+
+# set editing-mode vi
+# set keymap vi
 
 # ALT-i: scroll back in history
-k: history-search-backward
+# "\ek": history-search-backward
 # ALT-j: scroll forward in history
-j: history-search-forward
+# "\ej": history-search-forward
 
-set blink-matching-paren on
+# set blink-matching-paren on
+# set completion-ignore-case on
 # set show-all-if-ambiguous on
-set completion-ignore-case on
 
-# Adds (cmd)/(ins) tag to prompt.
-# set show-mode-in-prompt on
