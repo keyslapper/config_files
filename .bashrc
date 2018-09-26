@@ -84,14 +84,13 @@ fi
 
 shopt -s histappend
 shopt -s cmdhist
-export HISTCONTROL=erasedups:ignorespace
-export HISTIGNORE=exit:ls*:cd:vi:history*:
+export HISTCONTROL=ignoredups:erasedups:ignorespace
+export HISTIGNORE=exit:ls*:cd:vi*:history*:p4*:git*:diff*:tkdiff*:
 export HISTSIZE=500
 export HISTFILESIZE=500
-export HISTAPPEND=TRUE
-# export PROMPT_COMMAND="history -a; history -c; history -r;"
-# export PROMPT_COMMAND="history -a; history -n; history -w;"
-# export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
+# export HISTAPPEND=TRUE
+# export PROMPT_COMMAND="history -n; history -w;"
+export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 # tac $HISTFILE | awk '!x[$0]++' | tac > ~/tmpfile ; ~/tmpfile > $HISTFILE
 # rm ~/tmpfile
 
