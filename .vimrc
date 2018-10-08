@@ -74,17 +74,17 @@ set showcmd      " display incomplete commands
 set incsearch    " do incremental searching
 set foldclose=all
 set foldmethod=manual
-set expandtab
-set nosmarttab
+" set expandtab
+" set nosmarttab
 set ts=8
 set nomodeline
 set tags=tags;~/dev
 set undolevels=100
 set noignorecase
 set hls ic
-set shiftwidth=2
+" set shiftwidth=2
 set lpl
-" set splitright
+set splitright
 
 set cindent
 set cinoptions=>4,e2,n-2,f0,{2,}0,^-2,:s,=s,l1,b0,gs,hs,ps,ts,is,+4,c3,C0,/0,(2s,us,U1,w1,W0,m0,j0,)20,*30
