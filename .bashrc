@@ -17,21 +17,29 @@ export USER=${USER:-$LOGNAME}
 set -o vi
 set -o ignoreeof
 set -o notify
+# BOLD='\033[1m'
+# GREEN='\033[38;5;82m'
+# RED='\033[38;5;196m'
+# GOLD='\033[38;5;214m'
+# BLUE='\033[34m'
+# CYAN='\033[38;5;14m'
+# RESET='\033[0m'
+
+    # PS1='\[\033[1;38;5;214m\][\[\033[1;31m\]\u@\h\[\033[1;38;5;214m\]]\[\033[1;31m\]: \[\033[1;34m\]\w $\[\033[m\] '
 
 stty erase 
 # export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 if [[ "$TERM" =~ 256color ]]; then
   if [ $(id -u) -eq 0 ]
   then
-    PS1='\[\e[38;5;214m\][\[\e[1;31m\]\u@\h\[\e[38;5;214m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
+    PS1='\[\033[1;38;5;214m\][\[\033[1;31m\]\u@\h\[\033[1;38;5;214m\]]\[\033[1;31m\]: \[\033[1;34m\]\w $\[\033[m\] '
   else
     if [ -n "$SSH_CLIENT" ];
     then
-      PS1='\[\e[38;5;214m\][\[\e[1;32m\]\u@\[\e[1;31m\]\h\[\e[38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
+      PS1='\[\033[1;38;5;214m\][\[\033[1;32m\]\u@\[\033[1;31m\]\h\[\033[1;38;5;214m\]]\[\033[1;32m\]: \[\033[1;34m\]\w $\[\033[m\] '
     else
       source ~/.git-prompt.sh
-      PS1='\[\e[38;5;214m\][\[\e[1;32m\]\u@\h\[\e[38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$ '
-      # PS1='\[\e[38;5;214m\][\[\e[1;32m\]\u@\h\[\e[38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
+      PS1='\[\033[1;38;5;214m\][\[\033[38;5;82m\]\u@\h\[\033[38;5;214m\]]\[\033[38;5;82m\]: \[\033[34m\]\w\[\033[38;5;14m\]`__git_ps1`\[\033[0m\]\n$ '
     fi
   fi
 else
@@ -85,7 +93,7 @@ fi
 shopt -s histappend
 shopt -s cmdhist
 export HISTCONTROL=ignoredups:erasedups:ignorespace
-export HISTIGNORE=exit:ls*:cd:vi*:history*:p4*:git*:diff*:tkdiff*:
+export HISTIGNORE=exit:ls:cd:vi:history*:
 export HISTSIZE=500
 export HISTFILESIZE=500
 # export HISTAPPEND=TRUE
