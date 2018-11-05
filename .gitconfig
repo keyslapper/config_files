@@ -1,10 +1,11 @@
 [user]
 	email = lleblanc@brandeis.edu
+	username = LouLeBlanc
 	name = Louis LeBlanc
 [credential "https://github.com/LouLeBlanc/SieveOfEratosthenes"]
-	email = lleblanc@brandeis.edu
-	username = LouLeBlanc
 [credential "https://github.com/LouLeBlanc/myrand"]
+[credential "https://github.com/LouLeBlanc/BookManager"]
+[credential "https://github.com/LouLeBlanc/spring-jdbc"]
 	email = lleblanc@brandeis.edu
 	username = LouLeBlanc
 [credential "https://github.com/keyslapper/config_files"]

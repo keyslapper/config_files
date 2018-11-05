@@ -5,7 +5,6 @@ if [ -z "$PS1" ]; then
   return
 fi
 
-export IDEA_HOME=~/bin/idea-IU-181.5281.24
 export PATH=$PATH:/bin:~/bin:.:$IDEA_HOME/bin:~/.cargo/bin
 
 if [ -f /etc/bashrc ]; then
