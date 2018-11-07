@@ -5,7 +5,7 @@ if [ -z "$PS1" ]; then
   return
 fi
 
-export PATH=$PATH:/bin:~/bin:.:$IDEA_HOME/bin:~/.cargo/bin
+export PATH=$PATH:/bin:~/bin:.:~/.cargo/bin
 
 if [ -f /etc/bashrc ]; then
     source /etc/bashrc   # --> Read /etc/bashrc, if present.
@@ -16,33 +16,35 @@ export USER=${USER:-$LOGNAME}
 set -o vi
 set -o ignoreeof
 set -o notify
-# BOLD='\033[1m'
-# GREEN='\033[38;5;82m'
-# RED='\033[38;5;196m'
-# GOLD='\033[38;5;214m'
-# BLUE='\033[34m'
-# CYAN='\033[38;5;14m'
-# RESET='\033[0m'
+# BOLD='\e[1m'
+# GREEN='\e[38;5;82m'
+# RED='\e[38;5;196m'
+# GOLD='\e[38;5;214m'
+# BLUE='\e[34m'
+# CYAN='\e[38;5;14m'
+# RESET='\e[0m'
 
-    # PS1='\[\033[1;38;5;214m\][\[\033[1;31m\]\u@\h\[\033[1;38;5;214m\]]\[\033[1;31m\]: \[\033[1;34m\]\w $\[\033[m\] '
+    # PS1='\[\e[1;38;5;214m\][\[\e[1;31m\]\u@\h\[\e[1;38;5;214m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
 
 stty erase 
-# export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# export PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
 if [[ "$TERM" =~ 256color ]]; then
   if [ $(id -u) -eq 0 ]
   then
-    PS1='\[\033[1;38;5;214m\][\[\033[1;31m\]\u@\h\[\033[1;38;5;214m\]]\[\033[1;31m\]: \[\033[1;34m\]\w $\[\033[m\] '
+    PS1='\[\e[1;38;5;214m\][\[\e[1;31m\]\u@\h\[\e[1;38;5;214m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
   else
     if [ -n "$SSH_CLIENT" ];
     then
-      PS1='\[\033[1;38;5;214m\][\[\033[1;32m\]\u@\[\033[1;31m\]\h\[\033[1;38;5;214m\]]\[\033[1;32m\]: \[\033[1;34m\]\w $\[\033[m\] '
+      PS1='\[\e[1;38;5;214m\][\[\e[1;32m\]\u@\[\e[1;31m\]\h\[\e[1;38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
     else
       source ~/.git-prompt.sh
-      PS1='\[\033[1;38;5;214m\][\[\033[38;5;82m\]\u@\h\[\033[38;5;214m\]]\[\033[38;5;82m\]: \[\033[34m\]\w\[\033[38;5;14m\]`__git_ps1`\[\033[0m\]\n$ '
+      PS1='\[\e[1;38;5;214m\][\[\e[38;5;82m\]\u\[\e[1;38;5;214m\]@\[\e[38;5;82m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]`__git_ps1`\[\e[0m\]\n$ '
+      # PS1='\[\e[1;38;5;214m\][\[\e[38;5;82m\]\u@\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]`__git_ps1`\[\e[0m\]\n$ '
+      # PS1='\n\[\e[0;38;5;118m\]┏━━━━┫\[\e[1;48;5;118;1;38;5;16m\] \u@\h \[\e[0;38;5;118m\]┣━━┫\[\e[1;48;5;118;1;38;5;16m\] \W \[\e[0;38;5;118m\]┣━━━━━\n┃\n┗━━\$❱\[\e[0m\] '
     fi
   fi
 else
-  export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  export PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
 fi
 
 export OS=`/bin/uname`
@@ -92,7 +94,7 @@ fi
 shopt -s histappend
 shopt -s cmdhist
 export HISTCONTROL=ignoredups:erasedups:ignorespace
-export HISTIGNORE=exit:ls:cd:vi:history*:
+export HISTIGNORE=exit:ls:cd:vi:history*:p4*:su*:
 export HISTSIZE=500
 export HISTFILESIZE=500
 # export HISTAPPEND=TRUE
