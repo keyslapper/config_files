@@ -33,11 +33,12 @@ if [[ "$TERM" =~ 256color ]]; then
   then
     PS1='\[\e[1;38;5;214m\][\[\e[1;31m\]\u@\h\[\e[1;38;5;214m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
   else
+    source ~/.git-prompt.sh
     if [ -n "$SSH_CLIENT" ];
     then
-      PS1='\[\e[1;38;5;214m\][\[\e[1;32m\]\u@\[\e[1;31m\]\h\[\e[1;38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
+      # PS1='\[\e[1;38;5;214m\][\[\e[1;32m\]\u@\[\e[1;31m\]\h\[\e[1;38;5;214m\]]\[\e[1;32m\]: \[\e[1;34m\]\w $\[\e[m\] '
+      PS1='\[\e[1;38;5;214m\][\[\e[1;32m\]\u\[\e[1;38;5;214m\]@\[\e[1;31m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]`__git_ps1`\[\e[0m\]\n$ '
     else
-      source ~/.git-prompt.sh
       PS1='\[\e[1;38;5;214m\][\[\e[38;5;82m\]\u\[\e[1;38;5;214m\]@\[\e[38;5;82m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]`__git_ps1`\[\e[0m\]\n$ '
       # PS1='\[\e[1;38;5;214m\][\[\e[38;5;82m\]\u@\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]`__git_ps1`\[\e[0m\]\n$ '
       # PS1='\n\[\e[0;38;5;118m\]┏━━━━┫\[\e[1;48;5;118;1;38;5;16m\] \u@\h \[\e[0;38;5;118m\]┣━━┫\[\e[1;48;5;118;1;38;5;16m\] \W \[\e[0;38;5;118m\]┣━━━━━\n┃\n┗━━\$❱\[\e[0m\] '
@@ -53,7 +54,7 @@ export PROC=`/bin/uname -m`
 
 # export JBOSS_HOME=/usr/share/wildfly
 export JAVA_HOME=/usr/java/latest
-export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$JAVA_HOME/bin:$PATH:~/.linuxbrew/bin
 export ANT_HOME=/usr/share/ant
 
 host=`hostname`
@@ -99,6 +100,7 @@ export HISTSIZE=500
 export HISTFILESIZE=500
 # export HISTAPPEND=TRUE
 # export PROMPT_COMMAND="history -n; history -w;"
+unset PROMPT_COMMAND
 export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 # tac $HISTFILE | awk '!x[$0]++' | tac > ~/tmpfile ; ~/tmpfile > $HISTFILE
 # rm ~/tmpfile
@@ -116,3 +118,4 @@ set keymap vi
 set blink-matching-paren on
 set completion-ignore-case on
 
+cd ~
