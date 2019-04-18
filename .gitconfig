@@ -1,23 +1,13 @@
-[user]
-	email = lleblanc@brandeis.edu
-	username = LouLeBlanc
-	name = Louis LeBlanc
-[credential "https://github.com/LouLeBlanc/SieveOfEratosthenes"]
-	email = lleblanc@brandeis.edu
-	username = LouLeBlanc
-[credential "https://github.com/LouLeBlanc/myrand"]
-[credential "https://github.com/LouLeBlanc/BookManager"]
-[credential "https://github.com/LouLeBlanc/spring-jdbc"]
-	email = lleblanc@brandeis.edu
-	username = LouLeBlanc
-[credential "https://github.com/keyslapper/config_files"]
-	email = leblanc@keyslapper.net
-	username = keyslapper
+[includeIf "gitdir:~/GitDev/"]
+	path=.gitconfig.work
+[includeIf "gitdir:~/Git/"]
+	path=.gitconfig.personal
 [credential]
 	helper = /usr/libexec/git-core/git-credential-libsecret
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	show = diff-so-fancy | less --tabs=4 -RFX
+	editor = vim
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -48,3 +38,7 @@
 	short = log --pretty=format:'%h %cr %cn %Cgreen%s%Creset'
 	bullets = log --pretty=format:'* %s'
 	lg = log --graph --decorate --oneline
+[merge]
+	tool = kdiff3
+[diff]
+	guitool = kdiff3

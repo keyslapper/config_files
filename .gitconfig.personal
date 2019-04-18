@@ -1,0 +1,13 @@
+[user]
+	name = Louis LeBlanc
+	email = leblanc@keyslapper.net
+
+[credential "https://github.com/LouLeBlanc/SieveOfEratosthenes"]
+[credential "https://github.com/LouLeBlanc/myrand"]
+[credential "https://github.com/LouLeBlanc/BookManager"]
+[credential "https://github.com/LouLeBlanc/spring-jdbc"]
+	email = lleblanc@brandeis.edu
+	username = LouLeBlanc
+[credential "https://github.com/keyslapper/config_files"]
+	email = leblanc@keyslapper.net
+	username = keyslapper

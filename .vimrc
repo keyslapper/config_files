@@ -16,18 +16,19 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" https://github.com/VundleVim/Vundle.vim
 Plugin 'VundleVim/Vundle.vim'
 
 " https://github.com/flazz/vim-colorschemes
 Plugin 'flazz/vim-colorschemes'
 " https://github.com/davidhalter/jedi-vim
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 " https://github.com/vim-syntastic/syntastic
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
 " https://github.com/ervandew/supertab
 Plugin 'ervandew/supertab'
 " https://github.com/scrooloose/nerdtree
-Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/nerdtree'
 " https://github.com/tpope/vim-fugitive
 Plugin 'tpope/vim-fugitive'
 " https://github.com/weynhamz/vim-plugin-minibufexpl
@@ -41,7 +42,7 @@ Plugin 'tmhedberg/matchit'
 " https://github.com/gnattishness/cscope_maps
 Plugin 'gnattishness/cscope_maps'
 " https://github.com/valloric/youcompleteme
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 " https://github.com/mileszs/ack.vim
 Plugin 'mileszs/ack.vim'
 " https://github.com/junegunn/fzf
@@ -55,7 +56,7 @@ call vundle#end()
 
 filetype plugin indent on
 
-source $VIMRUNTIME/defaults.vim
+" source $VIMRUNTIME/defaults.vim
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=ucs-bom,utf-8,latin1
@@ -100,6 +101,7 @@ map Q gq
 
 " Make folding blocks in {} easier
 map F zf%
+map f zd
 
 imap  
 lmap  
