@@ -8,6 +8,7 @@
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	show = diff-so-fancy | less --tabs=4 -RFX
 	editor = vim
+	excludesfile = /emc/leblal/.gitignore
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -41,4 +42,10 @@
 [merge]
 	tool = kdiff3
 [diff]
+	tool = tkdiff
 	guitool = kdiff3
+[cola]
+	spellcheck = false
+	actionwidgetinfoshown = true
+[http]
+	sslVerify = false
