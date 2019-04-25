@@ -35,7 +35,7 @@ if [[ "$TERM" =~ 256color ]]; then
   if [ $(id -u) -eq 0 ]
   then
     PS1='\[\e[1;38;5;214m\][\[\e[1;31m\]\u@\h\[\e[1;38;5;214m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
-  export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
+    export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
   else
     if [ -n "$SSH_CLIENT" ];
     then
@@ -45,20 +45,22 @@ if [[ "$TERM" =~ 256color ]]; then
       # Updating the prompt in PROMPT_COMMAND is considerably faster than just
       # setting PS1 to call __git_ps1 directly.
       # PS1='\[\e[1;38;5;214m\][\[\e[1;32m\]\u\[\e[1;38;5;214m\]@\[\e[1;31m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]`__git_ps1`\[\e[0m\]\n$ '
-      prompt_pre="\[\e[1;38;5;214m\][\[\e[1;32m\]\u\[\e[1;38;5;214m\]@\[\e[1;31m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]"
-      prompt_post="\[\e[0m\]\n$ "
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;214m\][\[\e[1;32m\]\u\[\e[1;38;5;214m\]@\[\e[1;31m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]" "\[\e[0m\]\n$ "'
     else
       # The PS1 comment below shows the equivalent PS1 that we're going for here.
       # PS1='\[\e[1;38;5;214m\][\[\e[38;5;82m\]\u\[\e[1;38;5;214m\]@\[\e[38;5;82m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]`__git_ps1`\[\e[0m\]\n$ '
-      prompt_pre="\[\e[1;38;5;214m\][\[\e[38;5;82m\]\u\[\e[1;38;5;214m\]@\[\e[38;5;82m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]"
-      prompt_post="\[\e[0m\]\n$ "
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;214m\][\[\e[38;5;82m\]\u\[\e[1;38;5;214m\]@\[\e[38;5;82m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]" "\[\e[0m\]\n$ "'
     fi
-    export PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 $prompt_pre $prompt_post'
   fi
 else
-  export PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
+  PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
   export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 fi
+
+export PS1
+# These seem to break color coding ...
+# export GIT_PS1_SHOWCOLORHINTS=1
+# export GIT_PS1_SHOWDIRTYSTATE=1
 
 export OS=`/bin/uname`
 # export OSNAME=`/bin/uname -s`
