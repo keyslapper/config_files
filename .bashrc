@@ -29,7 +29,10 @@ set -o notify
 stty erase 
 
 unset PROMPT_COMMAND
-source ~/.git-prompt.sh
+if [ -f ~/.git-prompt.sh ]; then
+  source ~/.git-prompt.sh
+fi
+
 # export PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
 if [[ "$TERM" =~ 256color ]]; then
   if [ $(id -u) -eq 0 ]
