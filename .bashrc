@@ -70,7 +70,7 @@ export OS=`/bin/uname`
 export PROC=`/bin/uname -m`
 
 # export JBOSS_HOME=/usr/share/wildfly
-export JAVA_HOME=/etc/alternatives/jre
+export JAVA_HOME=/usr/lib/jvm/java
 # export PATH=$JAVA_HOME/bin:$PATH:~/.linuxbrew/bin
 export PATH=$JAVA_HOME/bin:$PATH
 # export ANT_HOME=/usr/share/ant
