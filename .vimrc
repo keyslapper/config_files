@@ -87,7 +87,7 @@ set foldmethod=manual
 set ts=8
 set nomodeline
 set tags=tags;~/dev
-set undolevels=100
+set undolevels=500
 set noignorecase
 set hls ic
 " set shiftwidth=2
@@ -97,6 +97,8 @@ set splitright
 set cindent
 set cinoptions=>4,e2,n-2,f0,{2,}0,^-2,:s,=s,l1,b0,gs,hs,ps,ts,is,+4,c3,C0,/0,(2s,us,U1,w1,W0,m0,j0,)20,*30
 
+set nobackup
+
 " Window Navigation with Ctrl-[hjkl]
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
@@ -104,7 +106,8 @@ noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 
 " Don't use Ex mode, use Q for formatting
-map Q gq
+nmap Q gqap
+vmap Q gq
 
 " Make folding blocks in {} easier
 map F zf%
@@ -113,9 +116,10 @@ map f zd
 imap  
 lmap  
 cmap  
+cmap w!! w !sudo tee % >/dev/null
 
 " Set the color range and colorscheme
-set t_Co=256
+" set t_Co=256
 colorscheme lou
 " colorscheme one
 set background=dark
@@ -124,7 +128,7 @@ set background=dark
 syntax on
 " Also switch on highlighting the last used search pattern.
 " set hlsearch
-" nnoremap <silent> <esc> :noh<cr><esc>
+nnoremap <silent> <tab> :nohlsearch<cr>
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -265,6 +269,7 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
   \   'css': 0,
   \ }
   \}
+
 nnoremap <silent> <F9> :RainbowToggle<CR>
 
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
