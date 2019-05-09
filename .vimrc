@@ -16,39 +16,41 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" https://github.com/VundleVim/Vundle.vim
+" https://github.com/VundleVim/Vundle.vim.git
 Plugin 'VundleVim/Vundle.vim'
 
-" https://github.com/flazz/vim-colorschemes
+" https://github.com/flazz/vim-colorschemes.git
 Plugin 'flazz/vim-colorschemes'
-" https://github.com/davidhalter/jedi-vim
+" https://github.com/davidhalter/jedi-vim.git
 Plugin 'davidhalter/jedi-vim'
-" https://github.com/vim-syntastic/syntastic
+" https://github.com/vim-syntastic/syntastic.git
 " Plugin 'vim-syntastic/syntastic'
-" https://github.com/ervandew/supertab
+" https://github.com/ervandew/supertab.git
 Plugin 'ervandew/supertab'
-" https://github.com/scrooloose/nerdtree
+" https://github.com/scrooloose/nerdtree.git
 Plugin 'scrooloose/nerdtree'
-" https://github.com/tpope/vim-fugitive
+" https://github.com/tpope/vim-fugitive.git
 Plugin 'tpope/vim-fugitive'
-" https://github.com/weynhamz/vim-plugin-minibufexpl
+" https://github.com/weynhamz/vim-plugin-minibufexpl.git
 Plugin 'weynhamz/vim-plugin-minibufexpl'
-" https://github.com/jpflouret/vimp4python
+" https://github.com/jpflouret/vimp4python.git
 " Plugin 'jpflouret/vimp4python'
-" https://github.com/luochen1990/rainbow
+" https://github.com/luochen1990/rainbow.git
 Plugin 'luochen1990/rainbow'
-" https://github.com/tmhedberg/matchit
+" https://github.com/tmhedberg/matchit.git
 Plugin 'tmhedberg/matchit'
-" https://github.com/gnattishness/cscope_maps
+" https://github.com/gnattishness/cscope_maps.git
 " Plugin 'gnattishness/cscope_maps'
-" https://github.com/valloric/youcompleteme
+" https://github.com/valloric/youcompleteme.git
 " Plugin 'valloric/youcompleteme'
-" https://github.com/mileszs/ack.vim
+" https://github.com/mileszs/ack.vim.git
 Plugin 'mileszs/ack.vim'
-" https://github.com/junegunn/fzf
+" https://github.com/junegunn/fzf.git
 Plugin 'junegunn/fzf'
+" https://github.com/vim-airline/vim-airline.git
+Plugin 'vim-airline/vim-airline'
 
-" https://github.com/rip-rip/clang_complete
+" https://github.com/rip-rip/clang_complete.git
 " Plugin 'rip-rip/clang_complete'
 
 " add new plugins above this line.

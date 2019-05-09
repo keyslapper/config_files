@@ -1,5 +1,7 @@
 [includeIf "gitdir:~/dev/"]
 	path=.gitconfig.work
+[includeIf "gitdir:~/GitDev/"]
+	path=.gitconfig.work
 [includeIf "gitdir:~/Git/"]
 	path=.gitconfig.personal
 [credential]
@@ -49,3 +51,5 @@
 	actionwidgetinfoshown = true
 [http]
 	sslVerify = false
+[branch]
+	autoSetupRebase = always
