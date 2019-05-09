@@ -50,6 +50,9 @@ Plugin 'junegunn/fzf'
 " https://github.com/vim-airline/vim-airline.git
 Plugin 'vim-airline/vim-airline'
 
+" https://github.com/rakr/vim-one.git
+" Plugin 'rakr/vim-one'
+
 " https://github.com/rip-rip/clang_complete.git
 " Plugin 'rip-rip/clang_complete'
 
@@ -112,7 +115,9 @@ cmap  
 " Set the color range and colorscheme
 set t_Co=256
 colorscheme lou
+" colorscheme one
 set background=dark
+
 " Switch syntax highlighting on
 syntax on
 " Also switch on highlighting the last used search pattern.
@@ -123,6 +128,8 @@ syntax on
 if has("autocmd")
 
   autocmd BufEnter * :syntax on
+
+  autocmd BufEnter,BufReadPost * :RainbowToggleOn
 
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
@@ -198,15 +205,6 @@ let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Process_File_Always = 1
 
 " ===================================
-" Plugin config: CVS???
-" nmap L :VCSLog<CR>
-" nmap A :VCSAnnotate<CR>
-" nmap S :VCSStatus<CR>
-" nmap U :VCSUpdate<CR>
-" nmap V :VCSVimDiff<CR>
-" nmap D :VCSDiff<CR>
-
-" ===================================
 " Plugin config: MiniBufExplorer
 " Prevent the buffer explorer window from
 " opening until we open at least 4 buffers.
@@ -220,6 +218,25 @@ nnoremap <silent> <F2> :MBEbp<CR>
 nnoremap <silent> <F3> :MBEbn<CR>
 hi MBEChanged guibg=darkblue ctermbg=darkblue
 
+let g:airline_theme='dark'
+let g:one_allow_italics = 1
+
+"Credit joshdick
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
 
 " ===================================
 " Plugin config: Rainbow Parens
