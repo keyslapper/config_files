@@ -49,6 +49,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'junegunn/fzf'
 " https://github.com/vim-airline/vim-airline.git
 Plugin 'vim-airline/vim-airline'
+" https://github.com/vim-airline/vim-airline-themes.git
+Plugin 'vim-airline/vim-airline-themes'
 
 " https://github.com/rakr/vim-one.git
 " Plugin 'rakr/vim-one'
