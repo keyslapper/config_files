@@ -21,6 +21,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" https://github.com/junegunn/vim-plug
+Plug 'junegunn/vim-plug'
 " https://github.com/flazz/vim-colorschemes.git
 Plug 'flazz/vim-colorschemes'
 " https://github.com/vim-scripts/ScrollColors.git
@@ -51,6 +53,7 @@ Plug 'tmhedberg/matchit'
 Plug 'mileszs/ack.vim'
 " https://github.com/junegunn/fzf.git
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" https://github.com/junegunn/fzf.vim.git
 Plug 'junegunn/fzf.vim'
 " https://github.com/vim-airline/vim-airline.git
 Plug 'vim-airline/vim-airline'
@@ -60,6 +63,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'scrooloose/nerdcommenter'
 " https://github.com/python-mode/python-mode.git
 " Plug 'python-mode/python-mode.git'
+" https://github.com/junegunn/vim-slash.git
+Plug 'junegunn/vim-slash'
 
 
 " https://github.com/rakr/vim-one.git
@@ -163,6 +168,9 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gv :GV!<CR>
 nnoremap <leader>gd :Gdiff<CR>
+
+" Always place the current match at the center of the screen
+noremap <plug>(slash-after) zz
 
 
 " Edit the vimrc file
@@ -448,7 +456,7 @@ let Tlist_Process_File_Always = 1
 " Default is 2.
 let g:miniBufExplBuffersNeeded = 4
 " <F6> Opens or closes the buffer explorer window.
-noremap <silent> <F6> :MBEToggle<CR>
+" noremap <silent> <F6> :MBEToggle<CR>
 " Available commands: MBEToggle  MBEToggleAll  MBEToggleMRU  MBEToggleMRUAll
 " scrolling through the open buffers.
 nnoremap <silent> <F2> :MBEbp<CR>
@@ -580,7 +588,8 @@ let g:pymode_trim_whitespaces = 0
 " Invoke fzf, but CommandT style
 nnoremap <leader>t :Files<cr>
 nnoremap <leader>. :Tags<cr>
-nnoremap <leader>b :Buffers<cr>
+" nnoremap <leader>b :Buffers<cr>
+nnoremap <silent> <F6> :Buffers<cr>
 " ------------------------------------------------------------------------- }}}
 
 " C-U in insert/normal mode, to uppercase the word under cursor
