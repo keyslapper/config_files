@@ -1,68 +1,65 @@
 " My ~/.vimrc.
 "
-" All plugins are now managed using Vundle.
+" All plugins are now managed using vim-plug
 " Plugin management is near the top of the file, configuration near the bottom.
 
 " This must be first, because it changes other options as a side effect.
 set nocompatible	" Use Vim defaults (much better!)
 filetype off
 
-" Plugin settings
+" Plugin settings {{
 " ======================================================
-" Set up Vundle management with the following commands:
-" cd ~/.vim/bundle
-" git clone https://github.com/VundleVim/Vundle.vim
+" Set up vim-plug management with the following command:
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 " ======================================================
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" https://github.com/VundleVim/Vundle.vim.git
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " https://github.com/flazz/vim-colorschemes.git
-Plugin 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 " https://github.com/davidhalter/jedi-vim.git
-Plugin 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 " https://github.com/vim-syntastic/syntastic.git
-" Plugin 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 " https://github.com/ervandew/supertab.git
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 " https://github.com/scrooloose/nerdtree.git
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " https://github.com/tpope/vim-fugitive.git
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " https://github.com/weynhamz/vim-plugin-minibufexpl.git
-Plugin 'weynhamz/vim-plugin-minibufexpl'
+Plug 'weynhamz/vim-plugin-minibufexpl'
 " https://github.com/luochen1990/rainbow.git
-Plugin 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 " https://github.com/tmhedberg/matchit.git
-Plugin 'tmhedberg/matchit'
+Plug 'tmhedberg/matchit'
 " https://github.com/gnattishness/cscope_maps.git
-" Plugin 'gnattishness/cscope_maps'
+" Plug 'gnattishness/cscope_maps'
 " https://github.com/valloric/youcompleteme.git
-" Plugin 'valloric/youcompleteme'
+" Plug 'valloric/youcompleteme'
 " https://github.com/mileszs/ack.vim.git
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 " https://github.com/junegunn/fzf.git
-Plugin 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " https://github.com/vim-airline/vim-airline.git
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 " https://github.com/vim-airline/vim-airline-themes.git
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 " https://github.com/scrooloose/nerdcommenter.git
-" Plugin 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
 " https://github.com/python-mode/python-mode.git
-" Plugin 'python-mode/python-mode.git'
+" Plug 'python-mode/python-mode.git'
 
 
 " https://github.com/rakr/vim-one.git
-" Plugin 'rakr/vim-one'
+" Plug 'rakr/vim-one'
 
 " https://github.com/rip-rip/clang_complete.git
-" Plugin 'rip-rip/clang_complete'
+" Plug 'rip-rip/clang_complete'
 
 " add new plugins above this line.
-call vundle#end()
+" ====================================================== }}
+call plug#end()
 
 filetype plugin indent on
 
@@ -175,7 +172,7 @@ set foldtext=MyFoldText()
 " Editor layout {{{
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
-set cmdheight=2                 " use a status bar that is 2 rows high
+set cmdheight=1                 " use a status bar that is 2 rows high
 " }}}
 
 imap  

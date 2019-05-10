@@ -135,3 +135,5 @@ set blink-matching-paren on
 set completion-ignore-case on
 
 cd ~
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
