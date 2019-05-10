@@ -8,10 +8,17 @@ set nocompatible	" Use Vim defaults (much better!)
 filetype off
 
 " Plugin settings {{
-" ======================================================
+" ========================================================
 " Set up vim-plug management with the following command:
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" ======================================================
+" ========================================================
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" ========================================================
+" Vim will only continue after the above command finishes.
+" ========================================================
+
 call plug#begin('~/.vim/plugged')
 
 " https://github.com/flazz/vim-colorschemes.git
@@ -58,7 +65,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'rip-rip/clang_complete'
 
 " add new plugins above this line.
-" ====================================================== }}
+" ======================================================== }}
 call plug#end()
 
 filetype plugin indent on
