@@ -179,7 +179,7 @@ set foldtext=MyFoldText()
 " Editor layout {{{
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
-set cmdheight=1                 " use a status bar that is 2 rows high
+set cmdheight=1                 " use a status bar that is 1 row high
 " }}}
 
 imap  
