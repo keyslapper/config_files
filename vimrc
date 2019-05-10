@@ -23,6 +23,8 @@ call plug#begin('~/.vim/plugged')
 
 " https://github.com/flazz/vim-colorschemes.git
 Plug 'flazz/vim-colorschemes'
+" https://github.com/vim-scripts/ScrollColors.git
+Plug 'vim-scripts/ScrollColors'
 " https://github.com/davidhalter/jedi-vim.git
 Plug 'davidhalter/jedi-vim'
 " https://github.com/vim-syntastic/syntastic.git
@@ -33,6 +35,8 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 " https://github.com/tpope/vim-fugitive.git
 Plug 'tpope/vim-fugitive'
+" https://github.com/junegunn/gv.vim.git
+Plug 'junegunn/gv.vim'
 " https://github.com/weynhamz/vim-plugin-minibufexpl.git
 Plug 'weynhamz/vim-plugin-minibufexpl'
 " https://github.com/luochen1990/rainbow.git
@@ -154,6 +158,13 @@ nnoremap <leader>4 yypVr=
 nnoremap <leader>5 yyPVr"
 nnoremap <leader>6 yypVr"
 
+" Git commands
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gv :GV!<CR>
+nnoremap <leader>gd :Gdiff<CR>
+
+
 " Edit the vimrc file
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -202,9 +213,13 @@ cnoremap w!! w !sudo tee % >/dev/null
 
 " Set the color range and colorscheme
 " set t_Co=256
-colorscheme lou
+" colorscheme lou
 " colorscheme one
+colorscheme vividchalk
 set background=dark
+
+map <silent><F4> :PREVCOLOR<cr>
+map <silent><F5> :NEXTCOLOR<cr>
 
 " Switch syntax highlighting on
 syntax on
@@ -349,10 +364,10 @@ if has("autocmd")
       "autocmd filetype python setlocal foldmethod=expr
 
       " Python runners
-      autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
-      autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
-      autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
-      autocmd filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
+     "autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
+     "autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
+     "autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
+     "autocmd filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
 
       " Automatic insertion of breakpoints
       autocmd filetype python nnoremap <buffer> <leader>bp :normal oimport pdb; pdb.set_trace()  # TODO: BREAKPOINT  # noqa<Esc>
