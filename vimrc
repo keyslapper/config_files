@@ -141,6 +141,19 @@ vmap Q gw
 nnoremap ' `
 nnoremap ` '
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" This mapping will yank the current line, past it to the line above (or
+" below), then move to the new line.  Then that line is selected and every
+" character is replaced with an '*' character.
+nnoremap <leader>1 yyPVr*
+nnoremap <leader>2 yypVr*
+" Or an '=' character.
+nnoremap <leader>3 yyPVr=
+nnoremap <leader>4 yypVr=
+" Or a '"' character.
+nnoremap <leader>5 yyPVr"
+nnoremap <leader>6 yypVr"
+
 " Edit the vimrc file
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
