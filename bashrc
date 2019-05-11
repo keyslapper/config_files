@@ -16,15 +16,15 @@ export USER=${USER:-$LOGNAME}
 set -o vi
 set -o ignoreeof
 set -o notify
-# BOLD='\e[1m'
+# BOLD='\e[1'
 # GREEN='\e[38;5;82m'
 # RED='\e[38;5;196m'
-# GOLD='\e[38;5;214m'
-# BLUE='\e[34m'
+# GOLD='\e[38;5;220m'
+# BLUE='\e[38;5;21m'
 # CYAN='\e[38;5;14m'
 # RESET='\e[0m'
 
-    # PS1='\[\e[1;38;5;214m\][\[\e[1;31m\]\u@\h\[\e[1;38;5;214m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
+    # PS1='\[\e[1;38;5;220m\][\[\e[1;31m\]\u@\h\[\e[1;38;5;220m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
 
 stty erase 
 
@@ -33,30 +33,44 @@ if [ -f ~/.git-prompt.sh ]; then
   source ~/.git-prompt.sh
 fi
 
-# export PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
+# export PS1='\[\e[01;34m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
 if [[ "$TERM" =~ 256color ]]; then
   if [ $(id -u) -eq 0 ]
   then
-    PS1='\[\e[1;38;5;214m\][\[\e[1;31m\]\u@\h\[\e[1;38;5;214m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
+    PS1='\[\e[1;38;5;220m\][\[\e[1;31m\]\u@\h\[\e[1;38;5;220m\]]\[\e[1;31m\]: \[\e[1;34m\]\w $\[\e[m\] '
     export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
   else
     if [ -n "$SSH_CLIENT" ];
     then
-      # The PS1 comment below shows the equivalent PS1 that we're going for here.
+      # The comment below shows the equivalent PS1 that we're going for here.
       # The prompt_pre and prompt_post strings below will be passed to the
       # __git_ps1 function by the PROMPT_COMMAND.
       # Updating the prompt in PROMPT_COMMAND is considerably faster than just
       # setting PS1 to call __git_ps1 directly.
-      # PS1='\[\e[1;38;5;214m\][\[\e[1;32m\]\u\[\e[1;38;5;214m\]@\[\e[1;31m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]`__git_ps1`\[\e[0m\]\n$ '
-      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;214m\][\[\e[1;32m\]\u\[\e[1;38;5;214m\]@\[\e[1;31m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]" "\[\e[0m\]\n$ "'
+
+      # \[\e[1;38;5;220m\][<-         Bold, gold "["
+      # \[\e[0m\]<-                   Reset
+      # \[\e[38;5;34m\]\u<-           Green "\u"
+      # \[\e[1;38;5;220m\]@<-         Bold, gold "@"
+      # \[\e[0m\]                     Reset
+      # \[\e[38;5;34m\]\h<-           Green "\u"
+      # \[\e[1;38;5;220m\]]<-         Bold, gold "]"
+      # \[\e[0m\]                     Reset
+      # \[\e[38;5;34m\]: <-           Green ": "
+      # \[\e[38;5;21m\]\w <-          Blue "\w "
+      # \[\e[38;5;14m\]__git_ps1<-    Cyan "Git Status"
+      # \[\e[0m\]                     Reset
+      # \n$ <-                        "\n$ "
+
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m[\[\e[0m\[\e[38;5;34m\u\[\e[0m\[\e[1;38;5;220m@\[\e[0m\[\e[38;5;34m\h\[\e[0m\[\e[1;38;5;220m]\[\e[0m\[\e[38;5;34m: \[\e[0m\[\e[38;5;21m\w\\[\e[0m\[\e[38;5;14m" "\[\e[0m\n$ "'
     else
       # The PS1 comment below shows the equivalent PS1 that we're going for here.
-      # PS1='\[\e[1;38;5;214m\][\[\e[38;5;82m\]\u\[\e[1;38;5;214m\]@\[\e[38;5;82m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]`__git_ps1`\[\e[0m\]\n$ '
-      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;214m\][\[\e[38;5;82m\]\u\[\e[1;38;5;214m\]@\[\e[38;5;82m\]\h\[\e[38;5;214m\]]\[\e[38;5;82m\]: \[\e[34m\]\w\[\e[38;5;14m\]" "\[\e[0m\]\n$ "'
+      # PS1='\[\e[1;38;5;220m[\[\e[0m\[\e[38;5;34m\u\[\e[0m\[\e[1;38;5;220m@\[\e[0m\[\e[38;5;196m\h\[\e[0m\[\e[1;38;5;220m]\[\e[0m\[\e[38;5;34m: \[\e[0m\[\e[38;5;21m\w\\[\e[0m\[\e[38;5;14m`__git_ps1`\[\e[0m\n$ "'
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m[\[\e[0m\[\e[38;5;34m\u\[\e[0m\[\e[1;38;5;220m@\[\e[0m\[\e[38;5;196m\h\[\e[0m\[\e[1;38;5;220m]\[\e[0m\[\e[38;5;34m: \[\e[0m\[\e[38;5;21m\w\\[\e[0m\[\e[38;5;14m" "\[\e[0m\n$ "'
     fi
   fi
 else
-  PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
+  PS1='\[\e[01;34m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
   export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 fi
 
