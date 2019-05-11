@@ -169,8 +169,9 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gv :GV!<CR>
 nnoremap <leader>gd :Gdiff<CR>
 
-" Always place the current match at the center of the screen
-noremap <plug>(slash-after) zz
+" Keep search matches in the middle of the window
+" and pulse the line when moving to them.
+noremap <plug>(slash-after) zz:call PulseCursorLine()<cr>
 
 
 " Edit the vimrc file
@@ -235,10 +236,6 @@ syntax on
 " set hlsearch
 nnoremap <silent> <tab> :nohlsearch<cr>
 
-" Keep search matches in the middle of the window and pulse the line when moving
-" to them.
-nnoremap n n:call PulseCursorLine()<cr>
-nnoremap N N:call PulseCursorLine()<cr>
 
 " Quickly get out of insert mode without your fingers having to leave the
 " home row (either use 'jj' or 'jk')
