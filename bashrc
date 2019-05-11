@@ -42,6 +42,10 @@ if [[ "$TERM" =~ 256color ]]; then
   else
     if [ -n "$SSH_CLIENT" ];
     then
+      # The PS1 comment below shows the equivalent PS1 that we're going for here.
+      # PS1='\[\e[1;38;5;220m[\[\e[0m\[\e[38;5;34m\u\[\e[0m\[\e[1;38;5;220m@\[\e[0m\[\e[38;5;196m\h\[\e[0m\[\e[1;38;5;220m]\[\e[0m\[\e[38;5;34m: \[\e[0m\[\e[38;5;21m\w\\[\e[0m\[\e[38;5;14m`__git_ps1`\[\e[0m\n$ "'
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m[\[\e[0m\[\e[38;5;34m\u\[\e[0m\[\e[1;38;5;220m@\[\e[0m\[\e[38;5;196m\h\[\e[0m\[\e[1;38;5;220m]\[\e[0m\[\e[38;5;34m: \[\e[0m\[\e[38;5;21m\w\\[\e[0m\[\e[38;5;14m" "\[\e[0m\n$ "'
+    else
       # The comment below shows the equivalent PS1 that we're going for here.
       # The prompt_pre and prompt_post strings below will be passed to the
       # __git_ps1 function by the PROMPT_COMMAND.
@@ -63,10 +67,6 @@ if [[ "$TERM" =~ 256color ]]; then
       # \n$ <-                        "\n$ "
 
       PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m[\[\e[0m\[\e[38;5;34m\u\[\e[0m\[\e[1;38;5;220m@\[\e[0m\[\e[38;5;34m\h\[\e[0m\[\e[1;38;5;220m]\[\e[0m\[\e[38;5;34m: \[\e[0m\[\e[38;5;21m\w\\[\e[0m\[\e[38;5;14m" "\[\e[0m\n$ "'
-    else
-      # The PS1 comment below shows the equivalent PS1 that we're going for here.
-      # PS1='\[\e[1;38;5;220m[\[\e[0m\[\e[38;5;34m\u\[\e[0m\[\e[1;38;5;220m@\[\e[0m\[\e[38;5;196m\h\[\e[0m\[\e[1;38;5;220m]\[\e[0m\[\e[38;5;34m: \[\e[0m\[\e[38;5;21m\w\\[\e[0m\[\e[38;5;14m`__git_ps1`\[\e[0m\n$ "'
-      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m[\[\e[0m\[\e[38;5;34m\u\[\e[0m\[\e[1;38;5;220m@\[\e[0m\[\e[38;5;196m\h\[\e[0m\[\e[1;38;5;220m]\[\e[0m\[\e[38;5;34m: \[\e[0m\[\e[38;5;21m\w\\[\e[0m\[\e[38;5;14m" "\[\e[0m\n$ "'
     fi
   fi
 else
