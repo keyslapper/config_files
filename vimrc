@@ -32,6 +32,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'vim-scripts/ScrollColors'
 " https://github.com/vim-scripts/YankRing.vim.git
 Plug 'vim-scripts/YankRing.vim'
+" https://github.com/ethanmuller/scratch.vim.git
+Plug 'ethanmuller/scratch.vim'
 " https://github.com/davidhalter/jedi-vim.git
 Plug 'davidhalter/jedi-vim'
 " https://github.com/vim-syntastic/syntastic.git
@@ -187,6 +189,10 @@ noremap <plug>(slash-after) :call PulseCursorLine()<cr>
 " Toggle mouse capture
 noremap <F12> :call <SID>ToggleMouse()<CR>
 inoremap <F12> <Esc>:call <SID>ToggleMouse()<CR>a
+
+" Open scratch buffer in vertical split
+noremap <F10> :Vscratch<CR>
+inoremap <F10> <Esc>:Vscratch<CR>
 
 " Remap ; to : for easier command control
 nnoremap ; :
