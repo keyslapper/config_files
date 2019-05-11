@@ -2,6 +2,9 @@
 "
 " All plugins are now managed using vim-plug
 " Plugin management is near the top of the file, configuration near the bottom.
+" TODO: Come back and clean up all the maps to make sure they apply only where
+"       they're wanted.
+" TODO: Organize this mess.
 
 " This must be first, because it changes other options as a side effect.
 set nocompatible	" Use Vim defaults (much better!)
@@ -40,7 +43,7 @@ Plug 'tpope/vim-fugitive'
 " https://github.com/junegunn/gv.vim.git
 Plug 'junegunn/gv.vim'
 " https://github.com/weynhamz/vim-plugin-minibufexpl.git
-Plug 'weynhamz/vim-plugin-minibufexpl'
+" Plug 'weynhamz/vim-plugin-minibufexpl'
 " https://github.com/luochen1990/rainbow.git
 Plug 'luochen1990/rainbow'
 " https://github.com/tmhedberg/matchit.git
@@ -172,6 +175,15 @@ nnoremap <leader>gd :Gdiff<CR>
 
 " Pulse the line when moving to search matches
 noremap <plug>(slash-after) :call PulseCursorLine()<cr>
+" nnoremap n n:call PulseCursorLine()<cr>
+" nnoremap N n:call PulseCursorLine()<cr>
+
+" Toggle mouse capture
+noremap <F12> :call <SID>ToggleMouse()<CR>
+inoremap <F12> <Esc>:call <SID>ToggleMouse()<CR>a
+
+" Remap ; to : for easier command control
+nnoremap ; :
 
 
 " Edit the vimrc file
@@ -444,14 +456,20 @@ let Tlist_Process_File_Always = 1
 " Prevent the buffer explorer window from
 " opening until we open at least 4 buffers.
 " Default is 2.
-let g:miniBufExplBuffersNeeded = 4
+" let g:miniBufExplBuffersNeeded = 4
 " <F6> Opens or closes the buffer explorer window.
 " noremap <silent> <F6> :MBEToggle<CR>
 " Available commands: MBEToggle  MBEToggleAll  MBEToggleMRU  MBEToggleMRUAll
 " scrolling through the open buffers.
-nnoremap <silent> <F2> :MBEbp<CR>
-nnoremap <silent> <F3> :MBEbn<CR>
-hi MBEChanged guibg=darkblue ctermbg=darkblue
+" nnoremap <silent> <F2> :MBEbp<CR>
+" nnoremap <silent> <F3> :MBEbn<CR>
+" hi MBEChanged guibg=darkblue ctermbg=darkblue
+" ===================================
+" With fzf and the following maps, I may not actually need MiniBufExplorer ...
+nnoremap <silent> <C-p> :bp<CR>
+nnoremap <silent> <C-n> :bn<CR>
+nnoremap <silent> <F2> :bp<CR>
+nnoremap <silent> <F3> :bn<CR>
 
 " let g:airline_theme='dark'
 " let g:airline_theme='ouo'
@@ -542,6 +560,26 @@ endfunction
 
 " }}}
 
+" Mouse management ----------------------------------------------- {{{
+" Borrowed from https://github.com/nvie/vim-togglemouse
+
+fun! s:ToggleMouse()
+    if !exists("s:old_mouse")
+        let s:old_mouse = "a"
+    endif
+
+    if &mouse == ""
+        let &mouse = s:old_mouse
+        echo "Mouse is for Vim (" . &mouse . ")"
+    else
+        let s:old_mouse = &mouse
+        let &mouse=""
+        echo "Mouse is for terminal"
+    endif
+endfunction
+
+" }}}
+
 " Python mode configuration ----------------------------------------------- {{{
 
 " Don't run pylint on every save
@@ -580,6 +618,7 @@ let g:pymode_trim_whitespaces = 0
 " Invoke fzf, but CommandT style
 nnoremap <leader>t :Files<cr>
 nnoremap <leader>. :Tags<cr>
+" I already use <F6> for this with MiniBufExplorer ...
 " nnoremap <leader>b :Buffers<cr>
 nnoremap <silent> <F6> :Buffers<cr>
 " ------------------------------------------------------------------------- }}}
