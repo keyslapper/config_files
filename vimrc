@@ -169,9 +169,8 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gv :GV!<CR>
 nnoremap <leader>gd :Gdiff<CR>
 
-" Keep search matches in the middle of the window
-" and pulse the line when moving to them.
-noremap <plug>(slash-after) zz:call PulseCursorLine()<cr>
+" Pulse the line when moving to search matches
+noremap <plug>(slash-after) :call PulseCursorLine()<cr>
 
 
 " Edit the vimrc file
@@ -230,12 +229,8 @@ set background=dark
 map <silent><F4> :PREVCOLOR<cr>
 map <silent><F5> :NEXTCOLOR<cr>
 
-" Switch syntax highlighting on
-syntax on
-" Also switch on highlighting the last used search pattern.
-" set hlsearch
-nnoremap <silent> <tab> :nohlsearch<cr>
-
+" nnoremap <silent> <tab> :nohlsearch<cr>
+nnoremap <silent> <tab> %
 
 " Quickly get out of insert mode without your fingers having to leave the
 " home row (either use 'jj' or 'jk')
@@ -290,10 +285,6 @@ nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
-
-  autocmd BufEnter * :syntax on
-
-  autocmd BufEnter,BufReadPost * :RainbowToggleOn
 
   augroup vim_files "{{{
     au!
@@ -460,7 +451,9 @@ nnoremap <silent> <F2> :MBEbp<CR>
 nnoremap <silent> <F3> :MBEbn<CR>
 hi MBEChanged guibg=darkblue ctermbg=darkblue
 
-let g:airline_theme='dark'
+" let g:airline_theme='dark'
+" let g:airline_theme='ouo'
+let g:airline_theme='onedark'
 let g:one_allow_italics = 1
 
 "Credit joshdick
@@ -484,7 +477,7 @@ endif
 " Plugin config: Rainbow Parens
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
   let g:rainbow_conf = {
-  \ 'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+  \ 'guifgs': ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'firebrick'],
   \ 'ctermfgs': ['blue', 'yellow', 'magenta', 'cyan', 'green'],
   \ 'operators': '_,_',
   \ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
