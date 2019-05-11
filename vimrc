@@ -97,6 +97,7 @@ set history=500  " keep 500 lines of command line history
 set ruler	       " show the cursor position all the time
 set showcmd      " display incomplete commands
 set incsearch    " do incremental searching
+set hlsearch     " highlight searching
 set expandtab
 " set nosmarttab
 set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
@@ -230,7 +231,8 @@ map <silent><F4> :PREVCOLOR<cr>
 map <silent><F5> :NEXTCOLOR<cr>
 
 " nnoremap <silent> <tab> :nohlsearch<cr>
-nnoremap <silent> <tab> %
+nnoremap <tab> %
+vnoremap <tab> %
 
 " Quickly get out of insert mode without your fingers having to leave the
 " home row (either use 'jj' or 'jk')
