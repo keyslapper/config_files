@@ -30,6 +30,8 @@ Plug 'junegunn/vim-plug'
 Plug 'flazz/vim-colorschemes'
 " https://github.com/vim-scripts/ScrollColors.git
 Plug 'vim-scripts/ScrollColors'
+" https://github.com/vim-scripts/YankRing.vim.git
+Plug 'vim-scripts/YankRing.vim'
 " https://github.com/davidhalter/jedi-vim.git
 Plug 'davidhalter/jedi-vim'
 " https://github.com/vim-syntastic/syntastic.git
@@ -40,6 +42,10 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 " https://github.com/tpope/vim-fugitive.git
 Plug 'tpope/vim-fugitive'
+" https://github.com/tpope/vim-surround.git
+Plug 'tpope/vim-surround'
+" https://github.com/tpope/vim-repeat.git
+Plug 'tpope/vim-repeat'
 " https://github.com/junegunn/gv.vim.git
 Plug 'junegunn/gv.vim'
 " https://github.com/weynhamz/vim-plugin-minibufexpl.git
