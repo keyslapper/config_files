@@ -190,6 +190,12 @@ noremap <plug>(slash-after) :call PulseCursorLine()<cr>
 noremap <F12> :call <SID>ToggleMouse()<CR>
 inoremap <F12> <Esc>:call <SID>ToggleMouse()<CR>a
 
+" Split the screen
+noremap <F11> :vsplit<CR>
+inoremap <F11> <Esc>:vsplit<CR>
+noremap <S-F11> :split<CR>
+inoremap <S-F11> <Esc>:split<CR>
+
 " Open scratch buffer in vertical split
 noremap <F10> :Vscratch<CR>
 inoremap <F10> <Esc>:Vscratch<CR>
