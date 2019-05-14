@@ -34,12 +34,12 @@ fi
 if [[ "$TERM" =~ 256color ]]; then
   if [ $(id -u) -eq 0 ]
   then
-    PS1='\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;196m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;196m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;27m\]\w\[\e[0m\] $ '
+    PS1='\[\e[38;5;220m\][\[\e[0m\]\[\e[38;5;196m\]\u\[\e[0m\]\[\e[38;5;220m\]@\[\e[0m\]\[\e[38;5;196m\]\h\[\e[0m\]\[\e[38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;27m\]\w\[\e[0m\] $ '
     export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
   else
     if [ -n "$SSH_CLIENT" ];
     then
-      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;196m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;27m\]\w\[\e[0m\]\[\e[38;5;51m\]" "\[\e[0m\]\n$ "'
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[38;5;220m\]@\[\e[0m\]\[\e[38;5;196m\]\h\[\e[0m\]\[\e[38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;27m\]\w\[\e[0m\]\[\e[38;5;51m\]" "\[\e[0m\]\n$ "'
     else
       # The comment below shows the equivalent PS1 that we're going for here.
       # The prompt_pre and prompt_post strings below will be passed to the
@@ -47,13 +47,13 @@ if [[ "$TERM" =~ 256color ]]; then
       # Updating the prompt in PROMPT_COMMAND is considerably faster than just
       # setting PS1 to call __git_ps1 directly.
 
-      # \[\e[1;38;5;220m\][<-         Bold, gold "["
+      # \[\e[38;5;220m\][<-           gold "["
       # \[\e[0m\]<-                   Reset
       # \[\e[38;5;34m\]\u<-           Green "\u"
-      # \[\e[1;38;5;220m\]@<-         Bold, gold "@"
+      # \[\e[38;5;220m\]@<-           gold "@"
       # \[\e[0m\]                     Reset
       # \[\e[38;5;34m\]\h<-           Green "\u"
-      # \[\e[1;38;5;220m\]]<-         Bold, gold "]"
+      # \[\e[38;5;220m\]]<-           gold "]"
       # \[\e[0m\]                     Reset
       # \[\e[38;5;34m\]: <-           Green ": "
       # \[\e[38;5;27m\]\w <-          Blue "\w "
@@ -61,11 +61,11 @@ if [[ "$TERM" =~ 256color ]]; then
       # \[\e[0m\]                     Reset
       # \n$ <-                        "\n$ "
 
-      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;34m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;27m\]\w\[\e[0m\]\[\e[38;5;51m\]" "\[\e[0m\]\n$ "'
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[38;5;220m\]@\[\e[0m\]\[\e[38;5;34m\]\h\[\e[0m\]\[\e[38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;27m\]\w\[\e[0m\]\[\e[38;5;51m\]" "\[\e[0m\]\n$ "'
     fi
   fi
 else
-  PS1='\[\e[01;34m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0m\]\$ '
+  PS1='\[\e[034m\]\u@\h\[\e[00m\]:\[\e[034m\]\w\[\e[0m\]\$ '
   export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 fi
 
