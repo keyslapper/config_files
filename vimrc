@@ -200,6 +200,11 @@ inoremap <S-F11> <Esc>:split<CR>
 noremap <F10> :Vscratch<CR>
 inoremap <F10> <Esc>:Vscratch<CR>
 
+" this is a dirty hack to get around my habit of typing ":vs<cr>" to split the
+" screen vertically. With Vscratch in the picture, I keep getting a scratch
+" buffer instead.  Remove this one that habit is broken in favor of <F11>.
+cnoremap vsa vsplit
+
 " Remap ; to : for easier command control
 nnoremap ; :
 
