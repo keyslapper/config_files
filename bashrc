@@ -20,8 +20,8 @@ set -o notify
 # GREEN='\e[38;5;82m\]'
 # RED='\e[38;5;196m\]'
 # GOLD='\e[38;5;220m\]'
-# BLUE='\e[38;5;21m\]'
-# CYAN='\e[38;5;14m\]'
+# BLUE='\e[38;5;27m\]'
+# CYAN='\e[38;5;51m\]'
 # RESET='\e[0m\]'
 
 stty erase 
@@ -34,12 +34,12 @@ fi
 if [[ "$TERM" =~ 256color ]]; then
   if [ $(id -u) -eq 0 ]
   then
-    PS1='\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;196m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;196m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;21m\]\w\[\e[0m\] $ '
+    PS1='\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;196m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;196m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;27m\]\w\[\e[0m\] $ '
     export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
   else
     if [ -n "$SSH_CLIENT" ];
     then
-      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;196m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;21m\]\w\[\e[0m\]\[\e[38;5;14m\]" "\[\e[0m\]\n$ "'
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;196m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;27m\]\w\[\e[0m\]\[\e[38;5;51m\]" "\[\e[0m\]\n$ "'
     else
       # The comment below shows the equivalent PS1 that we're going for here.
       # The prompt_pre and prompt_post strings below will be passed to the
@@ -56,12 +56,12 @@ if [[ "$TERM" =~ 256color ]]; then
       # \[\e[1;38;5;220m\]]<-         Bold, gold "]"
       # \[\e[0m\]                     Reset
       # \[\e[38;5;34m\]: <-           Green ": "
-      # \[\e[38;5;21m\]\w <-          Blue "\w "
-      # \[\e[38;5;14m\]__git_ps1<-    Cyan "Git Status"
+      # \[\e[38;5;27m\]\w <-          Blue "\w "
+      # \[\e[38;5;51m\]__git_ps1<-    Cyan "Git Status"
       # \[\e[0m\]                     Reset
       # \n$ <-                        "\n$ "
 
-      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;34m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;33m\]\w\[\e[0m\]\[\e[38;5;14m\]" "\[\e[0m\]\n$ "'
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;34m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;27m\]\w\[\e[0m\]\[\e[38;5;51m\]" "\[\e[0m\]\n$ "'
     fi
   fi
 else
