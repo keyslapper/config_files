@@ -1,3 +1,5 @@
+[includeIf "gitdir:~/environment/"]
+	path=.gitconfig.work
 [includeIf "gitdir:~/dev/"]
 	path=.gitconfig.work
 [includeIf "gitdir:~/GitDev/"]
@@ -10,7 +12,8 @@
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	show = diff-so-fancy | less --tabs=4 -RFX
 	editor = vim
-	excludesfile = ~/.gitignore
+	excludesFile = ~/.gitignore
+	fileMode = false
 [color]
 	ui = true
 [color "diff-highlight"]

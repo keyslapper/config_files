@@ -61,7 +61,7 @@ if [[ "$TERM" =~ 256color ]]; then
       # \[\e[0m\]                     Reset
       # \n$ <-                        "\n$ "
 
-      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;34m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;21m\]\w\[\e[0m\]\[\e[38;5;14m\]" "\[\e[0m\]\n$ "'
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;34m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;33m\]\w\[\e[0m\]\[\e[38;5;14m\]" "\[\e[0m\]\n$ "'
     fi
   fi
 else
