@@ -182,23 +182,23 @@ nnoremap <leader>gv :GV!<CR>
 nnoremap <leader>gd :Gdiff<CR>
 
 " Pulse the line when moving to search matches
-noremap <plug>(slash-after) :call PulseCursorLine()<cr>
-" nnoremap n n:call PulseCursorLine()<cr>
-" nnoremap N n:call PulseCursorLine()<cr>
+noremap <silent> <plug>(slash-after) :call PulseCursorLine()<cr>
+" nnoremap <silent> n n:call PulseCursorLine()<cr>
+" nnoremap <silent> N N:call PulseCursorLine()<cr>
 
 " Toggle mouse capture
 noremap <F12> :call <SID>ToggleMouse()<CR>
 inoremap <F12> <Esc>:call <SID>ToggleMouse()<CR>a
 
 " Split the screen
-noremap <F11> :vsplit<CR>
-inoremap <F11> <Esc>:vsplit<CR>
-noremap <S-F11> :split<CR>
-inoremap <S-F11> <Esc>:split<CR>
+noremap <silent><F11> :vsplit<CR>
+inoremap <silent><F11> <Esc>:vsplit<CR>
+noremap <silent><S-F11> :split<CR>
+inoremap <silent><S-F11> <Esc>:split<CR>
 
 " Open scratch buffer in vertical split
-noremap <F10> :Vscratch<CR>
-inoremap <F10> <Esc>:Vscratch<CR>
+noremap <silent><F10> :Vscratch<CR>
+inoremap <silent><F10> <Esc>:Vscratch<CR>
 
 " this is a dirty hack to get around my habit of typing ":vs<cr>" to split the
 " screen vertically. With Vscratch in the picture, I keep getting a scratch
@@ -308,7 +308,7 @@ nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
 command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
 
 " bind \ (backward slash) to grep shortcut
-nnoremap \ :Ag<SPACE>
+" nnoremap \ :Ag<SPACE>
 
 " Conflict markers {{{
 " highlight conflict markers
@@ -542,7 +542,8 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
   \ }
   \}
 
-nnoremap <silent> <F9> :RainbowToggle<CR>
+" Don't need this now that rainbow parens works with my config
+" nnoremap <silent> <F9> :RainbowToggle<CR>
 
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_disable_for_files_larger_than_kb = 10000
@@ -639,8 +640,8 @@ let g:pymode_trim_whitespaces = 0
 " fzf config -------------------------------------------------------------- {{{
 
 " Invoke fzf, but CommandT style
-nnoremap <leader>t :Files<cr>
-nnoremap <leader>. :Tags<cr>
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>t :Tags<cr>
 " I already use <F6> for this with MiniBufExplorer ...
 " nnoremap <leader>b :Buffers<cr>
 nnoremap <silent> <F6> :Buffers<cr>
