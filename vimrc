@@ -191,14 +191,14 @@ noremap <F12> :call <SID>ToggleMouse()<CR>
 inoremap <F12> <Esc>:call <SID>ToggleMouse()<CR>a
 
 " Split the screen
-noremap <silent><F11> :vsplit<CR>
-inoremap <silent><F11> <Esc>:vsplit<CR>
-noremap <silent><S-F11> :split<CR>
-inoremap <silent><S-F11> <Esc>:split<CR>
+noremap <silent><F10> :vsplit<CR>
+inoremap <silent><F10> <Esc>:vsplit<CR>
+noremap <silent><S-F10> :split<CR>
+inoremap <silent><S-F10> <Esc>:split<CR>
 
 " Open scratch buffer in vertical split
-noremap <silent><F10> :Vscratch<CR>
-inoremap <silent><F10> <Esc>:Vscratch<CR>
+noremap <silent><F11> :Vscratch<CR>
+inoremap <silent><F11> <Esc>:Vscratch<CR>
 
 " this is a dirty hack to get around my habit of typing ":vs<cr>" to split the
 " screen vertically. With Vscratch in the picture, I keep getting a scratch
