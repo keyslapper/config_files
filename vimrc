@@ -32,8 +32,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'vim-scripts/ScrollColors'
 " https://github.com/vim-scripts/YankRing.vim.git
 Plug 'vim-scripts/YankRing.vim'
-" https://github.com/ethanmuller/scratch.vim.git
-Plug 'ethanmuller/scratch.vim'
 " https://github.com/davidhalter/jedi-vim.git
 Plug 'davidhalter/jedi-vim'
 " https://github.com/vim-syntastic/syntastic.git
@@ -195,15 +193,6 @@ noremap <silent><F10> :vsplit<CR>
 inoremap <silent><F10> <Esc>:vsplit<CR>
 noremap <silent><S-F10> :split<CR>
 inoremap <silent><S-F10> <Esc>:split<CR>
-
-" Open scratch buffer in vertical split
-noremap <silent><F11> :Vscratch<CR>
-inoremap <silent><F11> <Esc>:Vscratch<CR>
-
-" this is a dirty hack to get around my habit of typing ":vs<cr>" to split the
-" screen vertically. With Vscratch in the picture, I keep getting a scratch
-" buffer instead.  Remove this one that habit is broken in favor of <F11>.
-cnoremap vsa vsplit
 
 " Remap ; to : for easier command control
 nnoremap ; :
