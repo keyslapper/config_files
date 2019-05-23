@@ -1,0 +1,56 @@
+[global_config]
+  enabled_plugins = CustomCommandsMenu, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  focus = mouse
+  handle_size = 0
+  title_transmit_bg_color = "#000080"
+[keybindings]
+  edit_window_title = None
+  full_screen = None
+  help = None
+  layout_launcher = None
+  reset_clear = <Alt>l
+  switch_to_tab_1 = <Primary>1
+  switch_to_tab_10 = None
+  switch_to_tab_2 = <Primary>2
+  switch_to_tab_3 = <Primary>3
+  switch_to_tab_4 = <Primary>4
+  switch_to_tab_5 = <Primary>5
+  switch_to_tab_6 = <Primary>6
+  switch_to_tab_7 = <Primary>7
+  switch_to_tab_8 = <Primary>8
+  switch_to_tab_9 = <Primary>9
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = c71dcabc-7d33-4500-bc3e-180b23ff0775
+      last_active_window = True
+      maximised = False
+      order = 0
+      parent = ""
+      position = 184:47
+      size = 1551, 850
+      title = /bin/bash
+      type = Window
+    [[[terminal1]]]
+      order = 0
+      parent = child0
+      profile = default
+      type = Terminal
+      uuid = c71dcabc-7d33-4500-bc3e-180b23ff0775
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.98
+    background_type = transparent
+    backspace_binding = control-h
+    copy_on_selection = True
+    cursor_color = "#c8c8c8"
+    font = Monospace 12
+    foreground_color = "#ffffff"
+    icon_bell = False
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    scrollback_infinite = True
+    scrollback_lines = 4000
+    show_titlebar = False
+    use_system_font = False
