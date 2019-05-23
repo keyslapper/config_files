@@ -10,7 +10,7 @@
 set nocompatible	" Use Vim defaults (much better!)
 filetype off
 
-" Plugin settings {{
+" Plugin settings ====================================== {{{
 " ========================================================
 " Set up vim-plug management with the following command:
 " ========================================================
@@ -31,7 +31,9 @@ Plug 'flazz/vim-colorschemes'
 " https://github.com/vim-scripts/ScrollColors.git
 Plug 'vim-scripts/ScrollColors'
 " https://github.com/vim-scripts/YankRing.vim.git
-Plug 'vim-scripts/YankRing.vim'
+" Plug 'vim-scripts/YankRing.vim'
+" https://github.com/vim-scripts/taglist.vim.git
+Plug 'vim-scripts/taglist.vim'
 " https://github.com/davidhalter/jedi-vim.git
 Plug 'davidhalter/jedi-vim'
 " https://github.com/vim-syntastic/syntastic.git
@@ -74,7 +76,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'python-mode/python-mode.git'
 " https://github.com/junegunn/vim-slash.git
 Plug 'junegunn/vim-slash'
-
+" https://github.com/inside/vim-search-pulse.git
+Plug 'inside/vim-search-pulse'
 
 " https://github.com/rakr/vim-one.git
 " Plug 'rakr/vim-one'
@@ -83,64 +86,50 @@ Plug 'junegunn/vim-slash'
 " Plug 'rip-rip/clang_complete'
 
 " add new plugins above this line.
-" ======================================================== }}
+" ====================================================== }}}
 call plug#end()
 
 filetype plugin indent on
 
-source $VIMRUNTIME/defaults.vim
-
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-   set fileencodings=ucs-bom,utf-8,latin1
-endif
-
-set backspace=indent,eol,start  " allow backspacing over everything in insert mode
-
-set viminfo='20,\"50  " read/write a .viminfo file, don't store more
-                      " than 50 lines of registers
-
-" Other stuff I like
-set showmode                    " always show what mode we're currently editing in
-set scrolloff=0
-set history=500  " keep 500 lines of command line history
-set ruler	       " show the cursor position all the time
-set showcmd      " display incomplete commands
-set incsearch    " do incremental searching
-set hlsearch     " highlight searching
-set expandtab
-" set nosmarttab
-set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
-set ts=8
-set nomodeline
-set tags=tags;~/dev
-set undolevels=500
-set noignorecase
-set hls ic
-" set shiftwidth=2
-set lpl
-set splitright
+" Basic options ======================================== {{{
 set autoindent                  " always set autoindenting on
-set copyindent                  " copy the previous indentation on autoindenting
+set showmode                    " always show what mode we're currently editing in
+set showcmd      " display incomplete commands
+set ttyfast
+set ruler	       " show the cursor position all the time
+set backspace=indent,eol,start  " allow backspacing over everything in insert mode
+set laststatus=2                " tell VIM to always put a status line in, even
+                                "    if there is only one window
+set cmdheight=1                 " use a status bar that is 1 row high
+set history=500                 " keep 500 lines of command line history
+set splitright
+set title                       " change the terminal's title
+set expandtab
+set formatoptions+=1            " When wrapping paragraphs, don't end lines
+                                "    with 1-letter words (looks stupid)
 set showmatch                   " set show matching parenthesis
 set ignorecase                  " ignore case when searching
 set smartcase                   " ignore case if search pattern is all lowercase,
                                 "    case-sensitive otherwise
-set formatoptions+=1            " When wrapping paragraphs, don't end lines
-                                "    with 1-letter words (looks stupid)
-set shortmess+=I                " hide the launch screen
-set ttyfast
+set incsearch    " do incremental searching
+set hlsearch     " highlight searching
+" ====================================================== }}}
 
-set cindent
-set cinoptions=>4,e2,n-2,f0,{2,}0,^-2,:s,=s,l1,b0,gs,hs,ps,ts,is,+4,c3,C0,/0,(2s,us,U1,w1,W0,m0,j0,)20,*30
+" Handle color configs ================================= {{{
+" set t_Co=256
+" colorscheme lou
+" colorscheme one
+colorscheme vividchalk
+set background=dark
+if (has("termguicolors"))
+  set termguicolors
+endif
 
-set nobackup
+map <silent><F4> :PREVCOLOR<cr>
+map <silent><F5> :NEXTCOLOR<cr>
+" ====================================================== }}}
 
-set wildmenu                    " make tab completion for files/buffers act like bash
-set wildmode=list:full          " show a list when pressing tab and complete
-                                "    first full match
-set wildignore=*.swp,*.bak,*.pyc,*.class
-set title                       " change the terminal's title
-
+" Convenience mappings ================================= {{{
 " Window Navigation with Ctrl-[hjkl]
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
@@ -160,7 +149,7 @@ vmap Q gw
 nnoremap ' `
 nnoremap ` '
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " This mapping will yank the current line, past it to the line above (or
 " below), then move to the new line.  Then that line is selected and every
 " character is replaced with an '*' character.
@@ -173,14 +162,8 @@ nnoremap <leader>4 yypVr=
 nnoremap <leader>5 yyPVr"
 nnoremap <leader>6 yypVr"
 
-" Git commands
-nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gv :GV!<CR>
-nnoremap <leader>gd :Gdiff<CR>
-
 " Pulse the line when moving to search matches
-noremap <silent> <plug>(slash-after) :call PulseCursorLine()<cr>
+" noremap <silent> <plug>(slash-after) :call PulseCursorLine()<cr>
 " nnoremap <silent> n n:call PulseCursorLine()<cr>
 " nnoremap <silent> N N:call PulseCursorLine()<cr>
 
@@ -197,15 +180,58 @@ inoremap <silent><S-F10> <Esc>:split<CR>
 " Remap ; to : for easier command control
 nnoremap ; :
 
-
 " Edit the vimrc file
-nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Folding rules {{{
+" Toggle line numbers
+nnoremap <leader>n :setlocal number!<cr>
+
+" Rebuild Ctags (mnemonic RC -> CR -> <cr>)
+" nnoremap <leader><cr> :silent !myctags >/dev/null 2>&1 &<cr>:redraw!<cr>
+nnoremap <leader><cr> :silent !myctags >/dev/null 2>&1 &<cr>:redraw!<cr>
+
+" Strip all trailing whitespace from a file, using \W
+nnoremap <silent> <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
+
+" Turn off search highlighting until next search.
+nnoremap <silent> <tab> :nohlsearch<cr>
+" Or we can use it to jump brackets ...
+"nnoremap <tab> %
+"vnoremap <tab> %
+
+" Ctrl+W to redraw the buffer's contents
+nnoremap <C-w> :filetype detect<cr>:redraw!<cr>
+
+nnoremap <silent> <C-p> :bp<CR>
+nnoremap <silent> <C-n> :bn<CR>
+nnoremap <silent> <F2> :bp<CR>
+nnoremap <silent> <F3> :bn<CR>
+
+" C-U in insert/normal mode, to uppercase the word under cursor
+inoremap <c-u> <esc>viwUea
+nnoremap <c-u> viwUe
+
+" This should clean up glitched syntax highlighting.
+nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+
+" Window Resizing {{{
+" right/up : bigger
+" left/down : smaller
+nnoremap <m-right> :vertical resize +3<cr>
+nnoremap <m-left> :vertical resize -3<cr>
+nnoremap <m-up> :resize +3<cr>
+nnoremap <m-down> :resize -3<cr>
+" }}}
+
+" ====================================================== }}}
+
+" Text Folding ========================================= {{{
+"
 set foldenable                  " enable folding
 set foldclose=all
 set foldmethod=manual
+
 " Make folding blocks in {} easier
 map F zf%
 map f zd
@@ -231,12 +257,69 @@ function! MyFoldText()
 endfunction
 set foldtext=MyFoldText()
 
-" }}}
+" ====================================================== }}}
+
+" Git related stuff ==================================== {{{
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gv :GV!<CR>
+nnoremap <leader>gd :Gdiff<CR>
+
+" Conflict markers
+" highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+" match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
+
+" shortcut to jump to next conflict marker
+nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
+
+" ====================================================== }}}
+
+
+" Stuff to check and organize ========================== {{{
+" source $VIMRUNTIME/defaults.vim
+
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+   set fileencodings=ucs-bom,utf-8,latin1
+endif
+
+
+set viminfo='20,\"50  " read/write a .viminfo file, don't store more
+                      " than 50 lines of registers
+
+" Other stuff I like
+set scrolloff=0
+" set nosmarttab
+set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
+set ts=8
+set nomodeline
+set tags=tags;~/dev
+set undolevels=500
+set hls ic
+" set shiftwidth=2
+set lpl
+set copyindent                  " copy the previous indentation on autoindenting
+set shortmess+=I                " hide the launch screen
+
+set cindent
+set cinoptions=>4,e2,n-2,f0,{2,}0,^-2,:s,=s,l1,b0,gs,hs,ps,ts,is,+4,c3,C0,/0,(2s,us,U1,w1,W0,m0,j0,)20,*30
+
+set nobackup
+" ====================================================== }}}
+
+" Wildmenu completion ================================== {{{
+set wildmenu                    " make tab completion for files/buffers act like bash
+set wildmode=list:full          " show a list when pressing tab and complete
+                                "    first full match
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.orig                           " Merge resolution files
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=.hg,.git,.svn                    " Version control
+" ====================================================== }}}
 
 " Editor layout {{{
-set laststatus=2                " tell VIM to always put a status line in, even
-                                "    if there is only one window
-set cmdheight=1                 " use a status bar that is 1 row high
 " }}}
 
 imap  
@@ -244,42 +327,11 @@ lmap  
 cmap  
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Set the color range and colorscheme
-" set t_Co=256
-" colorscheme lou
-" colorscheme one
-colorscheme vividchalk
-set background=dark
-
-map <silent><F4> :PREVCOLOR<cr>
-map <silent><F5> :NEXTCOLOR<cr>
-
-" nnoremap <silent> <tab> :nohlsearch<cr>
-nnoremap <tab> %
-vnoremap <tab> %
-
 " Quickly get out of insert mode without your fingers having to leave the
 " home row (either use 'jj' or 'jk')
 inoremap jj <Esc>
 
-" Ctrl+W to redraw the buffer's contents
-"
-" For some reason unclear to me, new files opened via the quickfix window
-" (for example Flow errors triggered in unopened files) don't get
-" their file types detected automatically.  For these new buffers, the
-" filetype= (empty).
-"
-" This can be fixed by running
-"
-"     :filetype detect
-"
-" In those buffers, but this is super laborious.  This just plugs that
-" under my existing "refresh the screen" shortcut <c-w>.
-nnoremap <C-w> :filetype detect<cr>:redraw!<cr>
-
-" Strip all trailing whitespace from a file, using \W
-nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-
+" Searching ============================================ {{{
 " Use The Silver Searcher over grep, iff possible
 if executable('ag')
    " Use ag over grep
@@ -296,18 +348,9 @@ nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
 " Define "Ag" command
 command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
 
-" bind \ (backward slash) to grep shortcut
-" nnoremap \ :Ag<SPACE>
+" ====================================================== }}}
 
-" Conflict markers {{{
-" highlight conflict markers
-match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
-
-" shortcut to jump to next conflict marker
-nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
-" }}}
-
-
+" Auto commands ======================================== {{{
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -437,76 +480,44 @@ endif
   " endif
 "   set csverb
 "endif
+" ====================================================== }}}
 
-" filetype plugin on
 
 " Don't wake up system with blinking cursor:
 " http://www.linuxpowertop.org/known.php
 let &guicursor = &guicursor . ",a:blinkon0"
 
-" Add optional packages.
-"
-" ===================================
-" Plugin configs below this point.
+" Plugin configs ======================================= {{{
 
+" NERDTree ============================================= {{{
 " NERDTree - awesome filesystem interface
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
+" ====================================================== }}}
 
+" Taglist ============================================== {{{
 " Settings for taglist.vim
-nnoremap <silent> <F8> :TlistToggle<CR>
-" let Tlist_Use_Right_Window=1
-" let Tlist_Auto_Open=1
-let Tlist_Enable_Fold_Column=0
-let Tlist_Compact_Format=0
-let Tlist_WinWidth=28
-let Tlist_Exit_OnlyWindow=1
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Process_File_Always = 1
+if executable('ctags')
+  nnoremap <silent> <F8> :TlistToggle<CR>
+  " let Tlist_Use_Right_Window=1
+  " let Tlist_Auto_Open=1
+  let Tlist_Enable_Fold_Column=0
+  let Tlist_Compact_Format=0
+  let Tlist_WinWidth=28
+  let Tlist_Exit_OnlyWindow=1
+  let Tlist_File_Fold_Auto_Close = 1
+  let Tlist_Process_File_Always = 1
+endif
+" ====================================================== }}}
 
-" ===================================
-" Plugin config: MiniBufExplorer
-" Prevent the buffer explorer window from
-" opening until we open at least 4 buffers.
-" Default is 2.
-" let g:miniBufExplBuffersNeeded = 4
-" <F6> Opens or closes the buffer explorer window.
-" noremap <silent> <F6> :MBEToggle<CR>
-" Available commands: MBEToggle  MBEToggleAll  MBEToggleMRU  MBEToggleMRUAll
-" scrolling through the open buffers.
-" nnoremap <silent> <F2> :MBEbp<CR>
-" nnoremap <silent> <F3> :MBEbn<CR>
-" hi MBEChanged guibg=darkblue ctermbg=darkblue
-" ===================================
-" With fzf and the following maps, I may not actually need MiniBufExplorer ...
-nnoremap <silent> <C-p> :bp<CR>
-nnoremap <silent> <C-n> :bn<CR>
-nnoremap <silent> <F2> :bp<CR>
-nnoremap <silent> <F3> :bn<CR>
-
+" Airline config ======================================= {{{
 " let g:airline_theme='dark'
 " let g:airline_theme='ouo'
 let g:airline_theme='onedark'
 let g:one_allow_italics = 1
+" ====================================================== }}}
 
-"Credit joshdick
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-" ===================================
-" Plugin config: Rainbow Parens
+" Plugin config: Rainbow Parens ======================== {{{
+"
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
   let g:rainbow_conf = {
   \ 'guifgs': ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'firebrick'],
@@ -531,8 +542,7 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
   \ }
   \}
 
-" Don't need this now that rainbow parens works with my config
-" nnoremap <silent> <F9> :RainbowToggle<CR>
+" ====================================================== }}}
 
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_disable_for_files_larger_than_kb = 10000
@@ -540,40 +550,40 @@ let g:ycm_disable_for_files_larger_than_kb = 10000
 " Abbreviations
 iab _DATE <C-R>=strftime("Date: %A %B, %e %Y\nTime: %I:%M:%S %p %Z")<CR>
 
-" Pulse ------------------------------------------------------------------- {{{
+" Pulse ================================================ {{{
 
-function! PulseCursorLine()
-    setlocal cursorline
+"function! PulseCursorLine()
+"    setlocal cursorline
+"
+"    redir => old_hi
+"        silent execute 'hi CursorLine'
+"    redir END
+"    let old_hi = split(old_hi, '\n')[0]
+"    let old_hi = substitute(old_hi, 'xxx', '', '')
+"
+"    hi CursorLine guibg=#3a3a3a
+"    redraw
+"    sleep 14m
+"
+"    hi CursorLine guibg=#4a4a4a
+"    redraw
+"    sleep 10m
+"
+"    hi CursorLine guibg=#3a3a3a
+"    redraw
+"    sleep 14m
+"
+"    hi CursorLine guibg=#2a2a2a
+"    redraw
+"    sleep 10m
+"
+"    execute 'hi ' . old_hi
+"    setlocal nocursorline
+"endfunction
 
-    redir => old_hi
-        silent execute 'hi CursorLine'
-    redir END
-    let old_hi = split(old_hi, '\n')[0]
-    let old_hi = substitute(old_hi, 'xxx', '', '')
+" ====================================================== }}}
 
-    hi CursorLine guibg=#3a3a3a
-    redraw
-    sleep 14m
-
-    hi CursorLine guibg=#4a4a4a
-    redraw
-    sleep 10m
-
-    hi CursorLine guibg=#3a3a3a
-    redraw
-    sleep 14m
-
-    hi CursorLine guibg=#2a2a2a
-    redraw
-    sleep 10m
-
-    execute 'hi ' . old_hi
-    setlocal nocursorline
-endfunction
-
-" }}}
-
-" Mouse management ----------------------------------------------- {{{
+" Mouse management ===================================== {{{
 " Borrowed from https://github.com/nvie/vim-togglemouse
 
 fun! s:ToggleMouse()
@@ -591,9 +601,9 @@ fun! s:ToggleMouse()
     endif
 endfunction
 
-" }}}
+" ====================================================== }}}
 
-" Python mode configuration ----------------------------------------------- {{{
+" Python mode configuration ============================ {{{
 
 " Don't run pylint on every save
 let g:pymode = 1
@@ -624,9 +634,9 @@ let g:pymode_run = 0
 let g:pymode_run_bind = '<leader>r'
 let g:pymode_trim_whitespaces = 0
 
-" }}}
+" ====================================================== }}}
 
-" fzf config -------------------------------------------------------------- {{{
+" fzf config =========================================== {{{
 
 " Invoke fzf, but CommandT style
 nnoremap <leader>f :Files<cr>
@@ -634,22 +644,11 @@ nnoremap <leader>t :Tags<cr>
 " I already use <F6> for this with MiniBufExplorer ...
 " nnoremap <leader>b :Buffers<cr>
 nnoremap <silent> <F6> :Buffers<cr>
-" ------------------------------------------------------------------------- }}}
+" ====================================================== }}}
 
-" C-U in insert/normal mode, to uppercase the word under cursor
-inoremap <c-u> <esc>viwUea
-nnoremap <c-u> viwUe
+" Vim Search Pulse ===================================== {{{
+"let g:vim_search_pulse_color_list = [196, 208, 214, 220, 226]
+" ====================================================== }}}
 
-" Quote current selection
-" TODO: This only works for selections that are created "forwardly"
-vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
-vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
-
-" Switch from block-cursor to vertical-line-cursor when going into/out of
-" insert mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-
-
+" ====================================================== }}}
 
