@@ -75,7 +75,7 @@ Plug 'vim-airline/vim-airline-themes'
 " https://github.com/python-mode/python-mode.git
 " Plug 'python-mode/python-mode.git'
 " https://github.com/junegunn/vim-slash.git
-Plug 'junegunn/vim-slash'
+" Plug 'junegunn/vim-slash'
 " https://github.com/inside/vim-search-pulse.git
 Plug 'inside/vim-search-pulse'
 
@@ -194,10 +194,11 @@ nnoremap <leader><cr> :silent !myctags >/dev/null 2>&1 &<cr>:redraw!<cr>
 nnoremap <silent> <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Turn off search highlighting until next search.
-nnoremap <silent> <tab> :nohlsearch<cr>
-" Or we can use it to jump brackets ...
-"nnoremap <tab> %
-"vnoremap <tab> %
+nnoremap <c-l> <c-l>:noh<cr>
+
+" Use tab to jump brackets ...
+nnoremap <tab> %
+vnoremap <tab> %
 
 " Ctrl+W to redraw the buffer's contents
 nnoremap <C-w> :filetype detect<cr>:redraw!<cr>
