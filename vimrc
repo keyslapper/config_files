@@ -158,14 +158,13 @@ nnoremap <leader>2 yypVr*
 " Or an '=' character.
 nnoremap <leader>3 yyPVr=
 nnoremap <leader>4 yypVr=
+" Or an '#' character.
+nnoremap <leader>5 yyPVr#
+nnoremap <leader>6 yypVr#
 " Or a '"' character.
-nnoremap <leader>5 yyPVr"
-nnoremap <leader>6 yypVr"
+nnoremap <leader>7 yyPVr"
+nnoremap <leader>8 yypVr"
 
-" Pulse the line when moving to search matches
-" noremap <silent> <plug>(slash-after) :call PulseCursorLine()<cr>
-" nnoremap <silent> n n:call PulseCursorLine()<cr>
-" nnoremap <silent> N N:call PulseCursorLine()<cr>
 
 " Toggle mouse capture
 noremap <F12> :call <SID>ToggleMouse()<CR>
@@ -227,7 +226,6 @@ nnoremap <m-down> :resize -3<cr>
 " ====================================================== }}}
 
 " Text Folding ========================================= {{{
-"
 set foldenable                  " enable folding
 set foldclose=all
 set foldmethod=manual
