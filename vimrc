@@ -194,7 +194,7 @@ nnoremap <leader><cr> :silent !myctags >/dev/null 2>&1 &<cr>:redraw!<cr>
 nnoremap <silent> <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Turn off search highlighting until next search.
-nnoremap <leader>l:noh<cr>
+nnoremap <leader>l :noh<cr>
 
 " Use tab to jump brackets ...
 nnoremap <tab> %
