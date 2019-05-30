@@ -236,8 +236,8 @@ map F zf%
 map f zd
 
 " Folding
-nnoremap <Space> za
-vnoremap <Space> za
+" nnoremap <Space> za
+" vnoremap <Space> za
 
 function! MyFoldText()
     let line = getline(v:foldstart)
@@ -267,10 +267,9 @@ nnoremap <leader>gd :Gdiff<CR>
 " Conflict markers
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-" match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
 
 " shortcut to jump to next conflict marker
-nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
+nnoremap <silent> <leader>j /\v^[<\|=>]{7}([^=].+)?$<CR>
 
 " ====================================================== }}}
 
