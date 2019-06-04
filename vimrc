@@ -117,8 +117,6 @@ set hlsearch     " highlight searching
 
 " Handle color configs ================================= {{{
 " set t_Co=256
-" colorscheme lou
-" colorscheme one
 colorscheme vividchalk
 set background=dark
 if (has("termguicolors"))
@@ -649,4 +647,5 @@ nnoremap <silent> <F6> :Buffers<cr>
 " ====================================================== }}}
 
 " ====================================================== }}}
+hi Normal guibg=NONE ctermbg=NONE
 
