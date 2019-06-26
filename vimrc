@@ -103,7 +103,7 @@ set laststatus=2                " tell VIM to always put a status line in, even
 set cmdheight=1                 " use a status bar that is 1 row high
 set history=500                 " keep 500 lines of command line history
 set splitright
-set title                       " change the terminal's title
+" set title                       " change the terminal's title
 set expandtab
 set formatoptions+=1            " When wrapping paragraphs, don't end lines
                                 "    with 1-letter words (looks stupid)
