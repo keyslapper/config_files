@@ -8,7 +8,9 @@ fi
 export PATH=$PATH:/bin:~/bin:.:~/.cargo/bin
 
 if [ -f /etc/bashrc ]; then
-    source /etc/bashrc   # --> Read /etc/bashrc, if present.
+    . /etc/bashrc   # --> Read /etc/bashrc, if present.
+elif [ -f /etc/bash.bashrc ]; then
+    . /etc/bash.bashrc   # --> Read /etc/bash.bashrc, if present.
 fi
 
 export USER=${USER:-$LOGNAME}
@@ -69,6 +71,17 @@ else
   export PROMPT_COMMAND="history -n; history -w; history -c; history -r;"
 fi
 
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 export PS1
 # These seem to break color coding ...
 # export GIT_PS1_SHOWCOLORHINTS=1
@@ -101,6 +114,8 @@ fi
 if [ -f  /bin/less ]; then
   export PAGER=less
 fi
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 if [ -f  ~/.todo/todo_completion ]; then
   source ~/.todo/todo_completion
@@ -121,6 +136,7 @@ fi
 
 shopt -s histappend
 shopt -s cmdhist
+shopt -s checkwinsize
 export HISTCONTROL=ignoredups:erasedups:ignorespace
 export HISTIGNORE=exit:ls:cd:vi:history*:p4*:su*:
 export HISTSIZE=500
