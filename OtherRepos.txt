@@ -1,0 +1,4 @@
+Other repositories to clone:
+
+https://github.com/nvie/git-toolbelt - link tools to ~/bin
+https://github.com/so-fancy/diff-so-fancy - link diff-so-fancy/third_party/build_fatpack/diff-so-fancy to ~/bin
