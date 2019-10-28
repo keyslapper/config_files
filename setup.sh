@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 git_dir=$PWD
 
@@ -57,6 +57,10 @@ ln -s $git_dir/inputrc .inputrc
 ln -s $git_dir/terminator .terminator
 ln -s $git_dir/vim .vim
 ln -s $git_dir/vimrc .vimrc
+
+cd ~/.config
+
+ln -s $git_dir/terminator terminator
 
 
 # TODO: take arguments, include an undo, etc.

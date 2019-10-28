@@ -1,11 +1,11 @@
 [includeIf "gitdir:~/environment/"]
-	path=.gitconfig.work
+	path = .gitconfig.work
 [includeIf "gitdir:~/dev/"]
-	path=.gitconfig.work
+	path = .gitconfig.work
 [includeIf "gitdir:~/GitDev/"]
-	path=.gitconfig.work
-[includeIf "gitdir:~/Git/"]
-	path=.gitconfig.personal
+	path = .gitconfig.work
+[includeIf "gitdir:~/git/"]
+	path = .gitconfig.personal
 [credential]
 	helper = /usr/libexec/git-core/git-credential-libsecret
 [core]
