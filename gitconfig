@@ -4,10 +4,13 @@
 	path = .gitconfig.work
 [includeIf "gitdir:~/GitDev/"]
 	path = .gitconfig.work
+[includeIf "gitdir:~/config_files/"]
+	path = .gitconfig.personal
 [includeIf "gitdir:~/git/"]
 	path = .gitconfig.personal
 [credential]
-	helper = /usr/libexec/git-core/git-credential-libsecret
+        # helper = /usr/libexec/git-core/git-credential-libsecret
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	show = diff-so-fancy | less --tabs=4 -RFX
