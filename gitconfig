@@ -1,13 +1,17 @@
-[includeIf "gitdir:~/environment/"]
-	path = .gitconfig.work
-[includeIf "gitdir:~/dev/"]
-	path = .gitconfig.work
-[includeIf "gitdir:~/GitDev/"]
-	path = .gitconfig.work
-[includeIf "gitdir:~/config_files/"]
-	path = .gitconfig.personal
-[includeIf "gitdir:~/git/"]
-	path = .gitconfig.personal
+[user]
+	name = Louis LeBlanc
+	email = leblanc@keyslapper.net
+
+[credential "https://github.com/LouLeBlanc/SieveOfEratosthenes"]
+[credential "https://github.com/LouLeBlanc/myrand"]
+[credential "https://github.com/LouLeBlanc/BookManager"]
+[credential "https://github.com/LouLeBlanc/spring-jdbc"]
+[credential "https://github.com/GPSBrandeis/group-project-maven-rseg0127_team1.git/"]
+	email = lleblanc@brandeis.edu
+	username = LouLeBlanc
+[credential "https://github.com/keyslapper/config_files"]
+	email = leblanc@keyslapper.net
+	username = keyslapper
 [credential]
         # helper = /usr/libexec/git-core/git-credential-libsecret
 	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
