@@ -351,41 +351,40 @@ command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
 
-  augroup vim_files "{{{
-    au!
-
-      " Bind <F1> to show the keyword under cursor
-      " general help can still be entered manually, with :h
-      autocmd filetype vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-      autocmd filetype vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-    augroup end "}}}
-
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
   filetype plugin indent on
 
-  augroup fedora
-  autocmd!
+  augroup vim_files "{{{
+    au!
 
-          " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
-          autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
-          " start with spec file template
-          autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
+    " Bind <F1> to show the keyword under cursor
+    " general help can still be entered manually, with :h
+    autocmd FileType vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+    autocmd FileType vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+  augroup end "}}}
+
+  augroup extern
+    autocmd!
+    " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+    autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+    " start with spec file template
+    autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
   augroup END
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  au!
+    au!
 
-          " For all text files set 'textwidth' to 80 characters.
-          autocmd FileType text setlocal textwidth=80
+    " For all text files set 'textwidth' to 80 characters.
+    autocmd FileType text setlocal textwidth=80
 
-          " When editing a file, always jump to the last known cursor position.
-          " Don't do it when the position is invalid or when inside an event handler
-          " (happens when dropping a file on gvim).
-          autocmd BufReadPost *
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal g`\"" |
             \ endif
@@ -414,37 +413,37 @@ if has("autocmd")
 
       " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
       " earlier, as it is important)
-      autocmd filetype python setlocal textwidth=78
-      autocmd filetype python match ErrorMsg '\%>120v.\+'
+      autocmd FileType python setlocal textwidth=80
+      autocmd FileType python match ErrorMsg '\%>120v.\+'
 
       " But disable autowrapping as it is super annoying
-      autocmd filetype python setlocal formatoptions-=t
+      autocmd FileType python setlocal formatoptions-=t
 
       " Folding for Python (uses syntax/python.vim for fold definitions)
-      "autocmd filetype python,rst setlocal nofoldenable
-      "autocmd filetype python setlocal foldmethod=expr
+      "autocmd FileType python,rst setlocal nofoldenable
+      "autocmd FileType python setlocal foldmethod=expr
 
       " Python runners
-     "autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
-     "autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
-     "autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
-     "autocmd filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
+     "autocmd FileType python noremap <buffer> <F5> :w<CR>:!python %<CR>
+     "autocmd FileType python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
+     "autocmd FileType python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
+     "autocmd FileType python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
 
       " Automatic insertion of breakpoints
-      autocmd filetype python nnoremap <buffer> <leader>bp :normal oimport pdb; pdb.set_trace()  # TODO: BREAKPOINT  # noqa<Esc>
+      autocmd FileType python nnoremap <buffer> <leader>bp :normal oimport pdb; pdb.set_trace()  # TODO: BREAKPOINT  # noqa<Esc>
 
       " Run a quick static syntax check every time we save a Python file
       " autocmd BufWritePost *.py call Flake8()
 
       " Defer to isort for sorting Python imports (instead of using Unix sort)
-      autocmd filetype python nnoremap <leader>s mX:%!isort -<cr>`X:redraw!<cr>
+      autocmd FileType python nnoremap <leader>s mX:%!isort -<cr>`X:redraw!<cr>
 
   augroup end " }}}
 
   augroup markdown_files "{{{
       au!
 
-      autocmd filetype markdown noremap <buffer> <leader>p :w<CR>:!open -a 'Marked 2' %<CR><CR>
+      autocmd FileType markdown noremap <buffer> <leader>p :w<CR>:!open -a 'Marked 2' %<CR><CR>
   augroup end " }}}
 
   augroup git_files "{{{
@@ -452,7 +451,7 @@ if has("autocmd")
 
       " Don't remember the last cursor position when editing commit
       " messages, always start on line 1
-      autocmd filetype gitcommit call setpos('.', [0, 1, 1, 0])
+      autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
   augroup end "}}}
 
   autocmd BufReadPost *
