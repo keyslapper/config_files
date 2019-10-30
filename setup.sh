@@ -22,9 +22,6 @@ fi
 if [ -f .gitconfig ]; then
   mv .gitconfig $git_dir/BAK/.
 fi
-if [ -f .gitconfig.personal ]; then
-  mv .gitconfig.personal $git_dir/BAK/.
-fi
 if [ -f .gitignore ]; then
   mv .gitignore $git_dir/BAK/.
 fi
@@ -50,7 +47,6 @@ ln -s $git_dir/agignore .agignore
 ln -s $git_dir/alias .alias
 ln -s $git_dir/bashrc .bashrc
 ln -s $git_dir/gitconfig .gitconfig
-ln -s $git_dir/gitconfig.personal .gitconfig.personal
 ln -s $git_dir/gitignore .gitignore
 ln -s $git_dir/git-prompt.sh .git-prompt.sh
 ln -s $git_dir/inputrc .inputrc
