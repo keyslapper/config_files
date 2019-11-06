@@ -1,5 +1,0 @@
-magic: 32 : $H =~ m/[\x00-\x06\x10-\x1a\x1c-\x1f\x80\xff]{2}/
-filter: $N =~ m/\.(gz|Z)$/ : "zcat %"
-option: -skip '.a .COM .elc .EXE .o .pbm .xbm .dvi cscope.* tags .log .nfs* .#*'
-option: -iskip '.tar.z .tarz .zip .lzh .jpg .jpeg .gif .uu'
-option: -dskip 'bin third_party build* .git'

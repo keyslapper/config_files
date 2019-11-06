@@ -10,7 +10,6 @@
   layout_launcher = None
   reset_clear = <Alt>l
   switch_to_tab_1 = <Primary>1
-  switch_to_tab_10 = None
   switch_to_tab_2 = <Primary>2
   switch_to_tab_3 = <Primary>3
   switch_to_tab_4 = <Primary>4
@@ -19,6 +18,7 @@
   switch_to_tab_7 = <Primary>7
   switch_to_tab_8 = <Primary>8
   switch_to_tab_9 = <Primary>9
+  switch_to_tab_10 = None
 [layouts]
   [[default]]
     [[[child0]]]

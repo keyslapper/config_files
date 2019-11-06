@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# Adapted from a script written by a coworker
+# Git Script:
+#   Display details on recent (last N or last N days) commits
+#   ... optional: that changed some file
+
+
+CRED="\033[0;31m"
+CBLUE="\033[0;34m"
+CGREEN="\033[0;32m"
+CNORMAL="\033[0m"
+
+# TBD:
+#	Clean this up: break into smaller functions, etc.
+#   Accept some date instead of last N commits or last N days.
+#	Support git log --grep?
+
+usage() {
+        echo "*** Usage:   git-commits  N [-days] [path] [-user UserName]"
+        echo "                          N                 Number of commits ... or Number of days"
+        echo "                          path              Show commits that caused this file to change (e.g.: src/afbinit.c , include/esbbase.h)"
+        echo "                          -user UserName    Show commits by this user (use _ instead of space)"
+        echo "                          -days             Show commits over the last N days (instead of last N commits)"
+    exit 1
+}
+
+days=''
+user=''
+needUser=''
+userName=''
+path=''
+cnt=''
+
+# Looks like a decimal number
+renum='^[0-9]+$'
+# Looks like a pathname, something with a '/' -- e.g.:   src/driver.c   include/driver.h
+repath='^[a-zA-Z\.]+/[a-zA-Z0-9_/\.]+$'
+
+for arg in $@
+do
+    if [ $needUser ]
+    then
+        # I haven't found a good way to deal with spaces in names.
+        # So for now, have the user use _ instead of space ... and then convert that to a space here.
+        user=$arg
+        userName=${arg/_/ }
+        needUser=''
+    elif [ $arg = -days ]
+    then
+        days=Yes
+    elif [ $arg = -user ]
+    then
+        needUser=Yes
+    elif [[ $arg =~ $renum ]]
+    then
+        cnt=$arg
+    elif [[ $arg =~ $repath ]]
+    then
+        path=$arg
+    else
+        usage
+    fi
+done
+
+
+if [ -z $cnt ]
+then
+    echo "*** Need a <count> argument"
+    exit 1
+fi
+if [ $needUser ]
+then
+        echo "*** Need to supply the user identity"
+        exit 1
+fi
+
+
+# TBD: Should we (a) give the $path to 'git log' here or (b) retrieve N commits and examine to see which modify $path?
+#      For now, do the former -- here.  The latter is below, but won't be edecuted.
+
+# Collect the most recent commit hashes: last N commits, or last N days
+if [[ ! $days ]]
+then
+        if [ $user ]
+        then
+                hashes=`git log --oneline --pretty=format:%h -n $cnt -i "--author=$userName" -- $path`
+        else
+                hashes=`git log --oneline --pretty=format:%h -n $cnt -- $path`
+        fi
+else
+        if [ $user ]
+        then
+        hashes=`git log --oneline --pretty=format:%h --since ${cnt}.days.ago -i "--author=$userName" -- $path`
+        else
+        hashes=`git log --oneline --pretty=format:%h --since ${cnt}.days.ago -- $path`
+        fi
+fi
+
+for hash in $hashes
+do
+        echo -------------------------------------------------------
+        git show --pretty=format:"%Cred%h %Cgreen%cn %cd %Creset %s" --date=short --name-only $hash
+done
+

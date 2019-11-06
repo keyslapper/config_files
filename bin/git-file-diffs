@@ -1,0 +1,178 @@
+#!/bin/bash
+
+# Adapted from a script written by a coworker
+# Git Script
+#   Display a set of hashes for recent changes to some file ...
+#   and let the user diff any two of them.
+
+CRED="\033[0;31m"
+CBLUE="\033[0;34m"
+CGREEN="\033[0;32m"
+CNORMAL="\033[0m"
+
+
+cnt=''
+path=''
+gui=''
+tool=''
+
+# ================
+usage() {
+    echo "*** Usage:  git-file-diffs  N path [-gui] [-tkdiff]"
+    echo "                            N           Number of recent commits for this file"
+    echo "                            path        Some file"
+    if [ -z $gui ]
+    then
+        echo    "                            -gui        Force the use of a graphical diff (difftool)"
+        echo -e "                            -nogui      Force the use a simple / non-graphical diff $CRED [dflt since DISPLAY ev not set] $CNORMAL"
+    else
+        echo -e "                            -gui        Force the use of a graphical diff (difftool) $CRED [dflt since DISPLAY ev is set] $CNORMAL"
+        echo    "                            -nogui      Force the use a simple / non-graphical diff"
+    fi
+    echo "                            -tkdiff     Force use of tkdiff instead of the default tool"
+    echo
+    echo "  If the DISPLAY env variable is set, -gui is the default ... otherwise, nogui."
+    echo
+    echo "  Display hashes/user/comments for last N  commits that changed some file -- along with an index"
+    echo "  for each (0 => most recent, 1 => next most recent, ...)."
+    echo "  You're then prompted to supply these indices:"
+    echo "     a  b    : diff these two versions of the file"
+    echo "     a       : diff versions a and a+1 of the file"
+    echo "     q       : to quit"
+    exit 1
+}
+
+
+# ================
+# Display commit details (1-line) for the hashes in the $xhashes array
+#   
+show_hashes() {
+    declare -i i
+    i=0
+    cnt=${#xhashes[@]}
+    while (( i < $cnt ))
+    do
+        msg=`git log --oneline --pretty=format:"%Cred%h %Cgreen %cd %cn %Creset %s" --date=short ${xhashes[$i]}  -n 1 $path`
+        # Want to fit on one line - limit to 140 chars or so
+        echo "$i  ${msg:0:140}"
+        (( i = i + 1 ))
+    done
+}
+
+
+# ===============
+# Arguments
+
+# re: Looks like a decimal number
+renum='^[0-9]+$'
+# re: Looks like a pathname
+repath='^[a-zA-Z0-9_/\.]+$'
+
+
+# Guess: If we see a $DISPLAY, do a gui/difftool comparison
+if [ ! -z $DISPLAY ]
+then
+    gui=Yes
+fi
+
+if [ $# = 0 ]
+then
+    usage
+fi
+
+
+for arg in $@
+do
+    if [ $arg = -gui ]
+    then
+        gui=Yes
+
+    elif [ $arg = -nogui ]
+    then
+        gui=''
+    elif [ $arg = -tkdiff ]
+    then
+        tool="--tool=tkdiff"
+    elif [[ $arg =~ $renum ]]
+    then
+        cnt=$arg
+    elif [[ $arg =~ $repath ]]
+    then
+        path=$arg
+    else
+        usage
+    fi
+done
+
+if [ -z $cnt ]
+then
+    echo "*** Need a <count> argument"
+    exit 1
+fi
+if [ -z $path ]
+then
+    echo "*** Need a <path> argument"
+    exit 1
+fi
+
+# ================
+
+# Obtain the most recent $cnt hashes ... put these into the xhashes array.
+declare -a xhashes
+rhashes=`git log --oneline --pretty=format:%h -n $cnt -- $path`
+xhashes=($rhashes)
+
+# ================
+# Ask the user which they want to diff ... and repeat.
+show_hashes
+next_first=0
+
+while [ true ]
+do
+    read -p "Index#1  Index#2, Index#1, or q to quit :  " first second
+
+    # TBD: do some validation on what the user gives us ... are these valid numerical indices within $xhashes?
+
+    # Experiment:  If given no index values, do 1+ the one we used last time.  Working backwards 1-version-at-a-time.
+    if [ -z $first ]
+    then
+        first=$next_first
+    fi
+
+    # Told to quit.
+    if [ $first = q ]
+    then
+        break
+    fi
+
+    # If only given one index ...
+    if [ -z $second ]
+    then
+        second=$[$first + 1]
+        if [ $second -ge ${#xhashes[@]} ]
+        then
+            # Done - gone as far as we can.
+            break
+        fi
+    fi
+
+    echo -e "    ---- $CBLUE Displaying diffs: ${xhashes[$second]} vs ${xhashes[$first]} $CNORMAL"
+
+    if [ -z $gui ]
+    then
+        echo ------------------------------------------------
+        git diff ${xhashes[$second]}..${xhashes[$first]} $path
+        echo ++++++++++++++++++++++++++++++++++++++++++++++++
+        # Always re-display the hash lines in simple diff mode - the hash/comments probably scrolled off the screen.
+        show_hashes
+    else
+        # Odd inconsistency in how multiple hashes are supplied to diff and difftool.  Why?
+        git difftool  $tool ${xhashes[$second]} ${xhashes[$first]} $path
+
+        # Maybe: run difftool in the background, so can have multiple comparisons on the screen at the same time?
+    fi
+
+    next_first=$second
+done
+
+
