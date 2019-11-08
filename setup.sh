@@ -31,8 +31,10 @@ fi
 if [ -f .inputrc ]; then
   mv .inputrc $git_dir/BAK/.
 fi
-if [ -d .config/terminator ]; then
-  mv .config/terminator $git_dir/BAK/.
+if [ -d .config ]; then
+  if [ -d .config/terminator ]; then
+    mv .config/terminator $git_dir/BAK/.
+  fi
 fi
 if [ -d .vim ]; then
   mv .vim $git_dir/BAK/.
@@ -50,13 +52,13 @@ ln -s $git_dir/gitconfig .gitconfig
 ln -s $git_dir/gitignore .gitignore
 ln -s $git_dir/git-prompt.sh .git-prompt.sh
 ln -s $git_dir/inputrc .inputrc
-ln -s $git_dir/terminator .terminator
 ln -s $git_dir/vim .vim
 ln -s $git_dir/vimrc .vimrc
 
-cd ~/.config
-
-ln -s $git_dir/terminator terminator
+if [ -d .config ]; then
+  cd ~/.config
+  ln -s $git_dir/terminator terminator
+fi
 
 
 # TODO: take arguments, include an undo, etc.
