@@ -43,6 +43,10 @@ if [ -f .vimrc ]; then
   mv .vimrc $git_dir/BAK/.
 fi
 
+if [ -d .local/share/gnome-shell/icons ]; then
+  mv .local/share/gnome-shell/icons $git_dir/BAK/.
+fi
+
 
 ln -s $git_dir/ackrc .ackrc
 ln -s $git_dir/agignore .agignore
@@ -58,6 +62,19 @@ ln -s $git_dir/vimrc .vimrc
 if [ -d .config ]; then
   cd ~/.config
   ln -s $git_dir/terminator terminator
+  cd -
+fi
+
+if [ -d bin ]; then
+  cd ~/bin
+  ln -s $git_dir/bin/* .
+  cd -
+fi
+
+if [ -d .local/share/gnome-shell ]; then
+  cd ~/.local/share/gnome-shell
+  ln -s $git_dir/icons .
+  cd -
 fi
 
 
