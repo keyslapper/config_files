@@ -42,6 +42,10 @@ Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
 " https://github.com/scrooloose/nerdtree.git
 Plug 'scrooloose/nerdtree'
+" http://github.com/scrooloose/nerdcommenter.git
+Plug 'scrooloose/nerdcommenter'
+" https://github.com/airblade/vim-gitgutter.git
+Plug  'airblade/vim-gitgutter'
 " https://github.com/tpope/vim-fugitive.git
 Plug 'tpope/vim-fugitive'
 " https://github.com/tpope/vim-surround.git
@@ -63,7 +67,7 @@ Plug 'tmhedberg/matchit'
 " https://github.com/mileszs/ack.vim.git
 Plug 'mileszs/ack.vim'
 " https://github.com/junegunn/fzf.git
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " https://github.com/junegunn/fzf.vim.git
 Plug 'junegunn/fzf.vim'
 " https://github.com/vim-airline/vim-airline.git

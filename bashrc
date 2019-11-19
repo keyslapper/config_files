@@ -130,8 +130,15 @@ if [ -f ~/.workrc ]; then
     . ~/.workrc   # --> Read /etc/bashrc, if present.
 fi
 
+# Different distros install this in different places.
 if [ -f /usr/share/fzf/shell/key-bindings.bash ]; then
   source /usr/share/fzf/shell/key-bindings.bash
+else
+  if [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.bash
+  else
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+  fi
 fi
 
 
@@ -162,4 +169,3 @@ set completion-ignore-case on
 
 cd ~
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
