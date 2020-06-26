@@ -346,7 +346,7 @@ nnoremap <leader>a :Ag <c-r><c-w>
 nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
 
 " Define "Ag" command
-command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
 
 " ====================================================== }}}
 
@@ -506,6 +506,48 @@ if executable('ctags')
   let Tlist_File_Fold_Auto_Close = 1
   let Tlist_Process_File_Always = 1
 endif
+" ====================================================== }}}
+
+" GitGutter config ===================================== {{{
+let g:gitgutter_max_signs = -1
+"function! GitStatus()
+"    let [a,m,r] = GitGutterGetHunkSummary()
+"    return printf('+%d ~%d -%d', a, m, r)
+"endfunction
+"set statusline+=%{GitStatus()}
+nmap ]c <Plug>(GitGutterNextHunk)
+nmap [c <Plug>(GitGutterPrevHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
+omap a <Plug>(GitGutterTextObjectInnerPending)
+omap t <Plug>(GitGutterTextObjectOuterPending)
+xmap a <Plug>(GitGutterTextObjectInnerVisual)
+xmap t <Plug>(GitGutterTextObjectOuterVisual)
+" highlight GitGutterAddLine    ctermbg=0 guibg=DarkGrey
+highlight GitGutterAddLine    ctermbg=236 guibg=DarkGrey
+highlight GitGutterChangeLine ctermbg=240 guibg=LightGrey
+highlight GitGutterDeleteLine ctermfg=DarkGrey ctermbg=196 gui=bold guifg=DarkGrey guibg=DarkRed
+highlight GitGutterAdd        ctermbg=236 guibg=DarkGrey
+highlight GitGutterChange     ctermbg=240 guibg=LightGrey
+highlight GitGutterDelete     ctermfg=DarkGrey ctermbg=196 gui=bold guifg=DarkGrey guibg=DarkRed
+let g:gitgutter_highlight_lines=1
+autocmd BufWritePost * GitGutter
+function! CleanUp(...)
+  if a:0  " opfunc
+    let [first, last] = [line("'["), line("']")]
+  else
+    let [first, last] = [line("'<"), line("'>")]
+  endif
+  for lnum in range(first, last)
+    let line = getline(lnum)
+
+    " clean up the text, e.g.:
+    let line = substitute(line, '\s\+$', '', '')
+
+    call setline(lnum, line)
+  endfor
+endfunction
+
+nmap <silent> <Leader>x :set opfunc=CleanUp<CR>g@
 " ====================================================== }}}
 
 " Airline config ======================================= {{{
