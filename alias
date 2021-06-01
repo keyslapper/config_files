@@ -36,3 +36,5 @@ if [ -f /usr/bin/tldr ]; then
   alias help='tldr'
 fi
 
+alias media='sudo mount 192.168.68.20:/mnt/array1/Media /home/leblanc/Media'
+alias nomedia='sudo umount /home/leblanc/Media'
