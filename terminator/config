@@ -4,12 +4,14 @@
   handle_size = 0
   title_transmit_bg_color = "#000080"
 [keybindings]
+  close_term = None
   edit_window_title = None
   full_screen = None
   help = None
   layout_launcher = None
   reset_clear = <Alt>l
   switch_to_tab_1 = <Primary>1
+  switch_to_tab_10 = None
   switch_to_tab_2 = <Primary>2
   switch_to_tab_3 = <Primary>3
   switch_to_tab_4 = <Primary>4
@@ -18,7 +20,6 @@
   switch_to_tab_7 = <Primary>7
   switch_to_tab_8 = <Primary>8
   switch_to_tab_9 = <Primary>9
-  switch_to_tab_10 = None
 [layouts]
   [[default]]
     [[[child0]]]
@@ -42,13 +43,13 @@
 [profiles]
   [[default]]
     background_darkness = 0.8
-    background_type = transparent
-    backspace_binding = control-h
+    backspace_binding = automatic
     copy_on_selection = True
     cursor_color = "#c8c8c8"
-    font = Monospace 12
+    font = Monospace 14
     foreground_color = "#ffffff"
     icon_bell = False
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
     scrollback_infinite = True
     scrollback_lines = 4000
     show_titlebar = False
