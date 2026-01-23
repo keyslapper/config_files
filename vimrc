@@ -1,16 +1,13 @@
-" My ~/.vimrc.
-"
-" All plugins are now managed using vim-plug
-" Plugin management is near the top of the file, configuration near the bottom.
-" TODO: Come back and clean up all the maps to make sure they apply only where
-"       they're wanted.
-" TODO: Organize this mess.
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+" source ~/.vimrc
 
 " This must be first, because it changes other options as a side effect.
-set nocompatible	" Use Vim defaults (much better!)
-filetype off
+set nocompatible          " Use Vim defaults (much better!)
 
 " Plugin settings ====================================== {{{
+filetype off " must be off before we set up plugins
+
 " ========================================================
 " Set up vim-plug management with the following command:
 " ========================================================
@@ -24,119 +21,199 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" https://github.com/vim-scripts/YankRing.vim.git
+" Plug 'vim-scripts/YankRing.vim'
+" https://github.com/vim-syntastic/syntastic.git
+" Plug 'vim-syntastic/syntastic'
+" https://github.com/gnattishness/cscope_maps.git
+" Plug 'gnattishness/cscope_maps'
+" https://github.com/valloric/youcompleteme.git
+" Plug 'valloric/youcompleteme'
+" https://github.com/junegunn/vim-slash.git
+" Plug 'junegunn/vim-slash'
+" https://github.com/rakr/vim-one.git
+" Plug 'rakr/vim-one'
+" https://github.com/rip-rip/clang_complete.git
+" Plug 'rip-rip/clang_complete'
+" https://github.com/tmhedberg/matchit.git
+" Plug 'tmhedberg/matchit'
+" https://github.com/mileszs/ack.vim.git
+" Plug 'mileszs/ack.vim'
+" https://github.com/junegunn/fzf.vim.git
+" Plug 'junegunn/fzf.vim'
+" https://github.com/junegunn/gv.vim.git
+" Plug 'junegunn/gv.vim'
+" https://github.com/vim-scripts/taglist.vim.git
+" Plug 'vim-scripts/taglist.vim'
+" https://github.com/weynhamz/vim-plugin-minibufexpl.git
+Plug 'weynhamz/vim-plugin-minibufexpl'
 " https://github.com/junegunn/vim-plug
 Plug 'junegunn/vim-plug'
 " https://github.com/flazz/vim-colorschemes.git
 Plug 'flazz/vim-colorschemes'
 " https://github.com/vim-scripts/ScrollColors.git
 Plug 'vim-scripts/ScrollColors'
-" https://github.com/vim-scripts/YankRing.vim.git
-" Plug 'vim-scripts/YankRing.vim'
-" https://github.com/vim-scripts/taglist.vim.git
-Plug 'vim-scripts/taglist.vim'
 " https://github.com/davidhalter/jedi-vim.git
-Plug 'davidhalter/jedi-vim'
-" https://github.com/vim-syntastic/syntastic.git
-" Plug 'vim-syntastic/syntastic'
+"Plug 'davidhalter/jedi-vim'
 " https://github.com/ervandew/supertab.git
-Plug 'ervandew/supertab'
-" https://github.com/scrooloose/nerdtree.git
-Plug 'scrooloose/nerdtree'
-" http://github.com/scrooloose/nerdcommenter.git
-Plug 'scrooloose/nerdcommenter'
+"Plug 'ervandew/supertab'
+" https://github.com/preservim/nerdtree.git
+Plug 'preservim/nerdtree'
+" http://github.com/preservim/nerdcommenter.git
+"Plug 'preservim/nerdcommenter'
 " https://github.com/airblade/vim-gitgutter.git
 Plug  'airblade/vim-gitgutter'
 " https://github.com/tpope/vim-fugitive.git
 Plug 'tpope/vim-fugitive'
 " https://github.com/tpope/vim-surround.git
-Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
 " https://github.com/tpope/vim-repeat.git
 Plug 'tpope/vim-repeat'
-" https://github.com/junegunn/gv.vim.git
-Plug 'junegunn/gv.vim'
-" https://github.com/weynhamz/vim-plugin-minibufexpl.git
-" Plug 'weynhamz/vim-plugin-minibufexpl'
 " https://github.com/luochen1990/rainbow.git
 Plug 'luochen1990/rainbow'
-" https://github.com/tmhedberg/matchit.git
-Plug 'tmhedberg/matchit'
-" https://github.com/gnattishness/cscope_maps.git
-" Plug 'gnattishness/cscope_maps'
-" https://github.com/valloric/youcompleteme.git
-" Plug 'valloric/youcompleteme'
-" https://github.com/mileszs/ack.vim.git
-Plug 'mileszs/ack.vim'
-" https://github.com/junegunn/fzf.git
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" https://github.com/junegunn/fzf.vim.git
-Plug 'junegunn/fzf.vim'
 " https://github.com/vim-airline/vim-airline.git
 Plug 'vim-airline/vim-airline'
 " https://github.com/vim-airline/vim-airline-themes.git
 Plug 'vim-airline/vim-airline-themes'
-" https://github.com/scrooloose/nerdcommenter.git
-" Plug 'scrooloose/nerdcommenter'
-" https://github.com/python-mode/python-mode.git
-" Plug 'python-mode/python-mode.git'
-" https://github.com/junegunn/vim-slash.git
-" Plug 'junegunn/vim-slash'
 " https://github.com/inside/vim-search-pulse.git
 Plug 'inside/vim-search-pulse'
+" https://github.com/python-mode/python-mode.git
+Plug 'python-mode/python-mode'
+" https://github.com/dylon/vim-antlr.git
+Plug 'dylon/vim-antlr'
 
-" https://github.com/rakr/vim-one.git
-" Plug 'rakr/vim-one'
-
-" https://github.com/rip-rip/clang_complete.git
-" Plug 'rip-rip/clang_complete'
+" Set up under .vim/pack/
+" https://github.com/features/copilot
+" Plug 'github/copilot'
 
 " add new plugins above this line.
-" ====================================================== }}}
+""""""""""""""""""""""""""""""""""
+
 call plug#end()
 
 filetype plugin indent on
 
+" ====================================================== }}}
+
 " Basic options ======================================== {{{
-set autoindent                  " always set autoindenting on
-set showmode                    " always show what mode we're currently editing in
-set showcmd      " display incomplete commands
-set ttyfast
-set ruler	       " show the cursor position all the time
+set autoindent            " always set autoindenting on
+set smartindent           " always set autoindenting on
+set showmode              " always show what mode we're currently editing in
+set showcmd               " display incomplete commands
+set showmatch             " set show matching parenthesis
+set ignorecase            " ignore case when searching
+set smartcase             " ignore case if search pattern is all lowercase,
+set mouse=a               " enable mouse clicks
+set mouse=v               " middle-click paste
+set hlsearch              " highlight searching
+set incsearch             " do incremental searching
+"set tabstop=8             " number of columns occupied by a tab
+set softtabstop=2         " See multiple spaces as tabstops so <BS> does the right thing.
+set noshiftround          " use multiple of shiftwidth when indenting with '<' and '>'
+set shiftwidth=2          " Width for autoindents
+set expandtab             " Tabs are evil.  Convert them to spaces.
+"set number                " Add line numbers
+"set cc=80                 " Set an 80 column border
+"set clipboard=unnamedplus " use system clipboard
+"set cursorline            " highlight current cursor line
+set ttyfast               " Speed up scrolling
+"set noswapfile            " disable creating swap file
+set nobackup              " Never create backups
+set ruler	          " show the cursor position all the time
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
-set laststatus=2                " tell VIM to always put a status line in, even
-                                "    if there is only one window
-set cmdheight=1                 " use a status bar that is 1 row high
-set history=500                 " keep 500 lines of command line history
-set splitright
-" set title                       " change the terminal's title
-set expandtab
-set formatoptions+=1            " When wrapping paragraphs, don't end lines
-                                "    with 1-letter words (looks stupid)
-set showmatch                   " set show matching parenthesis
-set ignorecase                  " ignore case when searching
-set smartcase                   " ignore case if search pattern is all lowercase,
-                                "    case-sensitive otherwise
-set incsearch    " do incremental searching
-set hlsearch     " highlight searching
+"set laststatus=2          " tell VIM to always put a status line in, even
+set cmdheight=1           " use a status bar that is 1 row high
+set history=500           " keep 500 lines of command line history
+
+set splitright            " When splitting a screen, move to the right/top window
+set formatoptions+=1      " When wrapping paragraphs, don't end lines
+
+set viminfo='20,\"50      " read/write a .viminfo file, don't store more
+                          " than 50 lines of registers
+set copyindent            " copy the previous indentation on autoindenting
+"set shortmess+=I          " hide the launch screen
+
+syntax on
+
+" ====================================================== }}}
+
+" Stuff to check and organize ========================== {{{
+
+"set scrolloff=0
+"set tags=tags;~/dev
+"set undolevels=500
+"set lpl
+set cindent
+set smartindent
+set cinoptions=>4,e2,n-2,{2,l1,b0,+4,(0,us,U1,w1,W0,m0,j0,)20,*30
+"set cino=>2,e-2,n-2,{2,^2,l1,+4,c0,C0,/0,(0,U1,w1,j1
+set cinkeys=0{,0},0),0],:,0#,!^F,o,O,e,*<Return>
+set cinwords=if,else,while,do,for,switch,case
+set indentkeys=0{,0},0),0],:,0#,!^F,o,O,e,*<Return>
+
 " ====================================================== }}}
 
 " Handle color configs ================================= {{{
 " set t_Co=256
-colorscheme vividchalk
+"colorscheme advantage
+"colorscheme base
+"colorscheme bitterjug
+"colorscheme BlackSea
+"colorscheme bw
+"colorscheme c16gui
+"colorscheme candycode
+"colorscheme colorer
+"colorscheme d8g01
+"colorscheme d8g03
+"colorscheme d8g04
+"colorscheme default
+"colorscheme eldar
+"colorscheme kellys
+"colorscheme lanzarotta
+"colorscheme monoacc
+"colorscheme monokai-phoenix
+"colorscheme murphy
+"colorscheme neverland-darker
+"colorscheme neverland2-darker
+"colorscheme nightwish
+"colorscheme norwaytoday
+"colorscheme ps_color
+"colorscheme simple256
+"colorscheme spiderhawk
+"colorscheme torte
+"colorscheme vividchalk
+"colorscheme woju
+colorscheme xterm16
+
 set background=dark
 if (has("termguicolors"))
   set termguicolors
 endif
 
-map <silent><F4> :PREVCOLOR<cr>
-map <silent><F5> :NEXTCOLOR<cr>
+noremap <F12> :Copilot panel<cr>
+inoremap <F12> <Esc>:Copilot panel<cr>
+
+map <silent><F5> :PREVCOLOR<cr>
+map <silent><F6> :NEXTCOLOR<cr>
+" ====================================================== }}}
+
+" Wildmenu completion ================================== {{{
+"set wildmenu           " make tab completion for files/buffers act like bash
+set wildmode=list:full " show a list when pressing tab and complete first full match
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.orig                           " Merge resolution files
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=.hg,.git,.svn                    " Version control
 " ====================================================== }}}
 
 " Convenience mappings ================================= {{{
 " Window Navigation with Ctrl-[hjkl]
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
 
 " Use Q for formatting the current paragraph (or visual selection)
 " This used to be `gq` and `gqap`, but the "w" variant is the same, but puts
@@ -151,8 +228,12 @@ vmap Q gw
 nnoremap ' `
 nnoremap ` '
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Force Y to yank the whole line, including the newline character
+nnoremap Y Y
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" This mapping will yank the current line, past it to the line above (or
+" This mapping will yank the current line, paste it to the line above (or
 " below), then move to the new line.  Then that line is selected and every
 " character is replaced with an '*' character.
 nnoremap <leader>1 yyPVr*
@@ -169,8 +250,8 @@ nnoremap <leader>8 yypVr"
 
 
 " Toggle mouse capture
-noremap <F12> :call <SID>ToggleMouse()<CR>
-inoremap <F12> <Esc>:call <SID>ToggleMouse()<CR>a
+noremap <F11> :call <SID>ToggleMouse()<CR>
+inoremap <F11> <Esc>:call <SID>ToggleMouse()<CR>a
 
 " Split the screen
 noremap <silent><F10> :vsplit<CR>
@@ -189,26 +270,22 @@ nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 nnoremap <leader>n :setlocal number!<cr>
 
 " Rebuild Ctags (mnemonic RC -> CR -> <cr>)
-" nnoremap <leader><cr> :silent !myctags >/dev/null 2>&1 &<cr>:redraw!<cr>
-nnoremap <leader><cr> :silent !myctags >/dev/null 2>&1 &<cr>:redraw!<cr>
+nnoremap <silent> <leader><cr> :silent !update_tags >/dev/null 2>&1 &<cr>:redraw!<cr>
+
+" Build SE (mnemonic RC -> CR -> <cr>)
+nnoremap <leader>b :!~/bin/build <cr>
 
 " Strip all trailing whitespace from a file, using \W
 nnoremap <silent> <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Turn off search highlighting until next search.
 nnoremap <silent> <leader>l :noh<cr>
+nnoremap <silent> <leader><leader> :noh<cr>
+nnoremap <silent> <esc><esc> :noh<cr>
 
 " Use tab to jump brackets ...
 nnoremap <tab> %
 vnoremap <tab> %
-
-" Ctrl+W to redraw the buffer's contents
-nnoremap <C-w> :filetype detect<cr>:redraw!<cr>
-
-nnoremap <silent> <C-p> :bp<CR>
-nnoremap <silent> <C-n> :bn<CR>
-nnoremap <silent> <F2> :bp<CR>
-nnoremap <silent> <F3> :bn<CR>
 
 " C-U in insert/normal mode, to uppercase the word under cursor
 inoremap <c-u> <esc>viwUea
@@ -225,6 +302,9 @@ nnoremap <m-left> :vertical resize -3<cr>
 nnoremap <m-up> :resize +3<cr>
 nnoremap <m-down> :resize -3<cr>
 " }}}
+
+" Open a bash terminal buffer in vsplit mode
+nnoremap <silent> <leader>v :vsplit term://bash<cr>
 
 " ====================================================== }}}
 
@@ -261,8 +341,8 @@ set foldtext=MyFoldText()
 " ====================================================== }}}
 
 " Git related stuff ==================================== {{{
-nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gb :Git blame<CR>
+nnoremap <leader>gs :Git<CR>
 nnoremap <leader>gv :GV!<CR>
 nnoremap <leader>gd :Gdiff<CR>
 
@@ -274,62 +354,6 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 nnoremap <silent> <leader>j /\v^[<\|=>]{7}([^=].+)?$<CR>
 
 " ====================================================== }}}
-
-
-" Stuff to check and organize ========================== {{{
-" source $VIMRUNTIME/defaults.vim
-
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-   set fileencodings=ucs-bom,utf-8,latin1
-endif
-
-
-set viminfo='20,\"50  " read/write a .viminfo file, don't store more
-                      " than 50 lines of registers
-
-" Other stuff I like
-set scrolloff=0
-" set nosmarttab
-set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
-set ts=8
-set nomodeline
-set tags=tags;~/dev
-set undolevels=500
-set hls ic
-" set shiftwidth=2
-set lpl
-set copyindent                  " copy the previous indentation on autoindenting
-set shortmess+=I                " hide the launch screen
-
-set cindent
-set cinoptions=>4,e2,n-2,f0,{2,}0,^-2,:s,=s,l1,b0,gs,hs,ps,ts,is,+4,c3,C0,/0,(2s,us,U1,w1,W0,m0,j0,)20,*30
-
-set nobackup
-" ====================================================== }}}
-
-" Wildmenu completion ================================== {{{
-set wildmenu                    " make tab completion for files/buffers act like bash
-set wildmode=list:full          " show a list when pressing tab and complete
-                                "    first full match
-set wildignore=*.swp,*.bak,*.pyc,*.class
-set wildignore+=*.DS_Store                       " OSX bullshit
-set wildignore+=*.orig                           " Merge resolution files
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=.hg,.git,.svn                    " Version control
-" ====================================================== }}}
-
-" Editor layout {{{
-" }}}
-
-imap  
-lmap  
-cmap  
-cnoremap w!! w !sudo tee % >/dev/null
-
-" Quickly get out of insert mode without your fingers having to leave the
-" home row (either use 'jj' or 'jk')
-inoremap jj <Esc>
 
 " Searching ============================================ {{{
 " Use The Silver Searcher over grep, iff possible
@@ -350,142 +374,6 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw
 
 " ====================================================== }}}
 
-" Auto commands ======================================== {{{
-
-" Only do this part when compiled with support for autocommands
-if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  augroup vim_files "{{{
-    au!
-
-    " Bind <F1> to show the keyword under cursor
-    " general help can still be entered manually, with :h
-    autocmd FileType vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-    autocmd FileType vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-  augroup end "}}}
-
-  augroup extern
-    autocmd!
-    " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
-    autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
-    " start with spec file template
-    autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
-  augroup END
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-    au!
-
-    " For all text files set 'textwidth' to 80 characters.
-    autocmd FileType text setlocal textwidth=80
-
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \   exe "normal g`\"" |
-            \ endif
-  augroup END
-
-  augroup python_files "{{{
-      au!
-
-      " This function detects, based on Python content, whether this is a
-      " Django file, which may enabling snippet completion for it
-      fun! s:DetectPythonVariant()
-          let n = 1
-          while n < 50 && n < line("$")
-              " check for django
-              if getline(n) =~ 'import\s\+\<django\>' || getline(n) =~ 'from\s\+\<django\>\s\+import'
-                  set ft=python.django
-                  "set syntax=python
-                  return
-              endif
-              let n = n + 1
-          endwhile
-          " go with html
-          set ft=python
-      endfun
-      autocmd BufNewFile,BufRead *.py call s:DetectPythonVariant()
-
-      " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
-      " earlier, as it is important)
-      autocmd FileType python setlocal textwidth=80
-      autocmd FileType python match ErrorMsg '\%>120v.\+'
-
-      " But disable autowrapping as it is super annoying
-      autocmd FileType python setlocal formatoptions-=t
-
-      " Folding for Python (uses syntax/python.vim for fold definitions)
-      "autocmd FileType python,rst setlocal nofoldenable
-      "autocmd FileType python setlocal foldmethod=expr
-
-      " Python runners
-     "autocmd FileType python noremap <buffer> <F5> :w<CR>:!python %<CR>
-     "autocmd FileType python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
-     "autocmd FileType python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
-     "autocmd FileType python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
-
-      " Automatic insertion of breakpoints
-      autocmd FileType python nnoremap <buffer> <leader>bp :normal oimport pdb; pdb.set_trace()  # TODO: BREAKPOINT  # noqa<Esc>
-
-      " Run a quick static syntax check every time we save a Python file
-      " autocmd BufWritePost *.py call Flake8()
-
-      " Defer to isort for sorting Python imports (instead of using Unix sort)
-      autocmd FileType python nnoremap <leader>s mX:%!isort -<cr>`X:redraw!<cr>
-
-  augroup end " }}}
-
-  augroup markdown_files "{{{
-      au!
-
-      autocmd FileType markdown noremap <buffer> <leader>p :w<CR>:!open -a 'Marked 2' %<CR><CR>
-  augroup end " }}}
-
-  augroup git_files "{{{
-      au!
-
-      " Don't remember the last cursor position when editing commit
-      " messages, always start on line 1
-      autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
-  augroup end "}}}
-
-  autocmd BufReadPost *
-      \ if &filetype != "gitcommit" && line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
-
-endif
-
-"if has("cscope") && filereadable("/usr/bin/cscope")
-"   set csprg=/bin/cscope
-"   set csto=0
-"   set cst
-"   set nocsverb
-   " add any database in current directory
-  " if filereadable("cscope.out")
-  "    cs add $PWD/cscope.out
-  " " else add database pointed to by environment
-  " elseif $CSCOPE_DB != ""
-  "    cs add $CSCOPE_DB
-  " endif
-"   set csverb
-"endif
-" ====================================================== }}}
-
-
-" Don't wake up system with blinking cursor:
-" http://www.linuxpowertop.org/known.php
-let &guicursor = &guicursor . ",a:blinkon0"
-
 " Plugin configs ======================================= {{{
 
 " NERDTree ============================================= {{{
@@ -495,17 +383,17 @@ nnoremap <silent> <F7> :NERDTreeToggle<CR>
 
 " Taglist ============================================== {{{
 " Settings for taglist.vim
-if executable('ctags')
-  nnoremap <silent> <F8> :TlistToggle<CR>
-  " let Tlist_Use_Right_Window=1
-  " let Tlist_Auto_Open=1
-  let Tlist_Enable_Fold_Column=0
-  let Tlist_Compact_Format=0
-  let Tlist_WinWidth=28
-  let Tlist_Exit_OnlyWindow=1
-  let Tlist_File_Fold_Auto_Close = 1
-  let Tlist_Process_File_Always = 1
-endif
+"if executable('ctags')
+"  nnoremap <silent> <F8> :TlistToggle<CR>
+"  " let Tlist_Use_Right_Window=1
+"  " let Tlist_Auto_Open=1
+"  let Tlist_Enable_Fold_Column=0
+"  let Tlist_Compact_Format=0
+"  let Tlist_WinWidth=28
+"  let Tlist_Exit_OnlyWindow=1
+"  let Tlist_File_Fold_Auto_Close = 1
+"  let Tlist_Process_File_Always = 1
+"endif
 " ====================================================== }}}
 
 " GitGutter config ===================================== {{{
@@ -513,8 +401,7 @@ let g:gitgutter_max_signs = -1
 "function! GitStatus()
 "    let [a,m,r] = GitGutterGetHunkSummary()
 "    return printf('+%d ~%d -%d', a, m, r)
-"endfunction
-"set statusline+=%{GitStatus()}
+set statusline+=%{GitStatus()}
 nmap ]c <Plug>(GitGutterNextHunk)
 nmap [c <Plug>(GitGutterPrevHunk)
 nmap ghp <Plug>(GitGutterPreviewHunk)
@@ -522,14 +409,22 @@ omap a <Plug>(GitGutterTextObjectInnerPending)
 omap t <Plug>(GitGutterTextObjectOuterPending)
 xmap a <Plug>(GitGutterTextObjectInnerVisual)
 xmap t <Plug>(GitGutterTextObjectOuterVisual)
-" highlight GitGutterAddLine    ctermbg=0 guibg=DarkGrey
-highlight GitGutterAddLine    ctermbg=236 guibg=DarkGrey
-highlight GitGutterChangeLine ctermbg=240 guibg=LightGrey
-highlight GitGutterDeleteLine ctermfg=DarkGrey ctermbg=196 gui=bold guifg=DarkGrey guibg=DarkRed
-highlight GitGutterAdd        ctermbg=236 guibg=DarkGrey
-highlight GitGutterChange     ctermbg=240 guibg=LightGrey
-highlight GitGutterDelete     ctermfg=DarkGrey ctermbg=196 gui=bold guifg=DarkGrey guibg=DarkRed
-let g:gitgutter_highlight_lines=1
+"highlight GitGutterAddLine          ctermbg=236 guibg=DarkGrey
+"highlight GitGutterChangeLine       ctermbg=240 guibg=LightGrey
+"highlight GitGutterChangeDeleteLine ctermbg=240 guibg=LightGrey
+""highlight GitGutterDeleteLine      ctermfg=DarkGrey ctermbg=196 gui=bold guifg=DarkGrey guibg=DarkRed
+"highlight GitGutterAdd              ctermbg=236 guibg=DarkGrey
+"highlight GitGutterChange           ctermbg=240 guibg=LightGrey
+"highlight GitGutterChangeDelete     ctermbg=240 guibg=LightGrey
+"highlight GitGutterDelete           ctermfg=196 ctermbg=DarkGrey gui=bold guifg=DarkGrey guibg=DarkRed
+let g:gitgutter_highlight_lines=0
+let g:gitgutter_sign_added='++'
+let g:gitgutter_sign_modified='~~'
+let g:gitgutter_sign_removed='--'
+let g:gitgutter_sign_removed_first_line='^^'
+let g:gitgutter_sign_modified_removed='--'
+"let g:gitgutter_set_sign_backgrounds=1
+
 autocmd BufWritePost * GitGutter
 function! CleanUp(...)
   if a:0  " opfunc
@@ -553,7 +448,8 @@ nmap <silent> <Leader>x :set opfunc=CleanUp<CR>g@
 " Airline config ======================================= {{{
 " let g:airline_theme='dark'
 " let g:airline_theme='ouo'
-let g:airline_theme='onedark'
+" let g:airline_theme='onedark'
+let g:airline_theme='badwolf'
 let g:one_allow_italics = 1
 " ====================================================== }}}
 
@@ -585,11 +481,10 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 " ====================================================== }}}
 
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_disable_for_files_larger_than_kb = 10000
-
-" Abbreviations
-iab _DATE <C-R>=strftime("Date: %A %B, %e %Y\nTime: %I:%M:%S %p %Z")<CR>
+" Plugin config: You Complet Me ======================== {{{
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+"let g:ycm_disable_for_files_larger_than_kb = 10000
+" ====================================================== }}}
 
 " Pulse ================================================ {{{
 
@@ -647,6 +542,7 @@ endfunction
 " Python mode configuration ============================ {{{
 
 " Don't run pylint on every save
+let g:python3_host_prog = '/emc/leblal/.local/bin/python3'
 let g:pymode = 1
 let g:pymode_breakpoint = 0
 let g:pymode_breakpoint_bind = '<leader>b'
@@ -677,20 +573,69 @@ let g:pymode_trim_whitespaces = 0
 
 " ====================================================== }}}
 
-" fzf config =========================================== {{{
+" MiniBufExplorer config =============================== {{{
+let g:miniBufExplMaxSize = 2
+let g:miniBufExplorerAutoStart = 0
+let g:miniBufExplCycleArround = 1
+let g:miniBufExplStatusLineText = 1
+nnoremap <silent> <F4> :MBEToggle<cr>
+nnoremap <silent> <F2> :MBEbn<CR>
+nnoremap <silent> <F3> :MBEbp<CR>
 
-" Invoke fzf, but CommandT style
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>t :Tags<cr>
-" I already use <F6> for this with MiniBufExplorer ...
-" nnoremap <leader>b :Buffers<cr>
-nnoremap <silent> <F6> :Buffers<cr>
+"This would still work, but the above has other features.
+"nnoremap <silent> <C-p> :bp<CR>
+"nnoremap <silent> <C-n> :bn<CR>
+"nnoremap <silent> <F2> :bp<CR>
+"nnoremap <silent> <F3> :bn<CR>
 " ====================================================== }}}
 
 " Vim Search Pulse ===================================== {{{
-"let g:vim_search_pulse_color_list = [196, 208, 214, 220, 226]
+let g:vim_search_pulse_color_list = [196, 208, 214, 220, 226]
 " ====================================================== }}}
 
 " ====================================================== }}}
+
+" Other configuurations ================================ {{{
+" Abbreviations
+iab _DATE <C-R>=strftime("Date: %A %B, %e %Y\nTime: %I:%M:%S %p %Z")<CR>
+
 hi Normal guibg=NONE ctermbg=NONE
+
+if has("autocmd")
+  filetype plugin indent on
+
+  augroup vim_files "{{{
+    au!
+
+    " Bind <F1> to show the keyword under cursor
+    " general help can still be entered manually, with :h
+    autocmd FileType vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+    autocmd FileType vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+  augroup end "}}}
+
+  augroup git_files "{{{
+      au!
+
+      " Don't remember the last cursor position when editing commit
+      " messages, always start on line 1
+      autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+  augroup end "}}}
+
+  augroup vimrcEx
+    au!
+
+    " For all text files set 'textwidth' to 80 characters.
+    autocmd FileType text setlocal textwidth=80
+  augroup END
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+          \ if &filetype != "gitcommit" && line("'\"") > 0 && line("'\"") <= line("$") |
+          \   exe "normal g`\"" |
+          \ endif
+
+endif
+" ====================================================== }}}
 
