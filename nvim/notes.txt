@@ -7,5 +7,6 @@ nvim-mini/mini.nvim
 nvim-telescope/telescope.nvim
 nvim-telescope/telescope-fzf-native.nvim
 nvim-tree/nvim-web-devicons
-nvim-tree/telescope-fzf-native.nvim
+selimacerbas/live-server.nvim
+selimacerbas/markdown-preview.nvim
 stevearc/oil.nvim

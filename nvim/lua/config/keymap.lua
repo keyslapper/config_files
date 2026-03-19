@@ -106,3 +106,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>xx', '<Cmd>source %<CR>', { desc = 'Source current file' })
 vim.keymap.set('n', '<leader>x', '<Cmd>:.lua<CR>', { desc = 'Lua: execute current line' })
 vim.keymap.set('v', '<leader>x', '<Cmd>:lua<CR>', { desc = 'Lua: execute current selection' })
+
+vim.keymap.set("n", "<leader>mp", "<Cmd>MarkdownPreview<cr>", { desc = "Markdown: Start preview" })
+vim.keymap.set("n", "<leader>ms", "<Cmd>MarkdownPreviewStop<cr>", { desc = "Markdown: Stop preview" })
+vim.keymap.set("n", "<leader>mr", "<Cmd>MarkdownPreviewRefresh<cr>", { desc = "Markdown: Refresh preview" })
