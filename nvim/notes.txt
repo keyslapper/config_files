@@ -1,0 +1,11 @@
+Plugins in use - need a better manager:
+airblade/vim-gitgutter
+catppuccin/nvim
+EdenEast/nightfox.nvim
+nvim-lua/plenary.nvim
+nvim-mini/mini.nvim
+nvim-telescope/telescope.nvim
+nvim-telescope/telescope-fzf-native.nvim
+nvim-tree/nvim-web-devicons
+nvim-tree/telescope-fzf-native.nvim
+stevearc/oil.nvim

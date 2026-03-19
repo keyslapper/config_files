@@ -36,6 +36,9 @@ if [ -d .config ]; then
     mv .config/terminator $git_dir/BAK/.
   fi
 fi
+if [ -d ~.config/nvim ]; then
+  mv ~.config/nvim $git_dir/BAK/.
+fi
 if [ -d .vim ]; then
   mv .vim $git_dir/BAK/.
 fi
@@ -56,6 +59,7 @@ ln -s $git_dir/gitconfig .gitconfig
 ln -s $git_dir/gitignore .gitignore
 ln -s $git_dir/git-prompt.sh .git-prompt.sh
 ln -s $git_dir/inputrc .inputrc
+ln -s $git_dir/nvim ~/.config/nvim
 ln -s $git_dir/vim .vim
 ln -s $git_dir/vimrc .vimrc
 
