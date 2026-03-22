@@ -50,12 +50,6 @@ vim.keymap.set('n', '<Leader>W', [[:%s/\s\+$//e<cr>]], { desc = "Remove trailing
 vim.keymap.set('n', '<Leader>t', ':vsplit term://bash<cr>', { noremap = true, desc = "Open terminal buffer in split mode" })
 vim.keymap.set('n', '<Leader>b', ':! ~/bin/build <cr>', { noremap = true, desc = "Build the current workspace" })
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep,  { desc = 'Telescope live grep'  })
-vim.keymap.set('n', '<leader>fb', builtin.buffers,    { desc = 'Telescope buffers'    })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags,  { desc = 'Telescope help tags'  })
-
 vim.keymap.set('n', '<leader>v', ':vsplit<CR>', { desc = 'Split window vertically' })
 vim.keymap.set('n', '<F10>', ':vsplit<CR>', { desc = 'Split window vertically' })
 --vim.keymap.set('n', '<C-F10>', ':split<CR>', { desc = 'Split window horizontally' })
@@ -81,11 +75,6 @@ vim.keymap.set('n', 'F', 'zf%', { desc = 'Fold on bracket' })
 vim.keymap.set('n', 'f', 'zd', { desc = 'Remove fold' })
 
 
--- Git related stuff ==================================== {{{
-vim.keymap.set('n', '<leader>gb', ':Git blame<CR>', { desc = 'Git Blame' })
-vim.keymap.set('n', '<leader>gd', ':GitGutterDiffOrig<CR>', { desc = 'Git Diff' })
-vim.keymap.set('n', 'ghp', ':GitGutterPreviewHunk<CR>', { desc = 'Preview change' })
-
 vim.keymap.set('n', '<leader>j', [[/\v^[<\|=>]{7}([^=].+)?$<CR>]], { desc = 'Find conflict markers' })
 
 -- Convenience mappings ================================= {{{
@@ -104,9 +93,12 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- Quickly source current file / execute Lua code
 vim.keymap.set('n', '<leader>xx', '<Cmd>source %<CR>', { desc = 'Source current file' })
-vim.keymap.set('n', '<leader>x', '<Cmd>:.lua<CR>', { desc = 'Lua: execute current line' })
-vim.keymap.set('v', '<leader>x', '<Cmd>:lua<CR>', { desc = 'Lua: execute current selection' })
+vim.keymap.set('n', '<leader>x', '<Cmd>:.lua<CR>',     { desc = 'Lua: execute current line' })
+vim.keymap.set('v', '<leader>x', '<Cmd>:lua<CR>',      { desc = 'Lua: execute current selection' })
 
-vim.keymap.set("n", "<leader>mp", "<Cmd>MarkdownPreview<cr>", { desc = "Markdown: Start preview" })
-vim.keymap.set("n", "<leader>ms", "<Cmd>MarkdownPreviewStop<cr>", { desc = "Markdown: Stop preview" })
-vim.keymap.set("n", "<leader>mr", "<Cmd>MarkdownPreviewRefresh<cr>", { desc = "Markdown: Refresh preview" })
+
+-- vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+-- vim.keymap.set('n', '<leader>fg', builtin.live_grep,  { desc = 'Telescope live grep'  })
+-- vim.keymap.set('n', '<leader>fb', builtin.buffers,    { desc = 'Telescope buffers'    })
+-- vim.keymap.set('n', '<leader>fh', builtin.help_tags,  { desc = 'Telescope help tags'  })
+
