@@ -2,12 +2,15 @@ alias d='ls'
 alias s='cd ..'
 alias p='cd -'
 
+#alias vi='/home/leblanc/bin/nvim '
+alias vi='nvim '
 alias avadakedavra='kill -9 '
 alias obliviate='rm -rf '
 alias alohomora='chmod -Rf ug+w '
 # alias accio='search -red -n -nnice '
 # alias accio='ag --color-match "01;31" '
 alias accio='ag --color-match "38;5;1" '
+alias search='ag -l -c '
 
 alias tmpfile='vi ~/tmp.txt'
 

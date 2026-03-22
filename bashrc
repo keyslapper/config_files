@@ -5,7 +5,8 @@ if [ -z "$PS1" ]; then
   return
 fi
 
-export PATH=$PATH:/bin:~/bin:.:~/.cargo/bin
+export PATH=$PATH:/bin:~/bin:/home/leblanc/.local/bin:.:~/.cargo/bin
+export PATH=/opt/neovim/bin:$PATH
 
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc   # --> Read /etc/bashrc, if present.
@@ -91,12 +92,7 @@ export OS=`/bin/uname`
 # export OSNAME=`/bin/uname -s`
 export PROC=`/bin/uname -m`
 
-# export JBOSS_HOME=/usr/share/wildfly
-# export JAVA_HOME=/usr/lib/jvm/java
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-# export PATH=$JAVA_HOME/bin:$PATH:~/.linuxbrew/bin
-# export PATH=$JAVA_HOME/bin:$PATH
-# export ANT_HOME=/usr/share/ant
+export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
 
 host=`hostname`
 
@@ -131,15 +127,15 @@ if [ -f ~/.workrc ]; then
 fi
 
 # Different distros install this in different places.
-if [ -f /usr/share/fzf/shell/key-bindings.bash ]; then
-  source /usr/share/fzf/shell/key-bindings.bash
-else
-  if [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then
-    source /usr/share/doc/fzf/examples/key-bindings.bash
-  else
-    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-  fi
-fi
+#if [ -f /usr/share/fzf/shell/key-bindings.bash ]; then
+#  source /usr/share/fzf/shell/key-bindings.bash
+#else
+#  if [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then
+#    source /usr/share/doc/fzf/examples/key-bindings.bash
+#  else
+#    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#  fi
+#fi
 
 
 shopt -s histappend

@@ -65,6 +65,7 @@ Plug 'preservim/nerdtree'
 Plug  'airblade/vim-gitgutter'
 " https://github.com/tpope/vim-fugitive.git
 Plug 'tpope/vim-fugitive'
+
 " https://github.com/tpope/vim-surround.git
 "Plug 'tpope/vim-surround'
 " https://github.com/tpope/vim-repeat.git
@@ -72,15 +73,13 @@ Plug 'tpope/vim-repeat'
 " https://github.com/luochen1990/rainbow.git
 Plug 'luochen1990/rainbow'
 " https://github.com/vim-airline/vim-airline.git
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 " https://github.com/vim-airline/vim-airline-themes.git
-Plug 'vim-airline/vim-airline-themes'
-" https://github.com/inside/vim-search-pulse.git
-Plug 'inside/vim-search-pulse'
+"Plug 'vim-airline/vim-airline-themes'
 " https://github.com/python-mode/python-mode.git
-Plug 'python-mode/python-mode'
-" https://github.com/dylon/vim-antlr.git
-Plug 'dylon/vim-antlr'
+" Plug 'python-mode/python-mode.git'
+" https://github.com/inside/vim-search-pulse.git
+"Plug 'inside/vim-search-pulse'
 
 " Set up under .vim/pack/
 " https://github.com/features/copilot
@@ -276,7 +275,11 @@ nnoremap <silent> <leader><cr> :silent !update_tags >/dev/null 2>&1 &<cr>:redraw
 nnoremap <leader>b :!~/bin/build <cr>
 
 " Strip all trailing whitespace from a file, using \W
-nnoremap <silent> <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
+nnoremap <silent> <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+nnoremap <silent> <leader>w :write<CR>
+nnoremap <silent> <leader>o :Update<CR> :so<CR>
+nnoremap <silent> <leader>d :Ex<CR>
+nnoremap <silent> Y yy
 
 " Turn off search highlighting until next search.
 nnoremap <silent> <leader>l :noh<cr>
@@ -287,12 +290,20 @@ nnoremap <silent> <esc><esc> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
+" Ctrl+W to redraw the buffer's contents
+"nnoremap <C-w> :filetype detect<cr>:redraw!<cr>
+
+nnoremap <silent> <C-p> :bp<CR>
+nnoremap <silent> <C-n> :bn<CR>
+nnoremap <silent> <F2> :bp<CR>
+nnoremap <silent> <F3> :bn<CR>
+
 " C-U in insert/normal mode, to uppercase the word under cursor
 inoremap <c-u> <esc>viwUea
 nnoremap <c-u> viwUe
 
 " This should clean up glitched syntax highlighting.
-nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+"nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
 " Window Resizing {{{
 " right/up : bigger
