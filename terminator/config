@@ -1,6 +1,6 @@
 [global_config]
   focus = mouse
-  borderless = True
+  geometry_hinting = True
   new_tab_after_current_tab = True
 [keybindings]
   reset_clear = <Alt>l
