@@ -11,6 +11,7 @@
     background_type = transparent
     font = Adwaita Mono 14
     show_titlebar = False
+    scrollbar_position = hidden
     use_system_font = False
     copy_on_selection = True
 [layouts]
