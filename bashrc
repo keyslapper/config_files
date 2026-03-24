@@ -29,6 +29,7 @@ set -o notify
 
 stty erase 
 
+# Look at the git repo on github under git/contrib/completion/ for git-prompt.sh and git-completion.bash
 unset PROMPT_COMMAND
 if [ -f ~/.git-prompt.sh ]; then
   source ~/.git-prompt.sh
