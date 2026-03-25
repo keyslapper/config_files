@@ -7,7 +7,7 @@ return {
   ---@module "fzf-lua"
   ---@type fzf-lua.Config|{}
   ---@diagnostic disable: missing-fields
-  opts = {}
+  options = {}
   ---@diagnostic enable: missing-fields
 }
 

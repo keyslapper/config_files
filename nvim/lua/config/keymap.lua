@@ -65,6 +65,9 @@ vim.keymap.set('n', '<F11>', function()
     end
 end, { desc = 'Toggle mouse capture' })
 
+vim.keymap.set("n", "]c", function() require("gitsigns").nav_hunk("next") end, { desc = "Next Hunk" })
+vim.keymap.set("n", "[c", function() require("gitsigns").nav_hunk("prev") end, { desc = "Previous Hunk" })
+
 vim.keymap.set('n', '`', '\'', { desc = 'Map ";" to ":"' })
 vim.keymap.set('n', '\'', '`', { desc = 'Map ";" to ":"' })
 vim.keymap.set('n', ';', ':', { desc = 'Map ";" to ":"' })

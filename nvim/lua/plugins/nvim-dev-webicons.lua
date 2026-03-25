@@ -1,5 +1,5 @@
 return {
-  "nvim-tree/nvim-web-devicons", opts = {},
+  "nvim-tree/nvim-web-devicons", options = {},
 
   require'nvim-web-devicons'.setup {
     -- your personal icons can go here (to override)

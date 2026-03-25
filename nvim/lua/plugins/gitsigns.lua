@@ -1,7 +1,7 @@
 return {
   "lewis6991/gitsigns.nvim",
   -- event = "LazyFile",
-  opts = {
+  options = {
     signs = {
       add          = { text = '┃' },
       change       = { text = '┃' },
@@ -60,8 +60,9 @@ return {
       end
       -- map("n", "]h", function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gs.nav_hunk("next") end end, "Next Hunk")
       -- map("n", "[h", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gs.nav_hunk("prev") end end, "Prev Hunk")
-      map("n", "]c", function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gs.nav_hunk("next") end end, "Next Hunk")
-      map("n", "[c", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gs.nav_hunk("prev") end end, "Prev Hunk")
+      -- map("n", "]c", function() gs.nav_hunk("next") end, "Next Hunk")
+      -- map("n", "[c", function() gs.nav_hunk("prev") end, "Prev Hunk")
+
       map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
       map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
       map({ "n", "x" }, "ghs", ":Gitsigns stage_hunk", "Stage Hunk")

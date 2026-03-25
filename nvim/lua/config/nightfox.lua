@@ -27,6 +27,13 @@ require("nightfox").setup({
       floats = "transparent",
     },
   },
+  groups = {
+    all = {
+      String = { fg = "#33aa00" },
+      -- Comment = { fg = "#ff8000" },
+      Comment = { fg = "#3333ff" },
+    }
+  }
 })
 
 vim.cmd("colorscheme carbonfox") -- Set the default theme
