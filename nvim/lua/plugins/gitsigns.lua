@@ -29,7 +29,7 @@ return {
     },
     auto_attach = true,
     attach_to_untracked = false,
-    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+    current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
     current_line_blame_opts = {
       virt_text = true,
       virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
@@ -42,7 +42,8 @@ return {
     sign_priority = 6,
     update_debounce = 100,
     status_formatter = nil, -- Use default
-    max_file_length = 40000, -- Disable if file is longer than this (in lines)
+    -- max_file_length = 40000, -- Disable if file is longer than this (in lines)
+    max_file_length = 0, -- Disable if file is longer than this (in lines)
     preview_config = {
       -- Options passed to nvim_open_win
       border = 'single',
@@ -57,8 +58,10 @@ return {
       local function map(mode, l, r, desc)
         vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc, silent = true })
       end
-      map("n", "]h", function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gs.nav_hunk("next") end end, "Next Hunk")
-      map("n", "[h", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gs.nav_hunk("prev") end end, "Prev Hunk")
+      -- map("n", "]h", function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gs.nav_hunk("next") end end, "Next Hunk")
+      -- map("n", "[h", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gs.nav_hunk("prev") end end, "Prev Hunk")
+      map("n", "]c", function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gs.nav_hunk("next") end end, "Next Hunk")
+      map("n", "[c", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gs.nav_hunk("prev") end end, "Prev Hunk")
       map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
       map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
       map({ "n", "x" }, "ghs", ":Gitsigns stage_hunk", "Stage Hunk")
