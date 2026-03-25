@@ -1,0 +1,63 @@
+# Set up git prompt in bash by following these steps:
+# Copy this file to ~/.git-bashrc
+# Copy the following 3 lines to your ~/.bashrc file and uncomment them:
+# if [ -f ~/.git-bashrc ]; then
+#   export SHOW_GIT_STATE="TRUE"
+#   . ~/.git-bashrc
+# fi
+
+# If you want your prompt to show the state (dirty, clean, etc) do nothing else.
+# If you only want your prompt to show the branch, comment the SHOW_GIT_STATE setting above.
+# If you opt to have your prompt show the state, it will include the following:
+#         a red asterisk (*) after the current branch will indicate that there are unstaged/uncommitted changes.
+#         a green plus sign (+) after the current branch will indicate that there are staged changes.
+# The state will not consider files that are ignored via .gitignore.
+
+#########################################################################
+# Set up the prompt.
+#########################################################################
+
+if [ -f ~/bin/git-prompt.sh ]; then
+
+  if [[ "$TERM" =~ 256color ]]; then
+    unset PROMPT_COMMAND
+
+    source ~/bin/git-prompt.sh
+
+    # The comment below shows the equivalent PS1 that we're going for here.
+    # This represents the simple branch display in cyan, not the state option.
+    # The PROMPT_COMMAND will pass two strings to the __git_ps1 function below, 
+    # prompt_pre and prompt_post. The status will be displayed in between the two.
+    # Updating the prompt in PROMPT_COMMAND is faster than just setting PS1 to
+    # call __git_ps1 directly.
+
+    # \[\e[1;38;5;220m\][<-         Bold, gold "["
+    # \[\e[0m\]<-                   Reset
+    # \[\e[38;5;34m\]\u<-           Green "\u"
+    # \[\e[1;38;5;220m\]@<-         Bold, gold "@"
+    # \[\e[0m\]                     Reset
+    # \[\e[38;5;34m\]\h<-           Green "\u"
+    # \[\e[1;38;5;220m\]]<-         Bold, gold "]"
+    # \[\e[0m\]                     Reset
+    # \[\e[38;5;34m\]: <-           Green ": "
+    # \[\e[38;5;21m\]\w <-          Blue "\w "
+    # \[\e[38;5;14m\]__git_ps1<-    Cyan "Git Status"
+    # \[\e[0m\]                     Reset
+    # \n$ <-                        "\n$ "
+
+    # If SHOW_GIT_STATE is set ...
+    if [ -n $SHOW_GIT_STATE ]; then
+      export GIT_PS1_SHOWCOLORHINTS=1
+      export GIT_PS1_SHOWDIRTYSTATE=1
+      # The following clears coloring before the git prompt display to allow __git_ps1 to perform its own coloring based on the GIT_PS1_* vars supported in git-prompt.sh.
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;34m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;33m\]\w\[\e[0m\]" "\n$ "'
+    else
+      PROMPT_COMMAND='history -n; history -w; history -c; history -r; __git_ps1 "\[\e[1;38;5;220m\][\[\e[0m\]\[\e[38;5;34m\]\u\[\e[0m\]\[\e[1;38;5;220m\]@\[\e[0m\]\[\e[38;5;34m\]\h\[\e[0m\]\[\e[1;38;5;220m\]]\[\e[0m\]\[\e[38;5;34m\]: \[\e[0m\]\[\e[38;5;33m\]\w\[\e[0m\]\[\e[38;5;14m\]" "\[\e[0m\]\n$ "'
+    fi
+  fi
+fi
+
+#########################################################################
+# Done setting up the prompt.
+#########################################################################
+
