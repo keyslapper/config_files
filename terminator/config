@@ -1,17 +1,22 @@
 [global_config]
   focus = mouse
   geometry_hinting = True
-  new_tab_after_current_tab = True
+  title_use_system_font = False
+  title_font = FiraCode Nerd Font Mono weight=453 14
 [keybindings]
   reset_clear = <Alt>l
   layout_launcher = ""
 [profiles]
   [[default]]
-    background_darkness = 0.7
+    background_darkness = 0.65
     background_type = transparent
-    font = Adwaita Mono 14
+    cursor_color = "#aaaaaa"
+    font = FiraCode Nerd Font Mono weight=453 14
+    foreground_color = "#deddda"
     show_titlebar = False
     scrollbar_position = hidden
+    scrollback_infinite = True
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
     use_system_font = False
     copy_on_selection = True
 [layouts]
