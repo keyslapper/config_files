@@ -4,10 +4,10 @@ require('nvim-web-devicons').setup({
   -- DevIcon will be appended to `name`
   override = {
     bash = {
-      icon = "?",
-      color = "#428850",
-      cterm_color = "65",
-      name = "bash"
+            icon = "",
+            color = "#428850",
+            cterm_color = "65",
+            name = "Bash"
     }
   };
   -- globally enable different highlight colors per icon (default to true)
@@ -32,30 +32,30 @@ require('nvim-web-devicons').setup({
   -- same as `override` but specifically for overrides by filename
   -- takes effect when `strict` is true
   override_by_filename = {
-    [".gitignore"] = {
-      icon = "?",
-      color = "#f1502f",
-      name = "Gitignore"
-    }
+      [".gitignore"] = {
+              icon = "",
+              color = "#f1502f",
+              name = "Gitignore"
+      }
   };
   -- same as `override` but specifically for overrides by extension
   -- takes effect when `strict` is true
   override_by_extension = {
-    ["log"] = {
-      icon = "?",
-      color = "#81e043",
-      name = "Log"
-    }
+      ["log"] = {
+              icon = "",
+              color = "#81e043",
+              name = "Log"
+      }
   };
   -- same as `override` but specifically for operating system
   -- takes effect when `strict` is true
---  override_by_operating_system = {
---    ["apple"] = {
---      icon = "?",
---      color = "#A2AAAD",
---      cterm_color = "248",
---      name = "Apple",
---    },
---  };
+  override_by_operating_system = {
+      ["apple"] = {
+              icon = "",
+              color = "#A2AAAD",
+              cterm_color = "248",
+              name = "Apple",
+      },
+  };
 })
 

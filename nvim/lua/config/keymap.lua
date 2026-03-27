@@ -67,8 +67,8 @@ end, { desc = 'Toggle mouse capture' })
 
 vim.keymap.set("n", "]c",  function() require("gitsigns").nav_hunk("next") end, { desc = "Next Hunk" })
 vim.keymap.set("n", "[c",  function() require("gitsigns").nav_hunk("prev") end, { desc = "Previous Hunk" })
-vim.keymap.set("n", "ghp", function() require("gitsigns").preview_hunk_inline() end, { desc = "Preview Hunk Inline" })
-vim.keymap.set("n", "ghb", function() require("gitsigns").blame_line({ full = true }) end, { desc = "Blame Line" })
+-- vim.keymap.set("n", "ghp", function() require("gitsigns").preview_hunk_inline() end, { desc = "Preview Hunk Inline" })
+-- vim.keymap.set("n", "ghb", function() require("gitsigns").blame_line({ full = true }) end, { desc = "Blame Line" })
 
 vim.keymap.set('n', '`', '\'', { desc = 'Map ";" to ":"' })
 vim.keymap.set('n', '\'', '`', { desc = 'Map ";" to ":"' })
