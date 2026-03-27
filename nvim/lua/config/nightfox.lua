@@ -30,8 +30,8 @@ require("nightfox").setup({
   groups = {
     all = {
       String = { fg = "#33aa00" },
-      -- Comment = { fg = "#ff8000" },
-      Comment = { fg = "#3333ff" },
+      Comment = { fg = "#ff8000" },
+      -- Comment = { fg = "#3333ff" },
     }
   }
 })
