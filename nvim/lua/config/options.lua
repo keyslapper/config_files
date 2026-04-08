@@ -29,6 +29,7 @@ vim.opt.inccommand = 'split'
 
 -- Text wrapping
 vim.opt.wrap = true
+vim.opt.linebreak = true
 vim.opt.breakindent = true
 
 -- Tabstops

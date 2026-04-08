@@ -65,6 +65,7 @@ vim.keymap.set('n', '<F11>', function()
     end
 end, { desc = 'Toggle mouse capture' })
 
+vim.keymap.set("n", '<leader>gb',  function() require("gitsigns").blame() end, { desc = "Git Blame" })
 vim.keymap.set("n", "]c",  function() require("gitsigns").nav_hunk("next") end, { desc = "Next Hunk" })
 vim.keymap.set("n", "[c",  function() require("gitsigns").nav_hunk("prev") end, { desc = "Previous Hunk" })
 -- vim.keymap.set("n", "ghp", function() require("gitsigns").preview_hunk_inline() end, { desc = "Preview Hunk Inline" })

@@ -10,3 +10,5 @@ vim.g.have_nerd_font = true
 
 vim.g.nvim_tree_respect_buf_cwd = 1
 
+vim.g.clipboard="xsel"
+
