@@ -57,6 +57,13 @@ vim.o.scrolloff = 0
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- C indentation settings
+vim.opt.cindent = true
+vim.opt.smartindent = true
+vim.opt.cinoptions = '>4,e2,n-2,{2,l1,b0,+4,(0,us,U1,w1,W0,m0,j0,)20,*30'
+vim.opt.cinkeys = '0{,0},0),0],:,0#,!^F,o,O,e,*<Return>'
+vim.opt.cinwords = 'if,else,while,do,for,switch,case'
+
 vim.fn.matchadd('ErrorMsg', '\\s\\+$')
 vim.fn.matchadd('ErrorMsg', '^\\(<\\|=\\|>\\)\\{7\\}\\([^=].\\+\\)\\?$')
 

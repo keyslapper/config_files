@@ -68,8 +68,8 @@ end, { desc = 'Toggle mouse capture' })
 vim.keymap.set("n", '<leader>gb',  function() require("gitsigns").blame() end, { desc = "Git Blame" })
 vim.keymap.set("n", "]c",  function() require("gitsigns").nav_hunk("next") end, { desc = "Next Hunk" })
 vim.keymap.set("n", "[c",  function() require("gitsigns").nav_hunk("prev") end, { desc = "Previous Hunk" })
--- vim.keymap.set("n", "ghp", function() require("gitsigns").preview_hunk_inline() end, { desc = "Preview Hunk Inline" })
--- vim.keymap.set("n", "ghb", function() require("gitsigns").blame_line({ full = true }) end, { desc = "Blame Line" })
+vim.keymap.set("n", "ghp", function() require("gitsigns").preview_hunk_inline() end, { desc = "Preview Hunk Inline" })
+vim.keymap.set("n", "ghb", function() require("gitsigns").blame_line({ full = true }) end, { desc = "Blame Line" })
 
 vim.keymap.set('n', '`', '\'', { desc = 'Map ";" to ":"' })
 vim.keymap.set('n', '\'', '`', { desc = 'Map ";" to ":"' })
@@ -101,6 +101,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>xx', '<Cmd>source %<CR>', { desc = 'Source current file' })
 vim.keymap.set('n', '<leader>x', '<Cmd>:.lua<CR>',     { desc = 'Lua: execute current line' })
 vim.keymap.set('v', '<leader>x', '<Cmd>:lua<CR>',      { desc = 'Lua: execute current selection' })
+
+vim.keymap.set('n', '<F2>', ':bp<CR>', { desc = 'Open previous buffer' })
+vim.keymap.set('n', '<F3>', ':bn<CR>', { desc = 'Open next buffer' })
 
 
 -- vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })

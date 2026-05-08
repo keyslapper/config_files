@@ -5,5 +5,12 @@ return {
   dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
+  pipe_table = {
+    -- cell   = 'raw',
+    cell   = 'overlay',
+    style  = 'full',
+    preset = 'round',
+    min_width = 0,
+  },
   options = {},
 }
