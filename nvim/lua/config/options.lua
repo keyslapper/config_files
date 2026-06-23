@@ -4,7 +4,9 @@
 -- vim.opt.number = true
 -- vim.opt.relativenumber = true
 
+vim.opt.mouse = ""
 vim.opt.termguicolors = true
+vim.opt.background = "dark" -- or "light"
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'

@@ -55,15 +55,15 @@ vim.keymap.set('n', '<F10>', ':vsplit<CR>', { desc = 'Split window vertically' }
 --vim.keymap.set('n', '<C-F10>', ':split<CR>', { desc = 'Split window horizontally' })
 
 -- Toggle mouse capture
-vim.keymap.set('n', '<F11>', function()
-    if vim.o.mouse == 'a' then
-        vim.o.mouse = ''
-        print('Mouse disabled')
-    else
-        vim.o.mouse = 'a'
-        print('Mouse enabled')
-    end
-end, { desc = 'Toggle mouse capture' })
+-- vim.keymap.set('n', '<F11>', function()
+--     if vim.o.mouse == 'a' then
+--         vim.o.mouse = ''
+--         print('Mouse disabled')
+--     else
+--         vim.o.mouse = 'a'
+--         print('Mouse enabled')
+--     end
+-- end, { desc = 'Toggle mouse capture' })
 
 vim.keymap.set("n", '<leader>gb',  function() require("gitsigns").blame() end, { desc = "Git Blame" })
 vim.keymap.set("n", "]c",  function() require("gitsigns").nav_hunk("next") end, { desc = "Next Hunk" })
