@@ -1,5 +1,5 @@
 require("markdown-table-wrap").setup({
-  max_width_ratio = 0.8,
+  max_width_ratio = 0.9,
   min_col_width = 3,
   max_col_width = 80,
   border = "rounded",
