@@ -27,7 +27,7 @@ set -o notify
 # CYAN='\e[38;5;51m\]'
 # RESET='\e[0m\]'
 
-stty erase 
+#stty erase 
 
 # Look at the git repo on github under git/contrib/completion/ for git-prompt.sh and git-completion.bash
 unset PROMPT_COMMAND
