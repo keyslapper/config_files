@@ -9,16 +9,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = "*.md",
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
   callback = function()
-    local ft = vim.bo.filetype
-    if ft == "markdown" then
-      vim.treesitter.start(0, "markdown")
-      vim.treesitter.start(0, "markdown_inline")
-    end
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+
+    vim.keymap.set('n', 'K', ':MarkdownTableFloatPreview<cr>', { buffer = true, desc = 'Toggle Floating Markdown Table Wrap View' })
   end,
 })
+
 
 -- Source - https://stackoverflow.com/a/79676790
 -- Posted by SergioAraujo, modified by community. See post 'Timeline' for change history

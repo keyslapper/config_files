@@ -6,7 +6,7 @@ require("markdown-table-wrap").setup({
   use_unicode_border = true,
   table_border = "rounded", -- single, double, rounded
   row_separator = true,
-  preview_mode = "float", -- inline or float
+  preview_mode = 'inline', -- inline or float
   inline_mode = "replace", -- replace or insert
   inline_position = "above", -- above or below for insert mode
   dim_source = true,
@@ -18,9 +18,10 @@ require("markdown-table-wrap").setup({
   clear_on_visual = true,
   debounce_ms = 80,
   overlay_priority = 10000,
-  overlay_fill = true,
-  inline_virtual_text = "overlay",
-  inline_disable_wrap = true,
+  overlay_fill = false,
+  -- inline_virtual_text = "overlay",
+  inline_virtual_text = 'win_col',
+  inline_disable_wrap = false,
   inline_viewport_scrolling = false,
   highlight_preset = "default",
   theme_dir = nil,
@@ -28,14 +29,14 @@ require("markdown-table-wrap").setup({
   highlights = {},
   map_gx = true,
   link = {
-    wiki = { icon = "? ", highlight = "MarkdownTableWrapWikiLink", scope_highlight = "MarkdownTableWrapWikiLink" },
-    image = "? ",
+    wiki = { icon = " ", highlight = "MarkdownTableWrapWikiLink", scope_highlight = "MarkdownTableWrapWikiLink" },
+    image = " ",
     custom = {
-      github = { pattern = "github", icon = "? " },
-      gitlab = { pattern = "gitlab", icon = "?? " },
-      youtube = { pattern = "youtube", icon = "? " },
-      bilibili = { pattern = "bilibili", icon = "?? " },
-      cern = { pattern = "cern.ch", icon = "? " },
+      github = { pattern = "github", icon = " " },
+      gitlab = { pattern = "gitlab", icon = "󰮠 " },
+      youtube = { pattern = "youtube", icon = " " },
+      bilibili = { pattern = "bilibili", icon = "󰟴 " },
+      cern = { pattern = "cern.ch", icon = " " },
     },
-  },
+  }
 })

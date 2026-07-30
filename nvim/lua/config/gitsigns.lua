@@ -5,6 +5,6 @@ require("gitsigns").setup({
 
     -- If gitsigns is not working, this is probably the reason.
     -- Disable if file is longer than this (in lines)
-    max_file_length = 50000,
+    -- max_file_length = 9000,
   })
 

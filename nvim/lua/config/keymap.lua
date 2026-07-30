@@ -111,3 +111,8 @@ vim.keymap.set('n', '<F3>', ':bn<CR>', { desc = 'Open next buffer' })
 -- vim.keymap.set('n', '<leader>fb', builtin.buffers,    { desc = 'Telescope buffers'    })
 -- vim.keymap.set('n', '<leader>fh', builtin.help_tags,  { desc = 'Telescope help tags'  })
 
+-- vim.keymap.set('n', '<leader>mt', '<cmd>MarkdownTableTogglePreview<cr>', { desc = 'Toggle Markdown table preview' })
+-- vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownTablePreview<cr>', { desc = 'Preview Markdown table inline' })
+-- vim.keymap.set('n', '<S>K', '<cmd>MarkdownTableFloatPreview<cr>', { desc = 'Float Markdown table preview' })
+-- vim.keymap.set('n', '<leader>mT', '<cmd>MarkdownTableToggleAutoPreview<cr>', { desc = 'Toggle auto Markdown table preview' })
+
